@@ -47,3 +47,23 @@
   background-color: #5f2eea !important;
   color: #fff !important;
 }
+
+.textPurple {
+  color: #5f2eea;
+}
+
+@media only screen and (min-width: 200px) and (max-width: 767px) {
+  .footerTitle{
+    margin: 0px auto;
+    justify-content: center !important;
+  }
+  .footerInfo {
+    padding: 25px 0;
+    width: 40vw;
+    margin-right: 0;
+  }
+  .footerSponsor {
+    width: 38vw;
+    margin: 0px auto;
+  }
+}

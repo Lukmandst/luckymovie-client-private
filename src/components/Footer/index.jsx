@@ -8,17 +8,16 @@ import hiflix from '../../assets/images/cinemas/hiflix.png'
 import { FiFacebook, FiInstagram, FiYoutube, FiTwitter } from 'react-icons/fi'
 
 //assets 
-import styles from '../../../styles/Home.module.css'
+import styles from '../../styles/Home.module.css'
 
 import { useRouter } from "next/router";
 
 export default function Footer() {
     const router = useRouter();
-
     return (
         <footer>           
             <Container>
-                <Row className='d-flex justify-content-between'>
+                <Row className={`${styles.footerTitle} d-flex justify-content-between my-5 mb-3`}>
                     <Col xs={12} md={4} className={`${styles.footerInfo} col-md-3 col-sm-12`}>
                         <a>
                             <Image
@@ -37,7 +36,7 @@ export default function Footer() {
                     </Col>
                     <Col xs={12} md={2} className={`${styles.footerExplore} my-5 mb-3`}>
                         <h5><b>Explore</b></h5>
-                        <div className='d-flex flex-md-column flex-row flex-wrap pt-4'>
+                        <div className='d-flex flex-md-column gap-2 justify-content-center flex-row flex-wrap pt-4'>
                             <p>
                                 <a href='#'>Cinemas</a>
                             </p>
@@ -71,7 +70,7 @@ export default function Footer() {
                     </Col>
                     <Col xs={12} md={3} className='col-12 col-md-3 mb-3 my-5'>
                         <h5><b>Follow us</b></h5>
-                        <div className={`${styles.footerFollow} d-flex flex-md-column flex-row flex-wrap pt-4`}>
+                        <div className={`${styles.footerFollow} d-flex justify-content-center gap-2 flex-md-column flex-row flex-wrap pt-4`}>
                             <p>
                                 <a href='#'>
                                     <FiFacebook />
