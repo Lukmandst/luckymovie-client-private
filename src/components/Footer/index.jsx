@@ -8,7 +8,7 @@ import hiflix from '../../assets/images/cinemas/hiflix.png'
 import { FiFacebook, FiInstagram, FiYoutube, FiTwitter } from 'react-icons/fi'
 
 //assets 
-import styles from '../../../styles/Home.module.css'
+import styles from '../../styles/Home.module.css'
 
 import { useRouter } from "next/router";
 

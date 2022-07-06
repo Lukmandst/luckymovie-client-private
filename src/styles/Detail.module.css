@@ -1,0 +1,31 @@
+.container {
+  padding: 0 5%;
+}
+.image {
+  border: 3px solid #dedede;
+  border-radius: 24px;
+  padding: 2rem;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 32px;
+  color: #14142b;
+}
+.genre {
+  font-weight: 400;
+  font-size: 18px;
+  color: #4e4b66;
+}
+
+.mainSection {
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+}
+
+.infoName {
+  font-weight: 400;
+  font-size: 14px;
+  color: #8692a6;
+}
