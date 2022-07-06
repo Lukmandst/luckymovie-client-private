@@ -2,8 +2,7 @@ import styles from './SideProfile.module.css'
 import Image from 'next/image'
 import more from '../../assets/img/more.png'
 import dummy from '../../assets/img/dummybig.png'
-import badge from '../../assets/img/badge.png'
-import star from '../../assets/img/star.png'
+import star from '../../assets/img/star2.png'
 
 
 const SideProfile = () => {
@@ -26,7 +25,8 @@ const SideProfile = () => {
         <div className={styles.bottomCard}>
           <span>Loyalty Points</span>
           <div className={styles.maskGroup}>
-          <Image className={styles.stars} src={star} alt='star' />
+            <span></span>
+            <span></span>
           </div>
           <span>180 points become a master</span>
           <div className={styles.proggressbar}>

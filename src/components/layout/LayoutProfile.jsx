@@ -15,7 +15,6 @@ const LayoutProfile = ({title, children}) => {
     <SideProfile/>
     {children}
     </div>
-    <Footer/>
     </>
   )
 }
