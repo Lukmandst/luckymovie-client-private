@@ -1,0 +1,22 @@
+.globalContainer{
+    display: flex;
+}
+
+.asideContainer{
+    width: 100%;
+    height: 750px;
+    background-image: url(../assets/avenger.png);
+    background-size: cover;
+    flex: 3;
+}
+
+.backgroundAside{
+    width: 100%;
+    height: 750px;
+    background-color: rgba(24, 27, 221, 0.73)
+}
+
+.containerContent{
+    width: 100%;
+    flex: 2;
+}
