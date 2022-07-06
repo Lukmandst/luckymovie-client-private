@@ -1,0 +1,104 @@
+.container{
+    display: flex;
+    flex: 4;
+    align-items: center;
+    padding: 56px 32px 0px 70px;
+}
+
+.card{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 32px;
+    background: #FFFFFF;
+    box-shadow: 0px 8px 32px rgba(186, 186, 186, 0.08);
+    border-radius: 6px;
+    width: 100%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    color: #4E4B66;
+    padding: 0px 40px;
+}
+.imgProfile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.displayName{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 4px;
+    width: 100%;
+}
+.displayName>span:nth-child(1){
+    color: #14142B;
+    font-size: 20px;
+    font-weight: 600;
+}
+.displayName>span:nth-child(2){
+    color:  #4E4B66;
+    font-size: 16px;
+    font-weight: 400;
+}
+.line{
+    border-bottom: 2px solid #DEDEDE;
+    width: 100%;
+    align-items: center;
+}
+.bottomCard{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    row-gap: 40px;
+    padding: 0px 40px 0 40px;
+    width: 100%;
+}
+.bottomCard>span{
+    font-size: 16px;
+    font-weight: 400;
+    color: #4E4B66;
+
+}
+
+.maskGroup{
+    background: linear-gradient(75deg, #5F2EEA 31.28%, #7647F9 62.16%);
+    box-shadow: 0px 8px 32px #5F2EEA;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 125px;
+}
+.stars{
+    position: absolute;
+    right: 0;
+}
+.proggressbar{
+    background-color: #F5F6F8;
+    box-shadow: inset 0px 2px 4px rgba(17, 17, 17, 0.16);
+    border-radius: 8px;
+    width: 100%;
+    position: relative;
+    height: 16px;
+}
+.proggressbar>span{
+    width: 50%;
+    height: 16px;
+    background-color:#5F2EEA;
+    position: absolute;
+    border-radius: 8px;
+}
