@@ -15,7 +15,7 @@ import { useRouter } from "next/router";
 export default function Footer() {
     const router = useRouter();
     return (
-        <footer>           
+        <footer>
             <Container>
                 <Row className={`${styles.footerTitle} d-flex justify-content-between my-5 mb-3`}>
                     <Col xs={12} md={4} className={`${styles.footerInfo} col-md-3 col-sm-12`}>
@@ -55,16 +55,16 @@ export default function Footer() {
                         <h5><b>Our Sponsor</b></h5>
                         <div className={`${styles.footerSponsor} d-flex flex-md-column flex-row flex-wrap mt-3 mb-3 `}>
                             <a href='#'>
-                                <Image src={cineOne21} 
-                                alt='ebv.id' />
+                                <Image src={cineOne21}
+                                    alt='ebv.id' />
                             </a>
                             <a href='#'>
-                                <Image src={ebvid} 
-                                alt='CineOne21' />
+                                <Image src={ebvid}
+                                    alt='CineOne21' />
                             </a>
                             <a href='#'>
-                                <Image src={hiflix} 
-                                alt='hiflix' />
+                                <Image src={hiflix}
+                                    alt='hiflix' />
                             </a>
                         </div>
                     </Col>
