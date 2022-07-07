@@ -10,7 +10,7 @@ const LayoutProfile = ({title, children}) => {
     <Head>
         <title>{title}</title>
     </Head>
-    {/* <Header/> */}
+    <Header/>
     <div className={styles.profileContainer}>
     <SideProfile/>
     {children}
