@@ -4,6 +4,17 @@ const nextConfig = {
   images: {
     domains: ['res.cloudinary.com', 'image.tmdb.org'],
   },
+  // images: {
+  //   domains: ['res.cloudinary.com'],
+  // },
+  async rewrites(){
+    return[
+      {
+        source:'/register',
+        destination:'/auth/register',     
+      },
+    ]
+  }
 }
 
 module.exports = nextConfig

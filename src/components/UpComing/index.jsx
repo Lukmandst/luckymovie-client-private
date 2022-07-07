@@ -6,9 +6,9 @@ import Movie from "../../assets/images/hero/movie.png";
 export default function UpComing() {
   return (
     <div className="d-flex flex-column">
-        <div className=" justify-content-center d-flex flex-column">
-      <div className={`${styles.nowShowing}`}>
-        <Image src={Movie} alt="movies" />        
+      <div className=" justify-content-center d-flex flex-column">
+        <div className={`${styles.nowShowing}`}>
+          <Image src={Movie} alt="movies" />
           <h5 className="text-center pt-3">
             <b>Black Widow</b>
           </h5>
