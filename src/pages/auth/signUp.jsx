@@ -28,7 +28,7 @@ function SignUp() {
             }
             else {
                 let body = { email, password }
-                let response = await doLogin(body)
+                let response = await doSignUp(body)
                 console.log(response.data.data.msg);
                 setIsError(false)
                 setIsLoading(true)
