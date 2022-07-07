@@ -21,7 +21,7 @@ function Reset() {
                 <AsideReset />
                 <div className={styles.containerContent}>
                     <div className={styles.contentTitle}>Fill your complete email</div>
-                    <div className={styles.contentBody}>we'll send a link to your email shortly</div>
+                    <div className={styles.contentBody}>we`ll send a link to your email shortly</div>
                     <div className={styles.wrapperForm}>
                         <label htmlFor="" className={styles.formLabel}>Email</label>
                         <div className={styles.inputWrapper}>
