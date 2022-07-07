@@ -4,9 +4,23 @@ import {Eye, EyeSlash} from 'react-bootstrap-icons'
 import cineOne from '../../assets/img/cineone.png'
 import Image from "next/image"
 import { useState } from "react"
+import { useEffect } from "react"
+import { getUserId } from "modules/axios"
+import { useSelector } from "react-redux"
+
 
 const Profile = () => {
   const [showOrder, setShowOrder] = useState(false)
+
+  useEffect(()=>{
+    const getUser = async()=>{
+      try {
+        const result = await getUserId()
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }, [])
   return (
     <>
     <LayoutProfile title={"Profile"}>
