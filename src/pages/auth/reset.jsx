@@ -28,6 +28,7 @@ function Reset() {
                             <input type="email" name="email" placeholder="Enter your e-mail" className={styles.formInput} />
                         </div>
                     </div>
+                    <div className={styles.button}>Activate Now</div>
                 </div>
             </main>
         </Layout>

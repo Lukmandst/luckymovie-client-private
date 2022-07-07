@@ -7,10 +7,44 @@ import Google from "assets/images/logo/google.png"
 import Facebook from "assets/images/logo/facebook.jpg"
 import Image from "next/image"
 import AsideRegister from "components/aside/AsideRegister"
+import axios from "axios"
+import { doLogin } from "modules/axios"
 
 function SignUp() {
     const [showPassword, setShowPassword] = useState(false)
-    // const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [msg, setMsg] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
+    const [isError, setIsError] = useState(null)
+    const [isAgree, setIsAgree] = useState(false)
+
+    const signUpHandler = async () => {
+        try {
+            setIsError(false)
+            setMsg(false)
+            if (!isAgree) {
+                setIsError(true)
+                setMsg("You have not agree to terms & conditions")
+            }
+            else {
+                let body = { email, password }
+                let response = await doLogin(body)
+                console.log(response.data.data.msg);
+                setIsError(false)
+                setIsLoading(true)
+                setMsg(response.data.data.msg)
+            }
+        }
+        catch (error) {
+            console.log(error);
+            console.log(msg);
+            setMsg(error.response.data.err.msg)
+            setIsLoading(false)
+            setIsError(true)
+
+        }
+    }
 
     const showPassHandler = () => {
         setShowPassword(!showPassword)
@@ -24,21 +58,29 @@ function SignUp() {
                     <div className={styles.wrapperForm}>
                         <label htmlFor="" className={styles.formLabel}>Email</label>
                         <div className={styles.inputWrapper}>
-                            <input type="email" name="email" placeholder="Enter your e-mail" className={styles.formInput} />
+                            <input type="email" name="email" placeholder="Enter your e-mail" className={styles.formInput}
+                                onChange={e => setEmail(e.target.value)} />
                         </div>
                     </div>
                     <div className={styles.wrapperForm}>
                         <label htmlFor="" className={styles.formLabel}>Password</label>
                         <div className={styles.inputWrapper}>
-                            <input type={showPassword ? "text" : "password"} name="password" placeholder="Write your password" className={styles.formInput} />
+                            <input type={showPassword ? "text" : "password"} name="password" placeholder="Write your password" className={styles.formInput}
+                                onChange={e => setPassword(e.target.value)} />
                             {showPassword ? <EyeSlash className={styles.icon} onClick={showPassHandler} /> : <Eye className={styles.icon} onClick={showPassHandler} />}
                         </div>
                     </div>
                     <div className={styles.wrapperCheckbox}>
-                        <input type="checkbox" className={styles.inputCheckbox} />
+                        <input type="checkbox" className={styles.inputCheckbox} onClick={() => { setIsAgree(!isAgree) }} />
                         <div className={styles.checkboxInfo}>I agree to terms & conditions</div>
                     </div>
-                    <div className={styles.button}>Join for free now</div>
+                    {isError && Array.isArray(msg) ? (
+                        msg.map((erroritem) => <div key={erroritem.msg} className={styles.errorMsg} > {erroritem.msg}</div>)) : isError && <div key={msg} className={styles.errorMsg} > {msg} </div>
+                    }
+
+                    {!isError ? <div key={msg} className={styles.successMsg}> {msg} </div> : <></>}
+
+                    <div className={styles.button} onClick={signUpHandler}>Join for free now</div>
                     <div className={styles.login}>Do you already have an account? <Link href={"/signin"}><a className={styles.link}>Log in</a></Link></div>
                     <div className={styles.wrapperOr}>
                         <div className={styles.underline}></div>
