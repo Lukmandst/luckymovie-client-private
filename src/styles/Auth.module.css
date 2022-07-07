@@ -186,6 +186,20 @@
     color: #696F79;
 }
 
+.errorMsg{
+    font-size: 15px;
+    font-weight: 700;
+    color: red;
+    text-align: center;
+}
+
+.successMsg{
+    font-size: 15px;
+    font-weight: 700;
+    color: green;
+    text-align: center;
+}
+
 .button {
     margin: 5% 0;
     width: 100%;
@@ -247,4 +261,15 @@
     box-shadow: 10px 10px 30px -20px;
     border-radius: 20px;
     cursor: pointer;
+}
+
+@media(max-width:768px){
+    .globalContainer{
+        flex-direction: column;
+    }
+    .asideFooter{
+        display: none;
+    }
+
+
 }
