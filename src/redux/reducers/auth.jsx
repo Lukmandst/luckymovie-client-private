@@ -3,9 +3,10 @@ import { FULFILLED, PENDING, REJECTED, loginString, logoutString } from "redux/a
 const initialState = {
     userInfo: [],
     isLoading: false,
-    isError: null,
+    errorMsg: null,
     isSuccess: false,
-    // token: false,
+    token: false,
+    role: false
 }
 
 const authReducer = (state = initialState, action) => {
@@ -13,22 +14,24 @@ const authReducer = (state = initialState, action) => {
         case loginString + PENDING:
             return {
                 ...state,
-                isError: null,
+                errorMsg: null,
                 isLoading: true
             }
         case loginString + FULFILLED:
+            console.log(action.payload.data);
             return {
                 ...state,
-                isError: null,
                 isLoading: false,
-                userInfo: action.payload.data,
-                // token: action.payload.data.token,
-                isSuccess: true
+                userInfo: action.payload.data.data,
+                token: action.payload.data.data.token,
+                isSuccess: true,
+                role: action.payload.data.data.role
+
             }
         case loginString + REJECTED:
             return {
                 ...state,
-                isError: action.payload.response.data.msg,
+                errorMsg: action.payload.response.data.err.msg,
                 isLoading: false,
                 isSuccess: false
             }

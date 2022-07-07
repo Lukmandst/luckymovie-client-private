@@ -7,10 +7,35 @@ import Google from "assets/images/logo/google.png"
 import Facebook from "assets/images/logo/Facebook.jpg"
 import Image from "next/image"
 import AsideLogin from "components/aside/AsideLogin"
+import { useRouter } from "next/router"
+import { loginAction } from "redux/actionCreators/auth"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
 
 function SignIn() {
     const [showPassword, setShowPassword] = useState(false)
-    // const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const router = useRouter()
+    const dispatch = useDispatch()
+    const { userInfo, isLoading, errorMsg, isSuccess, token } = useSelector(state => state.auth)
+
+    const handlerLogin = () => {
+        const body = { email, password };
+        dispatch(loginAction(body))
+            .then((result) => {
+                console.log(result);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
+    useEffect(() => {
+        if (token) {
+            router.push("/")
+        }
+    }, [token])
 
     const showPassHandler = () => {
         setShowPassword(!showPassword)
@@ -25,20 +50,25 @@ function SignIn() {
                     <div className={styles.wrapperForm}>
                         <label htmlFor="" className={styles.formLabel}>Email</label>
                         <div className={styles.inputWrapper}>
-                            <input type="email" name="email" placeholder="Enter your e-mail" className={styles.formInput} />
+                            <input type="email" name="email" placeholder="Enter your e-mail" className={styles.formInput}
+                                onChange={e => setEmail(e.target.value)}
+                            />
                         </div>
                     </div>
                     <div className={styles.wrapperForm}>
                         <label htmlFor="" className={styles.formLabel}>Password</label>
                         <div className={styles.inputWrapper}>
-                            <input type={showPassword ? "text" : "password"} name="password" placeholder="Write your password" className={styles.formInput} />
+                            <input type={showPassword ? "text" : "password"} name="password" placeholder="Write your password" className={styles.formInput}
+                                onChange={e => setPassword(e.target.value)}
+                            />
                             {showPassword ? <EyeSlash className={styles.icon} onClick={showPassHandler} /> : <Eye className={styles.icon} onClick={showPassHandler} />}
                         </div>
                         <Link href={'/reset'}>
                             <div className={styles.forgot}>Forgot password?</div>
                         </Link>
                     </div>
-                    <div className={styles.button}>Sign In</div>
+                    {isSuccess === null ? <></> : isSuccess ? <div className={styles.successMsg}>{errorMsg}</div> : <div className={styles.errorMsg}>{errorMsg}</div>}
+                    <div className={styles.button} onClick={handlerLogin}>Sign In</div>
                     <div className={styles.login}>Don’t have an account? Let’s <Link href={"/signup"}><a className={styles.link}>Sign Up</a></Link></div>
                     <div className={styles.wrapperOr}>
                         <div className={styles.underline}></div>
@@ -51,7 +81,7 @@ function SignIn() {
                             <div className={styles.buttonInfo}>Google</div>
                         </div>
                         <div className={styles.wrapperButtonFooter}>
-                            <Image src={Facebook} width={30} height={30} alt="fb"  />
+                            <Image src={Facebook} width={30} height={30} alt="fb" />
                             <div className={styles.buttonInfo}>Facebook</div>
                         </div>
                     </div>
