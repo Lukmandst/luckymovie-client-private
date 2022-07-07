@@ -7,7 +7,7 @@ import Google from "assets/images/logo/google.png"
 import Facebook from "assets/images/logo/facebook.jpg"
 import Image from "next/image"
 import AsideRegister from "components/aside/AsideRegister"
-import { doLogin } from "modules/axios"
+import { doSignUp } from "modules/axios"
 
 function SignUp() {
     const [showPassword, setShowPassword] = useState(false)
