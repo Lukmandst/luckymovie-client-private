@@ -7,7 +7,6 @@ import Google from "assets/images/logo/google.png"
 import Facebook from "assets/images/logo/facebook.jpg"
 import Image from "next/image"
 import AsideRegister from "components/aside/AsideRegister"
-import axios from "axios"
 import { doLogin } from "modules/axios"
 
 function SignUp() {
@@ -89,11 +88,11 @@ function SignUp() {
                     </div>
                     <div className={styles.containerButtonFooter}>
                         <div className={styles.wrapperButtonFooter}>
-                            <Image src={Google} width={30} height={30} />
+                            <Image src={Google} width={30} height={30} alt="icon-img" />
                             <div className={styles.buttonInfo}>Google</div>
                         </div>
                         <div className={styles.wrapperButtonFooter}>
-                            <Image src={Facebook} width={30} height={30} />
+                            <Image src={Facebook} width={30} height={30} alt="icon-img" />
                             <div className={styles.buttonInfo}>Facebook</div>
                         </div>
                     </div>
@@ -103,4 +102,4 @@ function SignUp() {
     )
 }
 
-export default SignUp
+export default SignUp;

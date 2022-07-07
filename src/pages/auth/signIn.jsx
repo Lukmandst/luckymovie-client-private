@@ -47,11 +47,11 @@ function SignIn() {
                     </div>
                     <div className={styles.containerButtonFooter}>
                         <div className={styles.wrapperButtonFooter}>
-                            <Image src={Google} width={30} height={30} />
+                            <Image src={Google} width={30} height={30} alt="google" />
                             <div className={styles.buttonInfo}>Google</div>
                         </div>
                         <div className={styles.wrapperButtonFooter}>
-                            <Image src={Facebook} width={30} height={30} />
+                            <Image src={Facebook} width={30} height={30} alt="fb"  />
                             <div className={styles.buttonInfo}>Facebook</div>
                         </div>
                     </div>
