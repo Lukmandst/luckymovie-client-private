@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Eye, EyeSlash } from "react-bootstrap-icons"
 import styles from "../../styles/Auth.module.css"
 import Google from "assets/images/logo/google.png"
-import Facebook from "assets/images/logo/facebook.jpg"
+import Facebook from "assets/images/logo/Facebook.jpg"
 import Image from "next/image"
 import AsideLogin from "components/aside/AsideLogin"
 
@@ -47,11 +47,11 @@ function SignIn() {
                     </div>
                     <div className={styles.containerButtonFooter}>
                         <div className={styles.wrapperButtonFooter}>
-                            <Image src={Google} width={30} height={30} />
+                            <Image src={Google} width={30} height={30} alt="google" />
                             <div className={styles.buttonInfo}>Google</div>
                         </div>
                         <div className={styles.wrapperButtonFooter}>
-                            <Image src={Facebook} width={30} height={30} />
+                            <Image src={Facebook} width={30} height={30} alt="fb"  />
                             <div className={styles.buttonInfo}>Facebook</div>
                         </div>
                     </div>
