@@ -1,19 +1,29 @@
-import { legacy_createStore as createStore, applyMiddleware, compose } from "redux";
+import { legacy_createStore as createStore, applyMiddleware, compose, combineReducers } from "redux";
 import { persistStore, persistReducer } from "redux-persist";
 import { createLogger } from "redux-logger";
 import rpm from "redux-promise-middleware";
 import storage from "redux-persist/lib/storage";
-import reducers from "./reducers";
+import authReducer from "./reducers/auth";
 import thunk from "redux-thunk";
 
 // redux persist config start
-const persistConfig = {
+const rootPersistConfig = {
     key: "root",
     storage,
-    whitelist: ["auth"],
+    whitelist: ["authReducer"],
 };
 
-const persistedReducer = persistReducer(persistConfig, reducers);
+const authPersistConfig = {
+    key: "authReducer",
+    storage,
+    whitelist: ['token', 'role'],
+};
+
+const storeReducer = combineReducers({
+    auth: persistReducer(authPersistConfig, authReducer),
+});
+
+const persistedReducer = persistReducer(rootPersistConfig, storeReducer);
 
 // redux-logger middleware
 const logger = createLogger();
