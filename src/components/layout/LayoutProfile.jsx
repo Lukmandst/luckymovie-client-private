@@ -1,8 +1,8 @@
 import Header from "../header/Header"
-import Footer from "../footer/Footer"
 import Head from "next/head"
 import SideProfile from "../sideProfile/SideProfile"
 import styles from './LayoutProfile.module.css'
+import Footer from "components/Footer"
 
 const LayoutProfile = ({title, children}) => {
   return (
@@ -10,11 +10,12 @@ const LayoutProfile = ({title, children}) => {
     <Head>
         <title>{title}</title>
     </Head>
-    <Header/>
+    {/* <Header/> */}
     <div className={styles.profileContainer}>
     <SideProfile/>
     {children}
     </div>
+    <Footer/>
     </>
   )
 }

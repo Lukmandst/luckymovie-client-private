@@ -2,13 +2,14 @@ import styles from './SideProfile.module.css'
 import Image from 'next/image'
 import more from '../../assets/img/more.png'
 import dummy from '../../assets/img/dummybig.png'
-import star from '../../assets/img/star2.png'
+import { useState } from 'react'
 
 
 const SideProfile = () => {
+  const [show, setShow] = useState(false)
   return (
     <>
-    <div className={styles.container}>
+    <div className={`${styles.container} ${show ? styles.show : ""}`}>
       <div className={styles.card}>
         <div className={styles.info}>
           <span>INFO</span>
@@ -35,6 +36,14 @@ const SideProfile = () => {
         </div>
       </div>
     </div>
+    <span className={`${styles.rightArrow} ${show ? styles.show : ""}`} onClick={()=>{
+      if(show){
+        setShow(false)
+      }
+      if(!show){
+        setShow(true)
+      }
+    }}>{"|"}</span>
     </>
   )
 }
