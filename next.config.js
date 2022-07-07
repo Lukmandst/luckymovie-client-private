@@ -7,8 +7,16 @@ const nextConfig = {
   async rewrites(){
     return[
       {
-        source:'/register',
-        destination:'/auth/register',     
+        source:'/signup',
+        destination:'/auth/signUp',     
+      },
+      {
+        source:'/reset',
+        destination:'/auth/reset',     
+      },
+      {
+        source:'/signin',
+        destination:'/auth/signIn',     
       },
     ]
   }
