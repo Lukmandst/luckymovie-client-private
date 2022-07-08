@@ -1,0 +1,16 @@
+.seatContainer{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 100px;
+    width: 820px;
+    height: 661px;
+    background: #FFFFFF;
+    border-radius: 24px;
+}
+.tableSeat{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
