@@ -1,28 +1,28 @@
-<<<<<<< HEAD
-import LayoutProfile from "../../components/layout/LayoutProfile"
-import styles from './Profile.module.css'
-import {Eye, EyeSlash} from 'react-bootstrap-icons'
-import cineOne from '../../assets/img/cineone.png'
-import Image from "next/image"
-import { useState } from "react"
-import { useEffect } from "react"
-import { getUserId } from "modules/axios"
-import { useSelector } from "react-redux"
+// <<<<<<< HEAD
+// import LayoutProfile from "../../components/layout/LayoutProfile"
+// import styles from './Profile.module.css'
+// import {Eye, EyeSlash} from 'react-bootstrap-icons'
+// import cineOne from '../../assets/img/cineone.png'
+// import Image from "next/image"
+// import { useState } from "react"
+// import { useEffect } from "react"
+// import { getUserId } from "modules/axios"
+// import { useSelector } from "react-redux"
 
 
-const Profile = () => {
-  const [showOrder, setShowOrder] = useState(false)
+// const Profile = () => {
+//   const [showOrder, setShowOrder] = useState(false)
 
-  useEffect(()=>{
-    const getUser = async()=>{
-      try {
-        const result = await getUserId()
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  }, [])
-=======
+//   useEffect(()=>{
+//     const getUser = async()=>{
+//       try {
+//         const result = await getUserId()
+//       } catch (error) {
+//         console.log(error);
+//       }
+//     }
+//   }, [])
+
 import LayoutProfile from "../../components/layout/LayoutProfile";
 import styles from "./Profile.module.css";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
@@ -97,7 +97,7 @@ const Profile = () => {
       setPhone(user.phone_number);
     }
   }, []);
->>>>>>> 1d15f5fb0b73d95a090b8c8ef9a148834ba3cbfb
+// >>>>>>> 1d15f5fb0b73d95a090b8c8ef9a148834ba3cbfb
   return (
     <>
       <LayoutProfile title={"Profile"}>
