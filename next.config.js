@@ -24,7 +24,7 @@ const nextConfig = {
       {
         source:'/signin',
         destination:'/auth/signIn',     
-      },
+      },    
     ]
   }
 }

@@ -37,7 +37,7 @@ function SignUp() {
         }
         catch (error) {
             console.log(error);
-            // setMsg(error.response.data.err.msg)
+            setMsg(error.response.data.err.msg)
             setIsLoading(false)
             setIsError(true)
 
