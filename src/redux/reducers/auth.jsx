@@ -1,7 +1,7 @@
 import { FULFILLED, PENDING, REJECTED, loginString, logoutString } from "redux/actionCreators/actionString";
 
 const initialState = {
-    userInfo: [],
+    userInfo: {},
     isLoading: false,
     errorMsg: null,
     isSuccess: false,
