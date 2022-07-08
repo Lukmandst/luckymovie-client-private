@@ -9,7 +9,7 @@ function Reset() {
     const [showPassword, setShowPassword] = useState(false)
     const [showPasswordConfirm, setShowPasswordConfirm] = useState(false)
     const [NewPassword, setNewPassword] = useState("")
-    console.log(password);
+    console.log(NewPassword);
 
     const showPassHandler = () => {
         setShowPassword(!showPassword)

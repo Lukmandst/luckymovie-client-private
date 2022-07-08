@@ -9,29 +9,30 @@ import axios from "axios"
 function Forgot() {
     const [email, setEmail] = useState("")
     const [msg, setMsg] = useState("")
-    const [isSuccess, setIsSuccess] = useState(false)
+    const [errMsg, setErrMsg] = useState("")
+    const [isSuccess, setIsSuccess] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
-
 
     const forgotHandler = async () => {
         try {
-            let linkDirect = `${process.env.NEXT_PUBLIC_API_HOST}/auth/forgot`
-            let body = { email, linkDirect }
+            setErrMsg("")
+            setMsg("")
+            let body = { email: email };
             let response = await axios.post(`${process.env.NEXT_PUBLIC_API_HOST}/auth/forgot`, body)
             console.log(response);
-            setMsg(response.data.msg)
+            setMsg(response.data.data.msg)
             setIsSuccess(true)
             setIsLoading(false)
         }
         catch (error) {
             console.log(error);
-            setMsg(error.response.data.err.msg)
+            // console.log(error.response.data.err.msg);
+            setErrMsg(error.response.data.err.msg)
             setIsSuccess(false)
             setIsLoading(false)
         }
 
     }
-
     return (
         <Layout title="Forgot Password">
             <main className={styles.globalContainer}>
@@ -47,8 +48,13 @@ function Forgot() {
                             />
                         </div>
                     </div>
-                    {isSuccess === null ? <></> : isSuccess ? <div className={styles.successMsg}>{msg}</div> : <div className={styles.errorMsg}>{msg}</div>}
-                    <div className={styles.button} onClick={forgotHandler}>Activate Now</div>
+                    {isSuccess ? <div key={msg} className={styles.successMsg}> {msg} </div> : <></>}
+
+                    {!isSuccess && Array.isArray(errMsg) ? (
+                        errMsg.map((erroritem) => <div key={errMsg} className={styles.errorMsg} > {erroritem.msg}</div>)) : !isSuccess && <div key={errMsg} className={styles.errorMsg} > {errMsg} </div>
+                    }
+
+                    <div className={styles.button} onClick={forgotHandler}>Confirm</div>
                 </div>
             </main>
         </Layout>
