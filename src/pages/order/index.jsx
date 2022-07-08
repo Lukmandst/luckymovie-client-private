@@ -5,6 +5,7 @@ import styles from "../../styles/Order.module.css";
 import { Container, Row, Col } from "react-bootstrap";
 import rupiah from "../../helper/formatter";
 import Footer from "../../components/Footer"
+import Seat from 'components/seat/Seat'
 
 export default function Order() {
   return (
@@ -32,8 +33,9 @@ export default function Order() {
                   >
                     <Row className={`${styles.screen} justify-content-center`}>
                       <p className="text-center">Screen</p>
+                    <Seat />
+                      
                     </Row>
-
                     <div className="my-5">
                       <Row>
                         <Col>

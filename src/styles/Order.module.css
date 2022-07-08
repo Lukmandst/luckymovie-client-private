@@ -76,3 +76,13 @@
 .textInfo {
     text-align: end;
 }
+
+@media only screen and (min-width: 768px) and (max-width: 1046px) {
+  .btnChange {
+    font-size :12px;
+  }
+  .orderInfo,
+  .textInfo {
+    font-size: 14px;
+  }
+}

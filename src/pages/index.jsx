@@ -10,6 +10,7 @@ import pience from "../assets/images/hero/peince.png";
 //components
 import NowShowing from "../components/NowShowing";
 import UpComing from "../components/UpComing";
+import Header from "../components/header/Header"
 import Footer from "../components/Footer";
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         
       </Head>
+      <Header />
       <section className="banner pb-5 mx-auto">
         <div className="mt-5">
           <div className="row">

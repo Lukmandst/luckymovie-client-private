@@ -10,7 +10,7 @@ function LayoutOrder({title, children}) {
     <Head>
         <title>{title}</title>
     </Head>
-    {/* <Header/> */}
+    <Header/>
     <div className={styles.orderContainer}>    
     {children}
     </div>

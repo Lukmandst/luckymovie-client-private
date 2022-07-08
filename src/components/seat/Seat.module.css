@@ -1,10 +1,7 @@
 .seatContainer{
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 100px;
-    width: 820px;
-    height: 661px;
+    align-items: flex-center;
+    justify-content: space-evenly;
     background: #FFFFFF;
     border-radius: 24px;
 }

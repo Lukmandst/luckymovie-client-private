@@ -138,7 +138,10 @@
     .container.show{
         transform: translateX(0);
     }
-    .rightArrow{
+    .card {
+        margin: -23px 0;
+    }
+    .rightArrow{      
         width: 30px;
         height: 30px;
         font-size: 20px;
