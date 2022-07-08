@@ -1,0 +1,252 @@
+.container {
+  position: relative;
+  padding: 0 5%;
+  margin: 2rem 0;
+}
+
+.imageWrapper {
+  margin: auto;
+  position: relative;
+  /* border: 3px solid #dedede; */
+  /* border-radius: 20px; */
+  width: 300vw;
+  height: 80vh;
+  padding: 10px;
+  max-width: 400px;
+  min-width: 400px;
+  /* min-width: 12vw; */
+  /* min-height: 40vh; */
+}
+
+.title {
+  font-weight: 700;
+  font-size: 32px;
+  color: #14142b;
+}
+.genre {
+  font-weight: 400;
+  font-size: 18px;
+  color: #4e4b66;
+}
+
+.mainSection {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+  /* border: 5px solid #14142b; */
+  padding: 1% 0;
+  /* height: 30%; */
+  /* max-height: 30vh; */
+  /* margin: 5% 0; */
+}
+
+.infoName {
+  font-weight: 400;
+  font-size: 14px;
+  color: #8692a6;
+}
+.infosectionWrapper {
+  display: flex;
+
+  gap: 2rem;
+}
+.syHeader {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.syDetail {
+  font-weight: 400;
+  font-size: 16px;
+  color: #4e4b66;
+}
+.info {
+  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  /* justify-content: space-between; */
+}
+.infoHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.infoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.info1,
+.info2 {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.synopsis {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.headerSection {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 1rem;
+  /* text-align: center; */
+}
+.filter {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  text-align: center;
+}
+.filterValue {
+  height: 50px;
+  width: 300px;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 16px;
+  color: #4e4b66;
+  background-color: #eff0f6;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.showtime {
+  font-weight: 700;
+  font-size: 24px;
+
+  color: #14142b;
+}
+
+.cinemaSection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* gap: 1px; */
+}
+
+.cinemaCard {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 12px;
+  width: 400px;
+  /* height: 300px; */
+  border: 1px solid #14142b;
+  padding: 1rem;
+  gap: 1rem;
+}
+.cinemaCard > footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.cinemaLogo {
+  position: relative;
+  width: 150px;
+  height: 50px;
+}
+.cinemaHeader {
+  display: flex;
+}
+.cinemaName {
+  font-weight: 600;
+  font-size: 24px;
+  color: #000000;
+}
+.cinemaAddress {
+  font-weight: 300;
+  font-size: 14px;
+  color: #6e7191;
+}
+
+.timeinput {
+  display: none;
+}
+.timelabel {
+  /* background-color: aqua; */
+  color: #6e7191;
+  text-align: center;
+  /* height: 50px; */
+  padding: 2% 0;
+  border-radius: 12px;
+  width: 33%;
+  cursor: pointer;
+  user-select: none;
+}
+.timelabel:hover {
+  background-color: #4e4b66;
+  color: #fff;
+}
+.timeinput:checked + label {
+  background-color: #4e4b66;
+  color: #fff;
+}
+.timewrapper {
+  width: auto;
+  display: flex;
+  flex-wrap: wrap;
+  /* height: 100%; */
+}
+.priceWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bookBtn {
+  height: 40px;
+  background: #5f2eea;
+  display: flex;
+  box-shadow: 0px 8px 24px rgba(95, 46, 234, 0.24);
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+}
+
+.sectionCinemaSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.price {
+  font-weight: 400;
+  font-size: 18px;
+  color: #6b6b6b;
+}
+.priceValue {
+  font-weight: 600;
+  font-size: 20px;
+  color: #000000;
+}
+
+@media screen and (max-width: 768px) {
+  .mainSection {
+    flex-direction: column;
+  }
+  .cinemaCard {
+    width: 50%;
+  }
+  .cinemaSection {
+    gap: 1rem 0;
+  }
+}
+@media screen and (max-width: 426px) {
+  .filter {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .cinemaCard {
+    width: 100%;
+  }
+}

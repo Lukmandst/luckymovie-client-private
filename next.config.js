@@ -1,14 +1,25 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  images: {
+    domains: ['res.cloudinary.com', 'image.tmdb.org'],
+  },
   // images: {
   //   domains: ['res.cloudinary.com'],
   // },
   async rewrites(){
     return[
       {
-        source:'/register',
-        destination:'/auth/register',     
+        source:'/signup',
+        destination:'/auth/signUp',     
+      },
+      {
+        source:'/reset',
+        destination:'/auth/reset',     
+      },
+      {
+        source:'/signin',
+        destination:'/auth/signIn',     
       },
     ]
   }
