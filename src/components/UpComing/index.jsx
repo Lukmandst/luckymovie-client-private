@@ -7,7 +7,9 @@ export default function UpComing() {
   return (
     <div className="d-flex flex-column">
       <div className={`${styles.nowShowing}`}>
+        <div className="d-flex flex row justify-content-center">
         <Image src={Movie} alt="movies" />
+        </div>        
         <div className=" justify-content-center d-flex flex-column">
           <h5 className="text-center pt-3">
             <b>Black Widow</b>
