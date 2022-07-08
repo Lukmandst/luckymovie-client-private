@@ -1,6 +1,9 @@
 import useSWR from "swr";
 import axios from "axios";
 
+export const doSignUp = (body) => {
+    return axios.post(`${process.env.NEXT_PUBLIC_API_HOST}/auth/new`, body)
+}
 const fetcher = (url, token) =>
   axios
     .get(url, { headers: { "x-access-token": `${token}` } })

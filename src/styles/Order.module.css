@@ -1,0 +1,88 @@
+.selectedMovies {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 25px 48px;
+  background-color: #ffffff;
+  width: 100%;
+  border-radius: 16px;
+}
+.titleMovie {
+  padding-right: 24vw;
+}
+.btnChange {
+  background: #eff0f7;
+  opacity: 0.8;
+  border: 8px solid #eff0f7;
+  border-radius: 4px;
+  cursor: pointer;
+  color: black;
+}
+.seatAvailable {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: rgb(197, 197, 197);
+  margin-left: -25px;
+  border-radius: 4px;
+}
+.seatSelected {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin-left: -25px;
+  background: #5f2eea;
+  border-radius: 4px;
+}
+.seatSold {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: gray;
+  margin-left: -25px;
+  border-radius: 4px;
+}
+.seatLove {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin-left: -25px;
+  background-color: pink;
+  border-radius: 2px;
+}
+
+.small {
+  padding-right: 24px;
+}
+
+.btnChangeMovies {
+  border: 2px solid #5f2eea;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 20px 0;
+  cursor: pointer;
+}
+.btnCheckout {
+  background: #5f2eea;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 20px 0;
+  color:white;
+  cursor: pointer;
+}
+.orderInfo {
+  background-color: #ffffff;      
+}
+.textInfo {
+    text-align: end;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1046px) {
+  .btnChange {
+    font-size :12px;
+  }
+  .orderInfo,
+  .textInfo {
+    font-size: 14px;
+  }
+}
