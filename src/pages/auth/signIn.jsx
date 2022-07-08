@@ -63,7 +63,7 @@ function SignIn() {
                             />
                             {showPassword ? <EyeSlash className={styles.icon} onClick={showPassHandler} /> : <Eye className={styles.icon} onClick={showPassHandler} />}
                         </div>
-                        <Link href={'/reset'}>
+                        <Link href={'/forgot'}>
                             <div className={styles.forgot}>Forgot password?</div>
                         </Link>
                     </div>

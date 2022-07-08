@@ -14,8 +14,12 @@ const nextConfig = {
         destination:'/auth/signUp',     
       },
       {
+        source:'/forgot',
+        destination:'/auth/forgot',     
+      },
+      {
         source:'/reset',
-        destination:'/auth/reset',     
+        destination:'/reset/reset',     
       },
       {
         source:'/signin',

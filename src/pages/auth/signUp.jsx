@@ -29,7 +29,7 @@ function SignUp() {
             else {
                 let body = { email, password }
                 let response = await doSignUp(body)
-                console.log(response.data.data.msg);
+                console.log(response);
                 setIsError(false)
                 setIsLoading(true)
                 setMsg(response.data.data.msg)
@@ -37,8 +37,7 @@ function SignUp() {
         }
         catch (error) {
             console.log(error);
-            console.log(msg);
-            setMsg(error.response.data.err.msg)
+            // setMsg(error.response.data.err.msg)
             setIsLoading(false)
             setIsError(true)
 
