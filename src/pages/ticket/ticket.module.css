@@ -51,14 +51,14 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-left: 1px dashed #DEDEDE;
+  border-left: 2px dashed #DEDEDE;
   position: relative;
 }
 .midhead{
   flex: 1;
   display: flex;
   flex-direction: row;
-  justify-content: right;
+  justify-content: flex-end;
   align-items: center;
   font-family: 'Mulish', sans-serif;
   font-style: normal;
@@ -104,7 +104,6 @@
   display: flex;
   flex-direction: column;
   padding: 0px 50px;
-
 }
 .row{
   display: flex;
@@ -119,7 +118,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-left: 1px dashed #DEDEDE;
+  border-left: 2px dashed #585757;
 }
 .buttons{
   display: flex;
@@ -167,4 +166,74 @@
   height: 45px;
   bottom: -20px;
   right: 260px
+}
+
+@media(max-width:1024px){
+  .round1, .round2{
+    display: none;
+  }
+}
+
+@media(max-width:768px){
+  .container{
+    background: rgba(245, 246, 248, 1);
+    padding: 60px 5%;
+  }
+  .round1, .round2{
+    display: none;
+  }
+  .ticket{
+    display: flex;
+    flex-direction: column;
+    background: #FFFFFF;
+    border: 1px solid #DEDEDE;
+    border-radius: 16px;
+    margin: 0 5% 5% 5%;
+  }
+  .mainrow{
+    display: flex;
+    flex-direction: column;
+    padding: 0px 50px;
+  }
+  .row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 0px 50px;
+  }
+  .body{
+    display: flex;
+    flex-direction: column;
+  }
+  .details{
+    flex: 2;
+    padding: 30px 0px;
+    display: flex;
+    flex-direction: column;
+  }
+  .righthead{
+    display: none;
+  }
+  .barcode::before{
+    content: url("../../assets/tickitz-mini.png");
+    background-color: #5F2EEA;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px 20px 0 0;
+    margin: 1% 0;
+  }
+  .barcode{
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 2px dashed #585757;
+    border-left: none;
+    margin: 2% 0;
+  }
 }
