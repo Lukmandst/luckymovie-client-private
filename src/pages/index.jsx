@@ -12,9 +12,7 @@ import NowShowing from "../components/NowShowing";
 import UpComing from "../components/UpComing";
 import Header from "../components/header/Header";
 import Footer from "../components/Footer";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 
 //axios
 import { getMoviesHome } from "../modules/axios";
