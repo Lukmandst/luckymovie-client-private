@@ -1,55 +1,78 @@
 import styles from "./Header.module.css";
+import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import logo from "../../assets/img/logo.png";
-import dummy from "../../assets/img/dummy.png";
+import dummy from "../../assets/img/defaultProfile.png";
 import searchIcon from "../../assets/img/searchIcon.png";
-import { useState } from "react";
-import { NavDropdown, Navbar, Nav } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import {
+  NavDropdown,
+  Navbar,
+  Nav,
+  Dropdown,
+  DropdownButton,
+} from "react-bootstrap";
 import { useRouter } from "next/router";
+import { GetUser } from "modules/axios";
+
+import dynamic from "next/dynamic";
+import Link from "next/link";
 import { logoutAction } from "redux/actionCreators/auth";
-import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
-
 const Header = () => {
-  // const [showToggle, setShowToggle] = useState(false);
-  // const [show, setShow] = useState(false)
+  const [showToggle, setShowToggle] = useState(false);
 
-  const router = useRouter()
-  const dispatch = useDispatch()
-  const { token } = useSelector(state => state.auth)
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.auth);
+  const { user, isLoading, isError } = GetUser(token);
 
   const handlerSignOut = async () => {
     try {
-      const config = { headers: { "x-access-token": `${token}` } }
-      const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_HOST}/auth/signout`, config)
-      console.log(response)
-      dispatch(logoutAction())
+      const config = { headers: { "x-access-token": `${token}` } };
+      const response = await axios.delete(
+        `${process.env.NEXT_PUBLIC_API_HOST}/auth/signout`,
+        config
+      );
+      console.log(response);
+      dispatch(logoutAction());
       // setShow(false)
-      router.push('/')
+      router.push("/");
+    } catch (error) {
+      console.log(error);
     }
-    catch (error) {
-      console.log(error)
-    }
+  };
+
+  if (isError) {
+    dispatch(logoutAction());
   }
 
   return (
     <>
       <Navbar expand="lg">
         <div className="container-fluid mx-5">
-          <Navbar.Brand className={styles.brandLogo}
+          <Navbar.Brand
+            className={styles.brandLogo}
             onClick={() => {
               router.push("/");
             }}
-          ><Image src={logo} alt="logo tickitz" className="dflex col-md-2" /></Navbar.Brand>
+          >
+            <Image
+              src={logo}
+              alt="logo tickitz"
+              className="dflex col-md-2"
+              style={{ cursor: "pointer" }}
+            />
+          </Navbar.Brand>
           <Navbar className="row navbar-collapse collapse">
             <Nav className="mr-auto">
-              <Nav.Link onClick={handlerSignOut}>Movie</Nav.Link>
+              <Nav.Link>Movie</Nav.Link>
               <Nav.Link>Cinema</Nav.Link>
               <Nav.Link>Buy Ticket</Nav.Link>
             </Nav>
             <div className="d-flex flex-row justify-content-end navbar-nav-right align-items-center">
-              <ul className="navbar-nav">
+              <ul className="navbar-nav d-flex align-items-center">
                 <li className="nav-item dropdown text-center">
                   <NavDropdown
                     title="Location"
@@ -67,28 +90,84 @@ const Header = () => {
                     </NavDropdown.Item>
                   </NavDropdown>
                 </li>
-                <div className="d-md-flex">
-                  <li className="mx-2 my-auto nav-item">
+                <div className="d-md-flex ">
+                  <li className="mx-2 my-auto nav-item d-flex align-items-center ">
                     <Image src={searchIcon} alt="icon search" />
                   </li>
-                  <li className="mx-2 nav-item">
-                    <div>
-                      <button className="btn btn-outline-primary"
-                        onClick={() => {
-                          router.push("/signup");
+                  {!token ? (
+                    <>
+                      <li className="mx-2 nav-item">
+                        <div>
+                          <button
+                            className="btn btn-outline-primary"
+                            onClick={() => {
+                              router.push("/signup");
+                            }}
+                          >
+                            Sign Up
+                          </button>
+                        </div>
+                      </li>
+                      <li className="mx-2 nav-item">
+                        <div>
+                          <button
+                            className="btn"
+                            onClick={() => {
+                              router.push("/signin");
+                            }}
+                          >
+                            Sign In
+                          </button>
+                        </div>
+                      </li>
+                    </>
+                  ) : (
+                    <div className="d-flex align-items-center">
+                      <li className="mx-2 nav-item">
+                        <span style={{ fontWeight: "600" }}>
+                          Welcome {user && user.first_name} !
+                        </span>
+                      </li>
+                      <li
+                        className="mx-2 nav-item"
+                        style={{
+                          position: "relative",
+                          display: "flex",
+                          alignItems: "center",
                         }}
-                      >Sign Up</button>
+                      >
+                        <Image
+                          src={
+                            user && !user.picture
+                              ? dummy
+                              : user
+                              ? `${user && user.picture}`
+                              : "/"
+                          }
+                          alt="profile-image"
+                          objectFit="cover"
+                          layout="fixed"
+                          width={65}
+                          height={65}
+                          style={{ borderRadius: "50px", cursor: "pointer" }}
+                          onClick={() => setShowToggle(!showToggle)}
+                        />
+                        {showToggle && (
+                          <div className={styles.dropProfile}>
+                            <Link href={"/profile"}>
+                              <span className={styles.dropVal}>Profile</span>
+                            </Link>
+                            <span
+                              className={styles.dropVal}
+                              onClick={handlerSignOut}
+                            >
+                              Log out
+                            </span>
+                          </div>
+                        )}
+                      </li>
                     </div>
-                  </li>
-                  <li className="mx-2 nav-item">
-                    <div>
-                      <button className="btn"
-                        onClick={() => {
-                          router.push("/signin");
-                        }}
-                      >Sign In</button>
-                    </div>
-                  </li>
+                  )}
                 </div>
               </ul>
             </div>
@@ -128,15 +207,16 @@ const Header = () => {
               </div>
               <div className="hr"></div>
               <div className="p-2 py-3">
-                <NavDropdown
+                <DropdownButton
+                  align="end"
                   title="Location"
-                  id="basic-nav-dropdown"
+                  id="basic-nav-dropdown-align-end"
                   className="nav-link"
                 >
-                  <NavDropdown.Item href="#action/3.1">Jakarta</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">Karawang</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Bandung</NavDropdown.Item>
-                </NavDropdown>
+                  <Dropdown.Item href="#action/3.1">Jakarta</Dropdown.Item>
+                  <Dropdown.Item href="#action/3.2">Karawang</Dropdown.Item>
+                  <Dropdown.Item href="#action/3.3">Bandung</Dropdown.Item>
+                </DropdownButton>
               </div>
               <div className="hr"></div>
               <div className="p-2 py-3">
@@ -150,11 +230,54 @@ const Header = () => {
               <div className="p-2 py-3">
                 <a href="#"> Buy Ticket</a>
               </div>
+
+              <div className="hr"></div>
+              <div className="p-2 py-3">
+                <Image
+                  src={
+                    user && !user.picture
+                      ? dummy
+                      : user
+                      ? `${user && user.picture}`
+                      : "/"
+                  }
+                  alt="profile-image"
+                  objectFit="cover"
+                  layout="fixed"
+                  width={65}
+                  height={65}
+                  style={{ borderRadius: "50px", cursor: "pointer" }}
+                />
+                {showToggle && (
+                  <div className={styles.dropProfile}>
+                    <Link href={"/profile"}>
+                      <span className={styles.dropVal}>Profile</span>
+                    </Link>
+                    <span className={styles.dropVal}>Log out</span>
+                  </div>
+                )}
+              </div>
+              <div className="p-2 py-3 d-flex">
+                <div>
+                  <button
+                    className="btn btn-outline"
+                    onClick={() => {
+                      router.push("/profile");
+                    }}
+                  >
+                    Profile
+                  </button>
+                </div>
+                <div>
+                  <button className="btn" onClick={handlerSignOut}>
+                    Log Out
+                  </button>
+                </div>
+              </div>
               <div className="hr"></div>
               <div className="mt-5 p-2 copyrigth">
                 © 2022 Tickitz. All Rights Reserved.
               </div>
-
             </div>
           </Navbar.Collapse>
         </div>
@@ -198,4 +321,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default dynamic(() => Promise.resolve(Header), { ssr: false });

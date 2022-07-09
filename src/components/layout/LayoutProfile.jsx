@@ -3,6 +3,7 @@ import Head from "next/head"
 import SideProfile from "../sideProfile/SideProfile"
 import styles from './LayoutProfile.module.css'
 import Footer from "components/Footer"
+import { useState } from "react"
 
 const LayoutProfile = ({title, children}) => {
   return (
@@ -12,7 +13,7 @@ const LayoutProfile = ({title, children}) => {
     </Head>
     <Header/>
     <div className={styles.profileContainer}>
-    <SideProfile/>
+    
     {children}
     </div>
     <Footer/>
