@@ -4,7 +4,7 @@ import Image from "next/image";
 import logo from "../../assets/img/logo.png";
 import dummy from "../../assets/img/defaultProfile.png";
 import searchIcon from "../../assets/img/searchIcon.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   NavDropdown,
   Navbar,
@@ -43,6 +43,10 @@ const Header = () => {
       console.log(error);
     }
   };
+
+  if (isError) {
+    dispatch(logoutAction());
+  }
 
   return (
     <>
@@ -153,7 +157,12 @@ const Header = () => {
                             <Link href={"/profile"}>
                               <span className={styles.dropVal}>Profile</span>
                             </Link>
-                            <span className={styles.dropVal}>Log out</span>
+                            <span
+                              className={styles.dropVal}
+                              onClick={handlerSignOut}
+                            >
+                              Log out
+                            </span>
                           </div>
                         )}
                       </li>
@@ -260,12 +269,7 @@ const Header = () => {
                   </button>
                 </div>
                 <div>
-                  <button
-                    className="btn"
-                    onClick={() => {
-                      router.push("/signin");
-                    }}
-                  >
+                  <button className="btn" onClick={handlerSignOut}>
                     Log Out
                   </button>
                 </div>
