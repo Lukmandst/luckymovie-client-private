@@ -1,4 +1,5 @@
 import styles from "./Header.module.css";
+import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import logo from "../../assets/img/logo.png";
 import dummy from "../../assets/img/defaultProfile.png";
@@ -13,16 +14,36 @@ import {
 } from "react-bootstrap";
 import { useRouter } from "next/router";
 import { GetUser } from "modules/axios";
-import { useSelector } from "react-redux";
+
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { logoutAction } from "redux/actionCreators/auth";
+import axios from "axios";
 
 const Header = () => {
-  const router = useRouter();
   const [showToggle, setShowToggle] = useState(false);
-  const { token } = useSelector((state) => state.auth);
 
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.auth);
   const { user, isLoading, isError } = GetUser(token);
+
+  const handlerSignOut = async () => {
+    try {
+      const config = { headers: { "x-access-token": `${token}` } };
+      const response = await axios.delete(
+        `${process.env.NEXT_PUBLIC_API_HOST}/auth/signout`,
+        config
+      );
+      console.log(response);
+      dispatch(logoutAction());
+      // setShow(false)
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <Navbar expand="lg">
@@ -99,7 +120,9 @@ const Header = () => {
                   ) : (
                     <div className="d-flex align-items-center">
                       <li className="mx-2 nav-item">
-                        <span style={{fontWeight : '600'}} >Welcome {user && user.first_name} !</span>
+                        <span style={{ fontWeight: "600" }}>
+                          Welcome {user && user.first_name} !
+                        </span>
                       </li>
                       <li
                         className="mx-2 nav-item"
