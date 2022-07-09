@@ -44,8 +44,8 @@ const Profile = () => {
   const [photo, setPhoto] = useState(null);
   const [previewImg, setPreviewImg] = useState(null);
 
-  const [pass, setPass] = useState(false);
-  const [confirm, setConfirm] = useState(false);
+  const [pass, setPass] = useState("");
+  const [confirm, setConfirm] = useState("");
   const [edit, setEdit] = useState(false);
   const [editPass, setEditPass] = useState(false);
 
@@ -62,8 +62,8 @@ const Profile = () => {
     isLoading: loadingHistory,
     isError: errorHistory,
   } = GetUserHistory(token);
-console.log(history)
-console.log(errorHistory)
+  console.log(history);
+  console.log(errorHistory);
   const router = useRouter();
   const handleImage = (e) => {
     const file = e.target.files[0];
