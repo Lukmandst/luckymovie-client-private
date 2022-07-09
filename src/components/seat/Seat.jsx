@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
 import styles from "./Seat.module.css";
-import { type1 } from "../../helper/seatType";
+// import { type1 } from "../../helper/seatType";
 
 const Seat = () => {
   const [seatPick, setSeatPick] = useState([]);
