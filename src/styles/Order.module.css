@@ -50,7 +50,11 @@
   background-color: pink;
   border-radius: 2px;
 }
-
+.screenCinema {
+  width: 30vw;
+  color: blue;
+  padding: 4px;
+}
 .small {
   padding-right: 24px;
 }
