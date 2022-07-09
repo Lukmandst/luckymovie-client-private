@@ -57,10 +57,12 @@ function MovieDetail({ movie }) {
     arr.push(index);
   }
   useEffect(() => {
-    router.push(`/movie/${id}?date=${date}&location=${location}`, undefined, {
-      shallow: true,
-    });
-  }, [date, location]);
+    if (movie) {
+      router.push(`/movie/${id}?date=${date}&location=${location}`, undefined, {
+        shallow: true,
+      });
+    }
+  }, [date, location, movie]);
   // console.log(id);
   console.log(cinema);
   console.log(time, cinemasId);
