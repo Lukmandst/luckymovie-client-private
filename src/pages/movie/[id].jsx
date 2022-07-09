@@ -22,7 +22,7 @@ export const getServerSideProps = async ({ params }) => {
 
   return {
     props: {
-      movie: movieDetail.data,
+      movie: await movieDetail.data,
     },
   };
 };
