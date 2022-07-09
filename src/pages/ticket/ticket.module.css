@@ -168,3 +168,15 @@
   bottom: -20px;
   right: 260px
 }
+
+@media(max-width:1024px){
+  .round1, .round2{
+    display: none;
+  }
+}
+
+@media(max-width:768px){
+  .round1, .round2{
+    display: none;
+  }
+}
