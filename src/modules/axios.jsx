@@ -25,3 +25,20 @@ export const GetUser = (token) => {
     isError: error,
   };
 };
+export const GetUserHistory = (token) => {
+  const { data, error } = useSWR(
+    [`${process.env.NEXT_PUBLIC_API_HOST}/transaction/history`, token],
+    fetcher,
+    { refreshInterval: 1000 }
+  );
+  return {
+    history: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+};
+
+export const getMoviesHome = () => {
+  const URL = `${process.env.NEXT_PUBLIC_API_HOST}/movies`
+  return axios.get(URL)
+}

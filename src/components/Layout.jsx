@@ -3,14 +3,14 @@ import styles from '../styles/Auth.module.css'
 import Logo from '../assets/tickitz.png'
 import Image from 'next/image'
 
-function Layout(props) {
+function Layout({ title, children }) {
     return (
-        <div>
+        <>
             <Head>
-                <title>{props.title}</title>
+                <title>{title}</title>
             </Head>
-            {props.children}
-        </div>
+            {children}
+        </>
     )
 }
 
