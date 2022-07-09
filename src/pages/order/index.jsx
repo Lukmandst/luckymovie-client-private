@@ -33,6 +33,7 @@ export default function Order() {
                   >
                     <Row className={`${styles.screen} justify-content-center`}>
                       <p className="text-center">Screen</p>
+                      <hr className={styles.sreenCinema} />
                     <Seat />
                       
                     </Row>

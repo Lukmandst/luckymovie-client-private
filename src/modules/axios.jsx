@@ -37,3 +37,8 @@ export const GetUserHistory = (token) => {
     isError: error,
   };
 };
+
+export const getMoviesHome = () => {
+  const URL = `${process.env.NEXT_PUBLIC_API_HOST}/movies`
+  return axios.get(URL)
+}
