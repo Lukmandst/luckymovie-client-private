@@ -44,9 +44,9 @@ const Header = () => {
     }
   };
 
-  if (isError) {
-    dispatch(logoutAction());
-  }
+//   if (isError) {
+//     dispatch(logoutAction());
+//   }
 
   return (
     <>
