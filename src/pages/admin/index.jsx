@@ -90,7 +90,7 @@ const Admin = () => {
                     <input type="date" />
                   </div>
                   <div className={styles.setTime}>
-                    <Image src={biPlus}/>
+                    <Image src={biPlus} alt="plus"/>
                     <span>08:30</span>
                     <span>08:30</span>
                     <span>08:30</span>

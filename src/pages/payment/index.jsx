@@ -3,7 +3,17 @@ import Header from 'components/header/Header'
 import Footer from 'components/Footer'
 import Image from 'next/image'
 import gpay from '../../assets/img/gpay.png'
+import { useRouter } from 'next/router'
+
 const Payment = () => {
+
+    const {query : {
+        date,
+        title,
+        cinema,
+        total_ticket,
+        price
+    }} = useRouter()
   return (
     <>
     <Header/>
@@ -13,23 +23,23 @@ const Payment = () => {
             <div className={styles.cardPayment}>
                 <div className={styles.cardPaymentItem}>
                     <span>Date & Time</span>
-                    <span>Tuesday, 07 July 2020 at 02:00pm</span>
+                    <span>{date}</span>
                 </div>
                 <div className={styles.cardPaymentItem}>
-                    <span>Date & Time</span>
-                    <span>Tuesday, 07 July 2020 at 02:00pm</span>
+                    <span>Movie Title</span>
+                    <span>{title}</span>
                 </div>
                 <div className={styles.cardPaymentItem}>
-                    <span>Date & Time</span>
-                    <span>Tuesday, 07 July 2020 at 02:00pm</span>
+                    <span>Cinema Name</span>
+                    <span>{cinema}</span>
                 </div>
                 <div className={styles.cardPaymentItem}>
-                    <span>Date & Time</span>
-                    <span>Tuesday, 07 July 2020 at 02:00pm</span>
+                    <span>Number Of Tickets</span>
+                    <span>{total_ticket}</span>
                 </div>
                 <div className={styles.cardPaymentItem}>
-                    <span>Date & Time</span>
-                    <span>Tuesday, 07 July 2020 at 02:00pm</span>
+                    <span>Total Payment</span>
+                    <span>{price * total_ticket}</span>
                 </div>
             </div>
             <span>Choose A Payment Methode</span>

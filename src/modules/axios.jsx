@@ -1,6 +1,10 @@
 import useSWR from "swr";
 import axios from "axios";
 
+export const getSoldSeat = (cinema_id, movie_id)=>{
+  return axios.get(`http://localhost:5000/cinema/seat?cinema_id=${cinema_id}&movie_id=${movie_id}`)
+}
+
 export const doSignUp = (body) => {
     return axios.post(`${process.env.NEXT_PUBLIC_API_HOST}/auth/new`, body)
 }
