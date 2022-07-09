@@ -3,3 +3,7 @@ export const currencyFormatter = new Intl.NumberFormat("id-ID", {
     currency: "IDR",
     minimumFractionDigits: 0
 })
+export function formatPhoneNumber(number) {
+    const result = number.replace(/(\d{3})(\d{3})(\d{4})/,'$1-$2-$3')
+    return result
+  }
