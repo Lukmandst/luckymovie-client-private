@@ -45,6 +45,7 @@ const Profile = () => {
   const [photo, setPhoto] = useState(null);
   const [previewImg, setPreviewImg] = useState(null);
   const [show, setShow] = useState(false);
+  const [showModalProfile, setShowModalProfile] = useState(false);
 
   const [pass, setPass] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -105,6 +106,7 @@ const Profile = () => {
       console.log(updateResult);
       setLoadingUpdate(false);
       setMsg("Update Success!");
+      setShowModalProfile(false)
       setTimeout(() => {
         window.scrollTo(0, 0);
         setMsg(false);
@@ -114,12 +116,17 @@ const Profile = () => {
       console.log(error);
       seterrMsg(error.response ? error.response.data.err.msg : error.response);
       setLoadingUpdate(false);
+      setShowModalProfile(false)
       // setEdit(false);
       setTimeout(() => {
         seterrMsg(false);
       }, 2000);
     }
   };
+
+  const handleShowUpdateUser = () => setShowModalProfile(true);
+  const handleCloseUpdateUser = () => setShowModalProfile(false);
+
   const updatePassword = async () => {
     setLoadingUpdate(false);
     setMsg(false);
@@ -170,6 +177,7 @@ const Profile = () => {
 
   const handleShowUpdatePassword = () => setShow(true);
   const handleCloseUpdatePassword = () => setShow(false);
+
 
   useEffect(() => {
     if (!token) {
@@ -456,7 +464,7 @@ const Profile = () => {
                   </div>
                 )}
                 {edit ? (
-                  <div className={styles.updateBtn} onClick={updateUser}>
+                  <div className={styles.updateBtn} onClick={handleShowUpdateUser}>
                     <span>Update changes</span>
                   </div>
                 ) : editPass ? (
@@ -465,7 +473,7 @@ const Profile = () => {
                   </div>
                 ) : edit && editPass ? (
                   <>
-                    <div className={styles.updateBtn} onClick={updateUser}>
+                    <div className={styles.updateBtn} onClick={handleShowUpdateUser}>
                       <span>Update changes</span>
                     </div>
                     <div className={styles.updateBtn} onClick={handleShowUpdatePassword}>
@@ -490,6 +498,20 @@ const Profile = () => {
             No
           </div>
           <div className={styles.modalYesButton} onClick={updatePassword}>
+            Yes
+          </div>
+        </Modal.Footer>
+      </Modal>
+      <Modal show={showModalProfile} onHide={handleCloseUpdateUser} className={styles.modalUpdateUser}>
+        <Modal.Header>
+          <Modal.Title className={styles.modalHeader}>Warning !</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className={styles.modalBody}>Do you want to Change Profile?</Modal.Body>
+        <Modal.Footer>
+          <div className={styles.modalNoButton} onClick={handleCloseUpdateUser}>
+            No
+          </div>
+          <div className={styles.modalYesButton} onClick={updateUser}>
             Yes
           </div>
         </Modal.Footer>
