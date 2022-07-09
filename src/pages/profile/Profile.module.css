@@ -19,6 +19,7 @@
   position: relative;
 }
 .title {
+  font-weight: 700;
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -33,16 +34,17 @@
 .span {
   margin-right: 56px;
   font-size: 18px;
-  font-weight: 400;
-  color: #14142b;
+  font-weight: 600;
+  color: #aaaaaa;
   cursor: pointer;
 }
 .span.act {
-  color: #aaaaaa;
+  color: #14142b;
 }
 .barActive {
-  height: 2px;
-  border: 2px solid #5f2eea;
+  height: 4px;
+  border-radius: 4px;
+  background-color: #5f2eea;
   width: 20%;
   position: absolute;
   bottom: 0;
@@ -77,21 +79,34 @@
   width: 100%;
 }
 .inputProfile {
+  font-weight: 600;
   display: flex;
   flex-direction: column;
   width: 50%;
   row-gap: 10px;
   position: relative;
 }
+
 .inputProfile > input {
+  font-weight: 400;
+  color: #000000;
   background-color: #fcfdfe;
   border: none;
   border-radius: 10px;
   height: 64px;
   width: 90%;
   padding: 20px;
-  border: 1px solid #dedede;
+  border-bottom: 1px solid #999797;
 }
+.inputProfile > input:enabled{
+  border: 1px solid #999797;
+
+}
+.inputProfile > input:disabled,
+.inputProfile > input::placeholder {
+  color: #aaaaaa;
+}
+
 .privacy {
   display: flex;
   align-items: center;
