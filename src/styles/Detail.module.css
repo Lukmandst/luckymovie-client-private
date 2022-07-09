@@ -80,6 +80,10 @@
   gap: 0.5rem;
 }
 
+.info1{
+  width: 450px;
+}
+
 .info1,
 .info2 {
   display: flex;
@@ -129,8 +133,8 @@
 .cinemaSection {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  /* gap: 1px; */
+  justify-content: space-evenly;
+  /* gap: 1rem; */
 }
 
 .cinemaCard {
@@ -173,12 +177,13 @@
 }
 .timelabel {
   /* background-color: aqua; */
-  color: #6e7191;
+  font-weight: 600;
+  color: #14142b;
   text-align: center;
   /* height: 50px; */
-  padding: 2% 0;
+  padding: 5px ;
   border-radius: 12px;
-  width: 33%;
+  width: 100%;
   cursor: pointer;
   user-select: none;
 }
@@ -190,10 +195,18 @@
   background-color: #4e4b66;
   color: #fff;
 }
+.timeinput:disabled + label{
+  color: #8692a6;
+}
+.timeinput:disabled+ .timelabel:hover{
+  background-color: transparent;
+  cursor:not-allowed;
+}
 .timewrapper {
   width: auto;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
   /* height: 100%; */
 }
 .priceWrapper {
@@ -204,13 +217,18 @@
 .bookBtn {
   height: 40px;
   background: #5f2eea;
-  display: flex;
+  /* display: flex; */
   box-shadow: 0px 8px 24px rgba(95, 46, 234, 0.24);
   border-radius: 8px;
   color: #fff;
   cursor: pointer;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  /* align-items: center; */
+  border: none;
+}
+.bookBtn:disabled{
+  cursor:not-allowed;
+  background-color: #8692a6;
 }
 
 .sectionCinemaSection {
@@ -222,7 +240,7 @@
 .price {
   font-weight: 400;
   font-size: 18px;
-  color: #6b6b6b;
+  color: #000000;
 }
 .priceValue {
   font-weight: 600;
