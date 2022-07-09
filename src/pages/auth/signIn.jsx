@@ -67,7 +67,10 @@ function SignIn() {
                             <div className={styles.forgot}>Forgot password?</div>
                         </Link>
                     </div>
-                    {isSuccess === null ? <></> : isSuccess ? <div className={styles.successMsg}>{errorMsg}</div> : <div className={styles.errorMsg}>{errorMsg}</div>}
+                    {!isSuccess && Array.isArray(errorMsg) ? (
+                        errorMsg.map((erroritem) => <div key={errorMsg} className={styles.errorMsg} > {erroritem.msg}</div>)) : !isSuccess && <div key={errorMsg} className={styles.errorMsg} > {errorMsg} </div>
+                    }
+
                     <div className={styles.button} onClick={handlerLogin}>Sign In</div>
                     <div className={styles.login}>Don’t have an account? Let’s <Link href={"/signup"}><a className={styles.link}>Sign Up</a></Link></div>
                     <div className={styles.wrapperOr}>
