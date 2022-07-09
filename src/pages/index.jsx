@@ -88,7 +88,7 @@ export default function Home() {
         </div>
         <div className="d-flex justify-content-evenly flex-wrap mt-3 mb-5">
           {movies.map((item) => (
-            <NowShowing image={item.image} key={item.id} />
+            <NowShowing image={item.image} id={item.movies_id} key={item.id} />
           ))}
         </div>
       </main>
