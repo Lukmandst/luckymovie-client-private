@@ -84,9 +84,9 @@ function Reset() {
                         errMsg.map((erroritem) => <div key={errMsg} className={styles.errorMsg} > {erroritem.msg}</div>)) : !isSuccess && <div key={errMsg} className={styles.errorMsg} > {errMsg} </div>
                     }
                     {isSuccess ?
-                        <div className={styles.button} onClick={resetHandler} >Reset Password</div>
-                        :
                         <div className={styles.button} onClick={() => router.push("/signin")}>Sign In</div>
+                        :
+                        <div className={styles.button} onClick={resetHandler} >Reset Password</div>
                     }
                 </div>
             </main>

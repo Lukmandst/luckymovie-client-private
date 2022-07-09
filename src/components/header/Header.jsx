@@ -11,6 +11,8 @@ import {
   Nav,
   Dropdown,
   DropdownButton,
+  Modal,
+  Button,
 } from "react-bootstrap";
 import { useRouter } from "next/router";
 import { GetUser } from "modules/axios";
@@ -22,11 +24,15 @@ import axios from "axios";
 
 const Header = () => {
   const [showToggle, setShowToggle] = useState(false);
+  const [show, setShow] = useState(false);
 
   const router = useRouter();
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
   const { user, isLoading, isError } = GetUser(token);
+
+  const handleShowLogout = () => setShow(true);
+  const handleCloseLogout = () => setShow(false);
 
   const handlerSignOut = async () => {
     try {
@@ -37,7 +43,7 @@ const Header = () => {
       );
       console.log(response);
       dispatch(logoutAction());
-      // setShow(false)
+      setShow(false)
       router.push("/");
     } catch (error) {
       console.log(error);
@@ -159,7 +165,7 @@ const Header = () => {
                             </Link>
                             <span
                               className={styles.dropVal}
-                              onClick={handlerSignOut}
+                              onClick={handleShowLogout}
                             >
                               Log out
                             </span>
@@ -269,7 +275,7 @@ const Header = () => {
                   </button>
                 </div>
                 <div>
-                  <button className="btn" onClick={handlerSignOut}>
+                  <button className="btn" onClick={handleShowLogout}>
                     Log Out
                   </button>
                 </div>
@@ -282,6 +288,20 @@ const Header = () => {
           </Navbar.Collapse>
         </div>
       </Navbar>
+      <Modal show={show} onHide={handleCloseLogout} className={styles.logoutModal}>
+        <Modal.Header>
+          <Modal.Title className={styles.modalHeader}>Warning !</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className={styles.modalBody}>Do you want to logout?</Modal.Body>
+        <Modal.Footer>
+          <div className={styles.modalYesButton} onClick={handlerSignOut}>
+            Yes
+          </div>
+          <div className={styles.modalNoButton} onClick={handleCloseLogout}>
+            No
+          </div>
+        </Modal.Footer>
+      </Modal>
     </>
     // <>
     //   <div className={styles.container}>
