@@ -11,7 +11,7 @@ const NowShowing = ({ image, id }) => {
       <div
         className={styles.nowShowing}
         onClick={() => {
-          router.push(`/movies/${id}`);
+          router.push(`/movie/${id}`);
         }}
       >
         <div className="" style={{position:"relative", width: '160px', height: '260px'}}>
