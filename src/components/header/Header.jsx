@@ -44,9 +44,9 @@ const Header = () => {
     }
   };
 
-  if (isError) {
-    dispatch(logoutAction());
-  }
+  // if (isError) {
+  //   dispatch(logoutAction());
+  // }
 
   return (
     <>
@@ -141,8 +141,8 @@ const Header = () => {
                             user && !user.picture
                               ? dummy
                               : user
-                              ? `${user && user.picture}`
-                              : "/"
+                                ? `${user && user.picture}`
+                                : "/"
                           }
                           alt="profile-image"
                           objectFit="cover"
@@ -238,8 +238,8 @@ const Header = () => {
                     user && !user.picture
                       ? dummy
                       : user
-                      ? `${user && user.picture}`
-                      : "/"
+                        ? `${user && user.picture}`
+                        : "/"
                   }
                   alt="profile-image"
                   objectFit="cover"

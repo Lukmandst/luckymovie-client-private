@@ -65,7 +65,7 @@ const Ticket = () => {
                 </div>
               </div>
               <div className={styles.barcode}>
-                <Image src={require("../../assets/qrc.png")} alt="logo" height="150%" objectFit="contain" />
+                <Image src={require("../../assets/qrc.png")} alt="logo" height="200%" objectFit="contain" />
                 <div className={styles.round2}></div>
               </div>
             </div>
