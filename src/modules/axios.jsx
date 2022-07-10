@@ -46,3 +46,25 @@ export const getMoviesHome = () => {
   const URL = `${process.env.NEXT_PUBLIC_API_HOST}/movies`
   return axios.get(URL)
 }
+
+export const postNewMovie = (body, token)=>{
+  const config = {
+    
+    headers : {
+      "Content-type" : "multipart/form-data",
+      "x-access-token" : token
+    }
+  }
+  return axios.post(`${process.env.NEXT_PUBLIC_API_HOST}/movies`, body, config)
+}
+
+export const postNewCinema = (body, token)=>{
+  const config = {
+    
+    headers : {
+      "x-access-token" : token
+    }
+  }
+  return axios.post(`${process.env.NEXT_PUBLIC_API_HOST}/cinema`, body, config)
+}
+

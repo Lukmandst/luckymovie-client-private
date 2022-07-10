@@ -85,7 +85,10 @@
     border-radius: 16px;
     cursor: pointer;
 }
-.imgCard:hover{
+.imgCard:hover, .imgCard:focus{
+    border: 2px solid  #5F2EEA ;
+}
+.imgCard.Act{
     border: 2px solid  #5F2EEA ;
 }
 .topImg{
@@ -137,7 +140,67 @@
     margin-top: 24px;
     margin-bottom: 48px;
 }
-
+.cardPersonalInfo>input{
+    padding: 20px 32px;
+    border: 1px solid #DEDEDE;
+    border-radius: 16px;
+    width: 100%;
+}
+.cardPersonalInfo>input:focus{
+    outline: none;
+}
+.button{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 72px;
+}
+.back:hover{
+    background-color: #d5defa;
+}
+.backModal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #5F2EEA;
+    border-radius: 16px;
+    color:  #5F2EEA;
+    padding: 8px;
+    width: 40%;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.back{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #5F2EEA;
+    border-radius: 16px;
+    color:  #5F2EEA;
+    padding: 20px;
+    width: 40%;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.pay:hover{
+    background-color: #9677eb;
+}
+.pay{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #5F2EEA;
+    border-radius: 16px;
+    color: #FFFFFF;
+    padding: 20px;
+    width: 40%;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
 @media screen and (max-width:768px){
     .container{
         display: flex;

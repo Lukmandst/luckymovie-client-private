@@ -42,6 +42,9 @@
     border-radius: 16px;
     width: 30%;
 }
+.cardImage>input{
+    opacity: 0;
+}
 .cardInput{
     width: 65%;
     display: flex;
@@ -175,4 +178,42 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+}
+.filterValue{
+    height: 50px;
+    width: 300px;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 16px;
+    color: #4e4b66;
+    background-color: #eff0f6;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.filterValue:focus{
+    outline: none;
+}
+.button{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+.addMovie{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #5F2EEA;
+    font-size: 16px;
+    font-weight: 700;
+    color: #FFFFFF;
+    width: 40%;
+    margin-top: 40px;
+    border-radius: 16px;
+}
+.addMovie:hover{
+    background-color:#8f6af3;
 }
