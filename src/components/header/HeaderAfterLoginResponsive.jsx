@@ -47,6 +47,7 @@ function HeaderAfterLoginResponsive({ showToggle, handleShowLogout }) {
       </div>
       <div className="p-2 py-3 d-flex">
         <div>
+          
           <button
             className="btn btn-outline"
             onClick={() => {

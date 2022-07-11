@@ -7,7 +7,7 @@ import styles from "./Header.module.css";
 
 
 function HeaderAfterLogin({ showToggle, setShowToggle, handleShowLogout }) {
-  const { token } = useSelector((state) => state.auth);
+  const { token, role } = useSelector((state) => state.auth);
   const { user, isLoading, isError } = GetUser(token);
   return (
     <div className="d-flex align-items-center">
@@ -42,9 +42,16 @@ function HeaderAfterLogin({ showToggle, setShowToggle, handleShowLogout }) {
         />
         {showToggle && (
           <div className={styles.dropProfile}>
+            {role !== 1?
             <Link href={"/profile"}>
               <span className={styles.dropVal}>Profile</span>
             </Link>
+            :
+            <Link href={"/admin"}>
+              <span className={styles.dropVal}>Admin</span>
+            </Link>
+            
+          }
             <span className={styles.dropVal} onClick={handleShowLogout}>
               Log out
             </span>
