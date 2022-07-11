@@ -34,6 +34,7 @@ import axios from "axios";
 import { currencyFormatter, formatPhoneNumber } from "helper/formatter";
 import SideProfile from "components/sideProfile/SideProfile";
 import { useRouter } from "next/router";
+import { Modal } from "react-bootstrap";
 
 const Profile = () => {
   const [showOrder, setShowOrder] = useState(false);
@@ -43,6 +44,8 @@ const Profile = () => {
   const [phone, setPhone] = useState(false);
   const [photo, setPhoto] = useState(null);
   const [previewImg, setPreviewImg] = useState(null);
+  const [show, setShow] = useState(false);
+  const [showModalProfile, setShowModalProfile] = useState(false);
 
   const [pass, setPass] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -103,6 +106,7 @@ const Profile = () => {
       console.log(updateResult);
       setLoadingUpdate(false);
       setMsg("Update Success!");
+      setShowModalProfile(false)
       setTimeout(() => {
         window.scrollTo(0, 0);
         setMsg(false);
@@ -112,12 +116,17 @@ const Profile = () => {
       console.log(error);
       seterrMsg(error.response ? error.response.data.err.msg : error.response);
       setLoadingUpdate(false);
+      setShowModalProfile(false)
       // setEdit(false);
       setTimeout(() => {
         seterrMsg(false);
       }, 2000);
     }
   };
+
+  const handleShowUpdateUser = () => setShowModalProfile(true);
+  const handleCloseUpdateUser = () => setShowModalProfile(false);
+
   const updatePassword = async () => {
     setLoadingUpdate(false);
     setMsg(false);
@@ -125,9 +134,11 @@ const Profile = () => {
     const body = {
       password: pass,
     };
+    console.log(body);
     try {
       if (pass !== confirm) {
         seterrMsg("The password confirmation does not match!");
+        setShow(false)
         setTimeout(() => {
           seterrMsg(false);
         }, 2000);
@@ -143,13 +154,14 @@ const Profile = () => {
         });
         console.log(updateResult);
         setLoadingUpdate(false);
+        setShow(false)
         setMsg("Update Success please sign in again!");
         setTimeout(() => {
           setPass("");
           setConfirm("");
           window.scrollTo(0, 0);
           setMsg(false);
-        }, 2000);
+        }, 1000);
         setEditPass(false);
       }
     } catch (error) {
@@ -162,6 +174,10 @@ const Profile = () => {
       }, 2000);
     }
   };
+
+  const handleShowUpdatePassword = () => setShow(true);
+  const handleCloseUpdatePassword = () => setShow(false);
+
 
   useEffect(() => {
     if (!token) {
@@ -333,7 +349,7 @@ const Profile = () => {
                           id="upload-button"
                           accept="image/*"
                           onChange={handleImage}
-                          // style={{ display: "none" }}
+                        // style={{ display: "none" }}
                         />
                       </div>
                     </div>
@@ -448,19 +464,19 @@ const Profile = () => {
                   </div>
                 )}
                 {edit ? (
-                  <div className={styles.updateBtn} onClick={updateUser}>
+                  <div className={styles.updateBtn} onClick={handleShowUpdateUser}>
                     <span>Update changes</span>
                   </div>
                 ) : editPass ? (
-                  <div className={styles.updateBtn} onClick={updatePassword}>
+                  <div className={styles.updateBtn} onClick={handleShowUpdatePassword}>
                     <span>Update Password</span>
                   </div>
                 ) : edit && editPass ? (
                   <>
-                    <div className={styles.updateBtn} onClick={updateUser}>
+                    <div className={styles.updateBtn} onClick={handleShowUpdateUser}>
                       <span>Update changes</span>
                     </div>
-                    <div className={styles.updateBtn} onClick={updatePassword}>
+                    <div className={styles.updateBtn} onClick={handleShowUpdatePassword}>
                       <span>Update Password</span>
                     </div>
                   </>
@@ -472,6 +488,34 @@ const Profile = () => {
           )}
         </div>
       </LayoutProfile>
+      <Modal show={show} onHide={handleCloseUpdatePassword} className={styles.modalUpdatePassword}>
+        <Modal.Header>
+          <Modal.Title className={styles.modalHeader}>Warning !</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className={styles.modalBody}>Do you want to Change Password?</Modal.Body>
+        <Modal.Footer>
+          <div className={styles.modalNoButton} onClick={handleCloseUpdatePassword}>
+            No
+          </div>
+          <div className={styles.modalYesButton} onClick={updatePassword}>
+            Yes
+          </div>
+        </Modal.Footer>
+      </Modal>
+      <Modal show={showModalProfile} onHide={handleCloseUpdateUser} className={styles.modalUpdateUser}>
+        <Modal.Header>
+          <Modal.Title className={styles.modalHeader}>Warning !</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className={styles.modalBody}>Do you want to Change Profile?</Modal.Body>
+        <Modal.Footer>
+          <div className={styles.modalNoButton} onClick={handleCloseUpdateUser}>
+            No
+          </div>
+          <div className={styles.modalYesButton} onClick={updateUser}>
+            Yes
+          </div>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

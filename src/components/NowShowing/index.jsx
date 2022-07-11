@@ -11,10 +11,13 @@ const NowShowing = ({ image, id }) => {
       <div
         className={styles.nowShowing}
         onClick={() => {
-          router.push(`/movies/${id}`);
+          router.push(`/movie/${id}`);
         }}
       >
-        <Image src={image} alt="movies" />
+        <div className="" style={{position:"relative", width: '160px', height: '260px'}}>
+
+        <Image src={image} layout='fill' alt="movies" style={{borderRadius: '12px'}} />
+        </div>
       </div>
     </>
   );

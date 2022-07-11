@@ -3,12 +3,18 @@ import Image from "next/image";
 import Header from "components/header/Header";
 import Footer from "components/Footer";
 import { Download, Printer } from "react-bootstrap-icons";
+import Head from "next/head";
 
 const Ticket = () => {
 
   return (
     <>
-    <Header/>
+      <Head>
+        <title>
+          Ticket Result
+        </title>
+      </Head>
+      <Header />
       <div className={styles.container}>
         <div className={styles.main}>
           <div className={styles.title}>Proof of Payment</div>
@@ -59,18 +65,18 @@ const Ticket = () => {
                 </div>
               </div>
               <div className={styles.barcode}>
-                <Image src={require("../../assets/qrc.png")} alt="logo" height="150%" objectFit="contain" />
+                <Image src={require("../../assets/qrc.png")} alt="logo" height="200%" objectFit="contain" />
                 <div className={styles.round2}></div>
               </div>
             </div>
           </div>
-          <div  className={styles.buttons}>
-            <div className={styles.button}><Download/>Download</div>
-            <div className={styles.button}><Printer/>Print</div>
+          <div className={styles.buttons}>
+            <div className={styles.button}><Download />Download</div>
+            <div className={styles.button}><Printer />Print</div>
           </div>
         </div>
       </div>
-    <Footer/>
+      <Footer />
     </>
   );
 };

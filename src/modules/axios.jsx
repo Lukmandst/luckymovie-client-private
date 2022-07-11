@@ -8,6 +8,10 @@ const fetcher = (url, token) =>
   axios
     .get(url, { headers: { "x-access-token": `${token}` } })
     .then((res) => res.data.data);
+const fetcher2 = (url) =>
+  axios
+    .get(url)
+    .then((res) => res.data.data);
 
 export const doLogin = (body) => {
   return axios.post(`${process.env.NEXT_PUBLIC_API_HOST}/auth/`, body);
@@ -42,3 +46,17 @@ export const getMoviesHome = () => {
   const URL = `${process.env.NEXT_PUBLIC_API_HOST}/movies`
   return axios.get(URL)
 }
+
+export const GetCinemas = (location,date,id)=>{
+  const { data, error } = useSWR(
+    [`${process.env.NEXT_PUBLIC_API_HOST}/cinema?location=${location}&cinema_date=${date}&movie_id=${id}`],
+    fetcher2,
+    { refreshInterval: 5000 }
+  );
+  return {
+    cinema: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+};
+
