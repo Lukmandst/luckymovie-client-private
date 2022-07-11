@@ -14,9 +14,23 @@ const NowShowing = ({ image, id }) => {
           router.push(`/movie/${id}`);
         }}
       >
-        <div className="" style={{position:"relative", width: '160px', height: '260px'}}>
-
-        <Image src={image} layout='fill' alt="movies" style={{borderRadius: '12px'}} />
+        <div
+          className=""
+          style={{
+            position: "relative",
+            width: "160px",
+            height: "260px",
+            cursor: "pointer",
+          }}
+        >
+          {image.length > 0 && (
+            <Image
+              src={image}
+              layout="fill"
+              alt="movies"
+              style={{ borderRadius: "12px" }}
+            />
+          )}
         </div>
       </div>
     </>

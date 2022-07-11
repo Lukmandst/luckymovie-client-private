@@ -2,8 +2,6 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
 import styles from "./Seat.module.css";
-import { getSoldSeat } from "modules/axios";
-// import { type1 } from "../../helper/seatType";
 
 const Seat = (props) => {
 
