@@ -19,11 +19,15 @@ const Payment = () => {
     const [show, setShow] = useState(false)
 
     const {query : {
-        date,
         title,
-        cinema,
+        price,
+        movie_id,
+        cinema_id,
+        cinema_name,
+        time,
+        date,
         total_ticket,
-        price
+        seats
     }} = useRouter()
   return (
     <>
@@ -34,7 +38,7 @@ const Payment = () => {
             <div className={styles.cardPayment}>
                 <div className={styles.cardPaymentItem}>
                     <span>Date & Time</span>
-                    <span>{date}</span>
+                    <span>{`${date} & ${time}`}</span>
                 </div>
                 <div className={styles.cardPaymentItem}>
                     <span>Movie Title</span>
@@ -42,11 +46,15 @@ const Payment = () => {
                 </div>
                 <div className={styles.cardPaymentItem}>
                     <span>Cinema Name</span>
-                    <span>{cinema}</span>
+                    <span>{cinema_name}</span>
                 </div>
                 <div className={styles.cardPaymentItem}>
                     <span>Number Of Tickets</span>
                     <span>{total_ticket}</span>
+                </div>
+                <div className={styles.cardPaymentItem}>
+                    <span>Number Of Seats</span>
+                    <span>{`${seats}   `}</span>
                 </div>
                 <div className={styles.cardPaymentItem}>
                     <span>Total Payment</span>
