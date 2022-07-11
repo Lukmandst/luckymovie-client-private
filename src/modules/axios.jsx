@@ -46,9 +46,18 @@ export const GetUserHistory = (token) => {
   };
 };
 
-export const getMoviesHome = () => {
-  const URL = `${process.env.NEXT_PUBLIC_API_HOST}/movies`
-  return axios.get(URL)
+export async function getMoviesHome() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_HOST}/movies`
+  );  
+  return response;
+}
+
+export async function getUpdateMovies() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_HOST}/movies/upcoming`
+  );  
+  return response;
 }
 
 export const postNewMovie = (body, token)=>{
