@@ -6,8 +6,16 @@ import { Container, Row, Col } from "react-bootstrap";
 import rupiah from "../../helper/formatter";
 import Footer from "../../components/Footer"
 import Seat from 'components/seat/Seat'
+import { useRouter } from "next/router";
+import { useState } from "react";
+
 
 export default function Order() {
+  const [seatPick, setSeatPick] = useState([]);
+  const router = useRouter()
+  const order = ()=>{
+
+  }
   return (
     <>
       <LayoutOrder title="Order Page">
@@ -34,8 +42,7 @@ export default function Order() {
                     <Row className={`${styles.screen} justify-content-center`}>
                       <p className="text-center">Screen</p>
                       <hr className={styles.sreenCinema} />
-                    <Seat />
-                      
+                    <Seat setSeatPick={setSeatPick} seatPick={seatPick}/>
                     </Row>
                     <div className="my-5">
                       <Row>
@@ -65,7 +72,15 @@ export default function Order() {
 
                 <div className="d-flex justify-content-between flex-wrap my-4">
                   <div className={styles.btnChangeMovies}>Change your movie</div>
-                  <div className={styles.btnCheckout}>Checkout Now</div>
+                  <div className={styles.btnCheckout} onClick={()=>{
+                    router.push({pathname : '/payment', query : {
+                      date : "12-03-20",
+                      title : "Spiderman",
+                      cinema : "CineOne",
+                      total_ticket : 2,
+                      price : 20000,
+                    }})
+                  }}>Checkout Now</div>
                 </div>
               </Col>
 
