@@ -92,3 +92,12 @@ export const GetCinemas = (location,date,id)=>{
   };
 };
 
+export const createTransaction = (body, token)=>{
+  const config = {
+    headers : {
+      "x-access-token" : token
+    }
+  }
+  return axios.post(`${process.env.NEXT_PUBLIC_API_HOST}/transaction`, body, config)
+}
+
