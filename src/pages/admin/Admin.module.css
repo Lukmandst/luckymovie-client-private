@@ -41,9 +41,15 @@
     border: 1px solid #DEDEDE;
     border-radius: 16px;
     width: 30%;
+    position: relative;
 }
 .cardImage>input{
     opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top : 100px;
+    left: 60px;
 }
 .cardInput{
     width: 65%;

@@ -11,13 +11,14 @@ import bca from '../../assets/img/bca.png'
 import bri from '../../assets/img/bri.png'
 import ovo from '../../assets/img/ovo.png'
 import { Modal } from 'react-bootstrap'
-
+import { createTransaction } from 'modules/axios'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
 
 const Payment = () => {
     const [show, setShow] = useState(false)
-
+    const [payment_method, setPayment_method] = useState('')
     const {query : {
         title,
         price,
@@ -29,6 +30,27 @@ const Payment = () => {
         total_ticket,
         seats
     }} = useRouter()
+    const token = useSelector(state=>state.auth.token)
+    const body = {
+        cinema_id,
+        movie_id,
+        ticket_qty : total_ticket,
+        date,
+        time,
+        total_payment : price * total_ticket,
+        seats,
+        payment_method
+    }
+    console.log(body);
+    const payOrder = async ()=>{
+        try {
+            const res = await createTransaction(body, token)
+            console.log(res);
+            alert(res.data.msg)
+        } catch (error) {
+            console.log(error);
+        }
+    }
   return (
     <>
     <Header/>
@@ -82,7 +104,9 @@ const Payment = () => {
                         <Image src={dana} alt="card_payment" onClick={()=>setShow(true)}/>
                     </div>
                     <div className={styles.imgCard}>
-                        <Image src={bca} alt="card_payment"/>
+                        <Image src={bca} alt="card_payment" onClick={()=>{
+                            setPayment_method('klikBca')
+                        }}/>
                     </div>
                     <div className={styles.imgCard}>
                         <Image src={bri} alt="card_payment" onClick={()=>setShow(true)}/>
@@ -100,7 +124,7 @@ const Payment = () => {
             </div>
             <div className={styles.button}>
                 <div className={styles.back}>Previous Step</div>
-                <div className={styles.pay}>Pay Your Order</div>
+                <div className={styles.pay} onClick={payOrder}>Pay Your Order</div>
             </div>
         </div>
         <div className={styles.personalInfo}>

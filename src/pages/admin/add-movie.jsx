@@ -28,6 +28,7 @@ const AddMovie = () => {
   const [hour, setHour] = useState('')
   const [minute, setMinute] = useState('')
   const [times, setTimes] = useState([])
+  const [previewImg, setPreviewImg] = useState(null)
   const [detailCinema, setDetailCinema] = useState({
     cinema_price : "",
     cinema_name : "",
@@ -65,6 +66,7 @@ const AddMovie = () => {
       alert(error.response.data.msg)
     }
   }
+  console.log(previewImg);
   return (
     <>
     <Head>
@@ -78,9 +80,17 @@ const AddMovie = () => {
               <div className={styles.cardDesc}>
                 <div className={styles.topCard}>
                   <div className={styles.cardImage}>
-                    <Image src={camera} alt="movie_img" height={200} width={200}/>
+                    <Image src={previewImg=== null ? camera : previewImg} alt="movie_img" height={200} width={200}/>
                     <input type="file" onChange={(e)=>{
-                      setDetailMovie({...detailMovie, photo : e.target.files[0]})
+                    const file = e.target.files[0]
+                    if(file) {
+                    const reader = new FileReader()
+                    reader.onload = () => {
+                        setPreviewImg(reader.result)
+                        setDetailMovie({...detailMovie, photo : e.target.files[0]})
+                    }
+                    reader.readAsDataURL(file)
+                }
                     }}/>
                   </div>
                   <div className={styles.cardInput}>
