@@ -1,17 +1,19 @@
 import useSWR from "swr";
 import axios from "axios";
 
-export const getSoldSeat = (cinema_id, movie_id)=>{
+export const getSoldSeat = (cinema_id, movie_id) => {
   return axios.get(`http://localhost:5000/cinema/seat?cinema_id=${cinema_id}&movie_id=${movie_id}`)
 }
 
 export const doSignUp = (body) => {
-    return axios.post(`${process.env.NEXT_PUBLIC_API_HOST}/auth/new`, body)
+  return axios.post(`${process.env.NEXT_PUBLIC_API_HOST}/auth/new`, body)
 }
+
 const fetcher = (url, token) =>
   axios
     .get(url, { headers: { "x-access-token": `${token}` } })
     .then((res) => res.data.data);
+
 const fetcher2 = (url) =>
   axios
     .get(url)
@@ -46,31 +48,40 @@ export const GetUserHistory = (token) => {
   };
 };
 
-export const getMoviesHome = () => {
-  const URL = `${process.env.NEXT_PUBLIC_API_HOST}/movies`
-  return axios.get(URL)
+export async function getMoviesHome() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_HOST}/movies`
+  );
+  return response;
 }
 
-export const postNewMovie = (body, token)=>{
+export async function getUpdateMovies() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_HOST}/movies/upcoming`
+  );
+  return response;
+}
+
+export const postNewMovie = (body, token) => {
   const config = {
-    headers : {
-      "Content-type" : "multipart/form-data",
-      "x-access-token" : token
+    headers: {
+      "Content-type": "multipart/form-data",
+      "x-access-token": token
     }
   }
   return axios.post(`${process.env.NEXT_PUBLIC_API_HOST}/movies`, body, config)
 }
 
-export const postNewCinema = (body, token)=>{
+export const postNewCinema = (body, token) => {
   const config = {
-    headers : {
-      "x-access-token" : token
+    headers: {
+      "x-access-token": token
     }
   }
   return axios.post(`${process.env.NEXT_PUBLIC_API_HOST}/cinema`, body, config)
 }
 
-export const GetCinemas = (location,date,id)=>{
+export const GetCinemas = (location, date, id) => {
   const { data, error } = useSWR(
     [`${process.env.NEXT_PUBLIC_API_HOST}/cinema?location=${location}&cinema_date=${date}&movie_id=${id}`],
     fetcher2,
@@ -82,4 +93,25 @@ export const GetCinemas = (location,date,id)=>{
     isError: error,
   };
 };
+
+export const GetUserTicket = (trans_id, token) => {
+  const { data, error } = useSWR(
+    [`${process.env.NEXT_PUBLIC_API_HOST}/transaction/ticket/${trans_id}`, token],
+    fetcher,
+    { refreshInterval: 1000 }
+  );
+  return {
+    ticket: data,
+    isLoading: !error && !data,
+    isError: error
+  }
+}
+export const createTransaction = (body, token) => {
+  const config = {
+    headers: {
+      "x-access-token": token
+    }
+  }
+  return axios.post(`${process.env.NEXT_PUBLIC_API_HOST}/transaction`, body, config)
+}
 

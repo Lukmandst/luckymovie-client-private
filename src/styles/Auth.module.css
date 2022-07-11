@@ -156,6 +156,13 @@
     cursor: pointer;
 }
 
+.eye{
+    width: 20px;
+    height: 20px;
+    color: #50535a;
+    cursor: pointer;
+}
+
 .forgot {
     font-size: 14px;
     font-weight: 600;

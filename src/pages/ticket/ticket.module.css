@@ -91,6 +91,12 @@
   letter-spacing: 0.75px;
   color: #AAAAAA;
 }
+.seatValue{
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
 .value{
   font-family: 'Mulish';
   font-style: normal;
@@ -236,4 +242,12 @@
     border-left: none;
     margin: 2% 0;
   }
+}
+
+@media(max-width:426px){
+  .seatValue{
+    flex-direction: column;
+    gap: unset;
+  }
+  
 }

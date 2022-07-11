@@ -2,8 +2,6 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
 import styles from "./Seat.module.css";
-import { getSoldSeat } from "modules/axios";
-// import { type1 } from "../../helper/seatType";
 
 const Seat = (props) => {
 
@@ -37,8 +35,6 @@ const Seat = (props) => {
     });
     return variable;
   };
-//   console.log(availSeat("A"));
-
   return (
     <>
       <div className={styles.seatContainer}>
@@ -59,10 +55,11 @@ const Seat = (props) => {
                   type="checkbox"
                   key={i}
                   id="mark"
-                  onClick={() => {
-                    setSeatPick([...seatPick, data]);
+                  onClick={(e) => {
+                    if(!seatPick.includes(e.target.value)){
+                      setSeatPick([...seatPick, data]);
+                    }
                   }}
-                //   checked={availSeat("A").includes(data) ? false : true}
                   value={data}
                   disabled={availSeat("A").includes(data) ? false : true}
                 />
