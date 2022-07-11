@@ -115,3 +115,34 @@ export const createTransaction = (body, token) => {
   return axios.post(`${process.env.NEXT_PUBLIC_API_HOST}/transaction`, body, config)
 }
 
+export const GetSalesLocation = (filter, location_id, token) => {
+  const { data, error } = useSWR(
+    [
+      `${process.env.NEXT_PUBLIC_API_HOST}/sales?basedOn=location&filter=${filter}&location_id=${location_id}`,
+      token,
+    ],
+    fetcher,
+    { refreshInterval: 1000 }
+  );
+  return {
+    locationSales: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+};
+
+export const GetSalesMovie = (filter, movie_id, token) => {
+  const { data, error } = useSWR(
+    [
+      `${process.env.NEXT_PUBLIC_API_HOST}/sales?basedOn=movie&filter=${filter}&movie_id=${movie_id}`,
+      token,
+    ],
+    fetcher,
+    { refreshInterval: 1000 }
+  );
+  return {
+    movieSales: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+};

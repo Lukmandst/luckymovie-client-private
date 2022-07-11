@@ -8,8 +8,53 @@ import ibv from '../../assets/img/ebv.id.png'
 import hiflix from '../../assets/img/hiflix.png'
 import cineone from '../../assets/img/cineone.png'
 import biPlus from '../../assets/img/bi_plus.png'
+import ChartSales from "components/Chart/Chart"
+import { GetSalesLocation, GetSalesMovie } from "modules/axios"
+import { useSelector } from "react-redux"
+import { useEffect, useState } from "react"
+import ChartMovie from "components/Chart/ChartMovie"
 
 const Admin = () => {
+  const[filter, setFilter] = useState('weekly')
+  const [movieSales, setMovieSales] = useState([])
+  // const[location_id, setLocationId] = useState(27)
+  const {token} = useSelector(state=>state.auth)
+  const {
+    locationSales : Jakarta, 
+    // isLoading: loadingLocationSales, 
+    // isError: errorLocationSales
+  } = GetSalesLocation(filter,26,token)
+  const {
+    locationSales : Bandung, 
+    // isLoading: loadingLocationSales, 
+    // isError: errorLocationSales
+  } = GetSalesLocation(filter,27,token)
+  const {
+    locationSales : Semarang, 
+    // isLoading: loadingLocationSales, 
+    isError: errorLocationSales
+  } = GetSalesLocation(filter,28,token)
+
+  // const getId = ()=>{
+    
+  // }
+
+  let array = [4,5,15]
+  let movies = []
+  for (let index = 0; index < array.length; index++) {
+    const {movieSales, isLoading: loadingMovieSales, isError: errorMovieSales} = GetSalesMovie(filter,array[index],token)
+    movies.push(movieSales)
+  }
+  console.log(movies);
+    // useEffect(()=>{
+    
+    // }, [filter, token])
+
+  // console.log(movies);
+  const getAllRevenueMovie =()=>{
+
+  }
+
   return (
     <>
     <Head>
@@ -105,6 +150,22 @@ const Admin = () => {
               </div>
             </div>
         </div>
+        <ChartSales jakarta={Jakarta} bandung={Bandung} semarang={Semarang} filter={filter} setFilter={setFilter}/>
+        <ChartMovie movies={movies[0]}/>
+        <ChartMovie movies={movies[1]}/>
+        <ChartMovie movies={movies[2]}/>
+        {/* <ChartMovie data={{
+          labels : movies.map(movie=>movie.day_name) ,
+          datasets: [
+            {
+              label: 'Income',
+              // data: Object.entries(group).map(item => item[1].map(day=> Number(day.total))),
+              data : movies.map(revenue=> revenue.total),
+              borderColor: 'rgb(255, 99, 132)',
+              backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            },
+          ]
+        }}/> */}
     </div>
     <Footer/>
     </>

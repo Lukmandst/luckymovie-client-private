@@ -1,0 +1,36 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 70px;
+}
+.singleChart{
+    background: #FFFFFF;
+    box-shadow: 0px 8px 16px rgba(17, 17, 17, 0.08);
+    border-radius: 24px;
+    padding: 30px;
+    width: 100%;
+}
+.space{
+    padding: 20px;
+}
+.topChart{
+    width: 100%;
+    padding: 24px 48px;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.filter>span:nth-child(1){
+    margin-right: 20px;
+}
+.filter>span{
+    cursor: pointer;
+}
+.basedon>span:nth-child(1){
+    margin-right: 20px;
+}
