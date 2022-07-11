@@ -65,7 +65,7 @@ function SignUp() {
                         <div className={styles.inputWrapper}>
                             <input type={showPassword ? "text" : "password"} name="password" placeholder="Write your password" className={styles.formInput}
                                 onChange={e => setPassword(e.target.value)} />
-                            {showPassword ? <EyeSlash className={styles.icon} onClick={showPassHandler} /> : <Eye className={styles.icon} onClick={showPassHandler} />}
+                            {showPassword ? <Eye className={styles.eye} onClick={showPassHandler} /> : <EyeSlash className={styles.icon} onClick={showPassHandler} />}
                         </div>
                     </div>
                     <div className={styles.wrapperCheckbox}>

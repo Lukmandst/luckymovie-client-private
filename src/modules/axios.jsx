@@ -48,9 +48,18 @@ export const GetUserHistory = (token) => {
   };
 };
 
-export const getMoviesHome = () => {
-  const URL = `${process.env.NEXT_PUBLIC_API_HOST}/movies`
-  return axios.get(URL)
+export async function getMoviesHome() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_HOST}/movies`
+  );
+  return response;
+}
+
+export async function getUpdateMovies() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_HOST}/movies/upcoming`
+  );
+  return response;
 }
 
 export const postNewMovie = (body, token) => {
@@ -97,3 +106,12 @@ export const GetUserTicket = (trans_id, token) => {
     isError: error
   }
 }
+export const createTransaction = (body, token) => {
+  const config = {
+    headers: {
+      "x-access-token": token
+    }
+  }
+  return axios.post(`${process.env.NEXT_PUBLIC_API_HOST}/transaction`, body, config)
+}
+

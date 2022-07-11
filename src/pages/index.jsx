@@ -15,22 +15,36 @@ import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
 
 //axios
-import { getMoviesHome } from "../modules/axios";
+import { getMoviesHome, getUpdateMovies } from "../modules/axios";
 
-export default function Home() {
-  const [movies, setMovies] = useState([]);
-  const [errMsg, setErrMsg] = useState("");
+export async function getStaticProps() {
+  const getMovies = await getMoviesHome();
+  const getUpdate = await getUpdateMovies();
+  return {
+    props : { 
+      movies : await getMovies.json(),
+      updateMovies : await getUpdate.json()
+    }
+  }
+}
 
-  useEffect(() => {
-    getMoviesHome()
-      .then((res) => {
-        console.log(res);
-        setMovies(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+export default function Home({movies, updateMovies}) {
+  // const { movies } = props;
+  console.log(movies)
+  console.log(updateMovies)
+  // const [movies, setMovies] = useState([]);
+  // const [errMsg, setErrMsg] = useState("");
+
+  // useEffect(() => {
+  //   getMoviesHome()
+  //     .then((res) => {
+  //       console.log(res);
+  //       setMovies(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   const months = [
     { id: 1, month: "Januari" },
@@ -87,8 +101,8 @@ export default function Home() {
           </a>
         </div>
         <div className="d-flex justify-content-evenly flex-wrap mt-3 mb-5">
-          {movies.map((item) => (
-            <NowShowing image={item.image} id={item.movies_id} key={item.id} />
+          {movies.data.map((item) => (
+            <NowShowing image={item.image} id={item.movies_id} key={item.movies_id} />         
           ))}
         </div>
       </main>
@@ -99,7 +113,7 @@ export default function Home() {
             <p className="p-5">view all</p>
           </a>
         </div>
-        <div className="d-flex flex-wrap justify-content-center py-5 px-3 ">
+        {/* <div className="d-flex flex-wrap justify-content-center py-5 px-3 ">
           {months.map((item) => (
             <button
               className={`${styles.btnOutline} mx-3 btn btn-month`}
@@ -108,11 +122,12 @@ export default function Home() {
               {item.month}
             </button>
           ))}
-        </div>
+        </div> */}
         <div className="py-5 px-3 mb-5">
           <div className="d-flex flex-wrap justify-content-center mb-3">
-            <UpComing /> <UpComing /> <UpComing />
-            <UpComing /> <UpComing />
+          {updateMovies.data.map((item) => (
+            <UpComing title={item.title} genre={item.genre} image={item.image} id={item.movies_id} key={item.movies_id} />
+          ))}
           </div>
         </div>
       </section>
