@@ -61,7 +61,7 @@ function SignIn() {
                             <input type={showPassword ? "text" : "password"} name="password" placeholder="Write your password" className={styles.formInput}
                                 onChange={e => setPassword(e.target.value)}
                             />
-                            {showPassword ? <EyeSlash className={styles.icon} onClick={showPassHandler} /> : <Eye className={styles.icon} onClick={showPassHandler} />}
+                            {showPassword ? <Eye className={styles.eye} onClick={showPassHandler} /> : <EyeSlash className={styles.icon} onClick={showPassHandler} />}
                         </div>
                         <Link href={'/forgot'}>
                             <div className={styles.forgot}>Forgot password?</div>

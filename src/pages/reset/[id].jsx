@@ -68,14 +68,14 @@ function Reset() {
                             <input type={showPassword ? "text" : "password"} name="password" placeholder="Create new password" className={styles.formInput}
                                 onChange={e => setPassword(e.target.value)}
                             />
-                            {showPassword ? <EyeSlash className={styles.icon} onClick={showPassHandler} /> : <Eye className={styles.icon} onClick={showPassHandler} />}
+                            {showPassword ? <Eye className={styles.eye} onClick={showPassHandler} /> : <EyeSlash className={styles.icon} onClick={showPassHandler} />}
                         </div>
                         <label htmlFor="" className={styles.formLabel}>Confirm Password</label>
                         <div className={styles.inputWrapper}>
                             <input type={showPasswordConfirm ? "text" : "password"} name="password" placeholder="Input Confirm password" className={styles.formInput}
                                 onChange={e => setPasswordConfirm(e.target.value)}
                             />
-                            {showPasswordConfirm ? <EyeSlash className={styles.icon} onClick={showPassConHandler} /> : <Eye className={styles.icon} onClick={showPassConHandler} />}
+                            {showPasswordConfirm ? <Eye className={styles.eye} onClick={showPassConHandler} /> : <EyeSlash className={styles.icon} onClick={showPassConHandler} />}
                         </div>
                     </div>
                     {isSuccess ? <div key={msg} className={styles.successMsg}> {msg} </div> : <></>}
