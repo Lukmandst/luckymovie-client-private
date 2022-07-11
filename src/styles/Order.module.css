@@ -23,8 +23,16 @@
   width: 20px;
   height: 20px;
   background-color: rgb(197, 197, 197);
-  margin-left: -25px;
+  margin-left: -28px;
   border-radius: 4px;
+}
+.selectedSeat {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 25px 48px;
+  background-color: #ffffff;
+  border-radius: 16px;
 }
 .seatSelected {
   position: absolute;
@@ -71,22 +79,41 @@
   border-radius: 4px;
   padding: 10px;
   margin: 20px 0;
-  color:white;
+  color: white;
   cursor: pointer;
 }
 .orderInfo {
-  background-color: #ffffff;      
+  background-color: #ffffff;
 }
 .textInfo {
-    text-align: end;
+  text-align: end;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1046px) {
   .btnChange {
-    font-size :12px;
+    font-size: 12px;
   }
   .orderInfo,
   .textInfo {
     font-size: 14px;
+  }
+  .selectedSeat {
+    padding: 25px 0px;
+  }
+}
+
+@media only screen and (min-width: 200px) and (max-width: 374px) {
+  .selectedSeat {
+    padding: 25px 0px;
+  }
+  .setSeat {
+    flex-direction: column !important;
+    padding-left: 14%;
+  }
+}
+
+@media only screen and (min-width: 375px) and (max-width: 474px) {
+  .selectedSeat {
+    padding: 25px 0px;
   }
 }
