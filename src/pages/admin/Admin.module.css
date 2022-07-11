@@ -222,3 +222,60 @@
     padding: 15px;
     border-radius: 12px;
 }
+.price{
+    font-weight: 700;
+    font-size: 16px;
+    color: #5F2EEA;
+}
+
+@media screen and (max-width:768px){
+    .top{
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+    }
+    .movieDescription{
+        width: 100%;
+        padding: 60px;
+        margin: 0;
+    }
+    .premiere{
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 30px;
+        padding: 60px;
+    }
+    .duration > label{
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width:425px){
+    .top{
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+    .filterValue{
+        width: 100%;
+    }
+    .movieDescription{
+        width: 100%;
+        padding: 10px;
+        margin: 0;
+    }
+    .premiere{
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 30px;
+        padding: 15px;
+    }
+    .premiereImg{
+        flex-direction: column;
+        row-gap: 20px;
+    }
+    .duration > label{
+        font-size: 14px;
+    }
+}

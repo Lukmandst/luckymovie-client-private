@@ -160,33 +160,30 @@ const AddMovie = () => {
                 <div className={styles.premiereImg}>
                   <div className={detailCinema.cinema_name === "ibv.id" ? styles.cinemaNameAct : ""}>
                   <Image src={ibv} alt="IBV" className={styles.cinemaNameAct} onClick={()=>{
-                    setDetailCinema({...detailCinema, cinema_name : "ibv.id"})
+                    setDetailCinema({...detailCinema, cinema_name : "ibv.id", cinema_price : 40000})
                   }}/>
                   </div>
                   <div className={detailCinema.cinema_name === "hiflix" ? styles.cinemaNameAct : ""}>
                   <Image src={hiflix} alt="hiflix" onClick={()=>{
-                    setDetailCinema({...detailCinema, cinema_name : "hiflix"})
+                    setDetailCinema({...detailCinema, cinema_name : "hiflix", cinema_price : 35000})
                   }}/>
                   </div>
                   <div className={detailCinema.cinema_name === "cineOne21" ? styles.cinemaNameAct : ""}>
                   <Image src={cineone} alt="cineone" onClick={()=>{
-                    setDetailCinema({...detailCinema, cinema_name : "cineOne21"})
+                    setDetailCinema({...detailCinema, cinema_name : "cineOne21", cinema_price : 50000})
                   }}/>
                   </div>
                 </div>
-                <div className={styles.inputPrice}>
-                  <input type="number" onChange={(e)=>{
-                    setDetailCinema({...detailCinema, cinema_price : e.target.value})
-                  }} />
+                <div className={styles.price}>
+                  {detailCinema.cinema_name === "ibv.id" ? "PRICE = IDR 40.000" : ""}
+                  {detailCinema.cinema_name === "hiflix" ? "PRICE = IDR 35.000" : ""}
+                  {detailCinema.cinema_name === "cineOne21" ? "PRICE = IDR 50.000" : ""}
                 </div>
               </div>
               <div className={styles.showtime}>
                 <span>Showtimes</span>
                 <div className={styles.showtimeCard}>
                 <div style={{ position: "relative" }}>
-                <MdCalendarToday
-                  style={{ position: "absolute", left: "1rem", top: "1rem" }}
-                />
                 <input type="date" className={styles.filterValue} onChange={(e)=>{
                   setDetailCinema({...detailCinema, date : e.target.value})
                 }}/>
