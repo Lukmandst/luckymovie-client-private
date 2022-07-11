@@ -1,73 +1,71 @@
-.seatContainer{
-    display: flex;
-    align-items: flex-center;
-    justify-content: space-evenly;
-    background: #FFFFFF;
-    border-radius: 24px;
+.seatContainer {
+  display: flex;
+  align-items: flex-center;
+  justify-content: center;
+  background: #ffffff;
+  border-radius: 24px;
 }
-.tableSeat{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.tableSeat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .seatContainer {
-    display: grid;
-    grid-template-columns: 25px 1fr 1fr;
-    width: 520px;
-    padding-left: 40px;
-    margin-top: 20px;
-  }
-  
-  .seatContainer>section {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .key {
-    display: flex;
-    grid-gap: 8px;
-    flex-direction: column;
-    gap: 40px;
-  }
-  .seat {
-    display: flex;
-    flex-direction: column;
-    width: 45vw;
-  }
-  .seat>label {
-    margin: 0px 18px;
-  }
-  .seatNumber {
-    display: grid;
-    grid-template-columns: repeat(7, 2vw);
-    gap: 13px;
-    margin-top: 5px;
-    margin-left: 25px;
-  }
-  
-  .seat>label>input[type=checkbox] {
+  /* display: grid;
+    grid-template-columns: 25px 1fr 1fr; */
+  width: max-content;
+  padding-left: 40px;
+  margin-top: 20px;
+}
+
+.seatContainer > section {
+  display: flex;
+  flex-direction: row;
+}
+
+.key {
+  display: flex;
+  grid-gap: 8px;
+  flex-direction: column;
+  gap: 40px;
+}
+.seat {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+}
+.seat > label {
+  margin: 0px 18px;
+}
+.seatNumber {
+  display: grid;
+  grid-template-columns: repeat(14, 2vw);
+  gap: 14px;
+  margin-top: 5px;
+  margin-left: 25px;
+}
+
+.seat > label > input[type="checkbox"] {
   cursor: pointer;
   margin-right: 30px;
   margin-bottom: 45px;
 }
 
-.seat>label>input[type=checkbox]:hover {
-    cursor: pointer;
-  }
+.seat > label > input[type="checkbox"]:hover {
+  cursor: pointer;
+}
 
-.seat>label>input[type=checkbox]:checked:before {
-  
+.seat > label > input[type="checkbox"]:checked:before {
   display: block;
   width: 30px;
   height: 30px;
-  background-color: #5f2eea;  
+  background-color: #5f2eea;
   transition: all 0.2s linear;
 }
 
-
-.seat>label>input[type=checkbox]:before {
+.seat > label > input[type="checkbox"]:before {
   content: "";
   display: block;
   width: 30px;
@@ -75,42 +73,167 @@
   border-radius: 3px;
   background-color: rgb(197, 197, 197);
 }
-.seat>label>input[type=checkbox].seatSold:before {
-    content: "";
-    display: block;
-    width: 30px;
-    height: 30px;
-    border-radius: 3px;
-    background-color: rgb(42, 40, 40);
-  }
-
-/* 
-.seat>label>input[type=checkbox]:after {
+.seat > label > input[type="checkbox"].seatSold:before {
   content: "";
   display: block;
-  width: 0px;
-  height: 0px;
-  border: solid #FFCB9A;
-  border-width: 0 0px 0px 0;
-  -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  transform: rotate(180deg);
-  position: absolute;
-  top: 0px;
-  left: 50px;
-  transition: all 0.2s linear;
+  width: 30px;
+  height: 30px;
+  border-radius: 3px;
+  background-color: rgb(42, 40, 40);
 }
 
-.seat>label>input[type=checkbox]:checked:after {
-  content: "";
-  display: block;
-  width: 12px;
-  height: 21px;
-  border-width: 0 5px 5px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-  position: absolute;
-  top: 2px;
-  left: 14px;
-} */
+@media only screen and (min-width: 318px) and (max-width: 374px) {
+  .seatContainer{
+    padding-left: 0;
+  }
+  .seat > label > input[type="checkbox"] {
+    margin-right: 5px;
+    margin-bottom: 20px;
+  }
+  .seat > label > input[type="checkbox"]:before {
+    width: 12px;
+    height: 12px;
+  }
+  .seat > label > input[type="checkbox"]:checked:before {
+    width: 12px;
+    height: 12px;
+  }
+  .key {
+    gap: 14px;
+  }
+  .seatNumber {
+    margin-top: -13px;
+    font-size: 10px;
+    position: absolute;
+    grid-template-columns: repeat(14, 4px);
+    margin-left: 19px;
+  }
+  .seat > label {
+    margin: 0px 0px 0 17px;
+  }
+}
+
+@media only screen and (min-width: 108px) and (max-width: 425px) {
+  .seatContainer{
+    padding-left: 0;
+  }
+  .seat > label > input[type="checkbox"] {
+    margin-right: 5px;
+    margin-bottom: 20px;
+  }
+  .seat > label > input[type="checkbox"]:before {
+    width: 12px;
+    height: 12px;
+  }
+  .seat > label > input[type="checkbox"]:checked:before {
+    width: 12px;
+    height: 12px;
+  }
+  .key {
+    gap: 14px;
+  }
+  .seatNumber {
+    margin-top: -13px;
+    font-size: 10px;
+    position: absolute;
+    grid-template-columns: repeat(14, 4px);
+    margin-left: 19px;
+  }
+  .seat > label {
+    margin: 0px 0px 0 17px;
+  }
+}
+
+@media only screen and (min-width: 426px) and (max-width: 768px) {
+  .seatContainer{
+    padding-left: 0;
+  }
+  .seat > label > input[type="checkbox"] {
+    margin-right: 11px;
+    margin-bottom: 20px;
+  }
+  .seat > label > input[type="checkbox"]:before {
+    width: 18px;
+    height: 18px;
+  }
+  .seat > label > input[type="checkbox"]:checked:before {
+    width: 18px;
+    height: 18px;
+  }
+  .key {
+    gap: 14px;
+    margin-left: -5px;
+  }
+  .seatNumber {
+    margin-top: -13px;
+    font-size: 10px;
+    position: absolute;
+    grid-template-columns: repeat(14, 10px);
+    margin-left: 21px;
+  }
+  .seat > label {
+    margin: 0px 0px 0 17px;
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1023px) {
+  .seatContainer{
+    padding-left: 0;
+  }
+  .seat > label > input[type="checkbox"] {
+    margin-right: 12px;
+    margin-bottom: 20px;
+  }
+  .seat > label > input[type="checkbox"]:before {
+    width: 18px;
+    height: 18px;
+  }
+  .seat > label > input[type="checkbox"]:checked:before {
+    width: 18px;
+    height: 18px;
+  }
+  .key {
+    gap: 14px;
+  }
+  .seatNumber {
+    margin-top: -13px;
+    font-size: 10px;
+    position: absolute;
+    grid-template-columns: repeat(14, 11px);
+    margin-left: 21px;
+  }
+  .seat > label {
+    margin: 0px 0px 0 17px;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1440px) {
+  .seatContainer{
+    padding-left: 0;
+  }
+  .seat > label > input[type="checkbox"] {
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  .seat > label > input[type="checkbox"]:before {
+    width: 25px;
+    height: 25px;
+  }
+  .seat > label > input[type="checkbox"]:checked:before {
+    width: 25px;
+    height: 25px;
+  }
+  .key {
+    gap: 14px;
+  }
+  .seatNumber {
+    margin-top: 0px;
+    font-size: 14px;
+    position: absolute;
+    grid-template-columns: repeat(14, 19px);
+    margin-left: 21px;
+  }
+  .seat > label {
+    margin: 0px 0px 0 17px;
+  }
+}

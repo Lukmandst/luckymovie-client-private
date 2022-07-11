@@ -34,7 +34,7 @@ export default function Order() {
                 <div className={`mb-5`}>
                   <h5>Movie Selected</h5>
                   <div
-                    className={`${styles.selectedMovies} d-flex flex-row justify-content-between my-4 align-items-center`}
+                    className={`${styles.selectedMovies} d-flex flex-wrap justify-content-between my-4 align-items-center`}
                   >
                     <h5>{title}</h5>
                     <div className={`${styles.btnChange} btn btn-secondary`}>
@@ -46,7 +46,7 @@ export default function Order() {
                 <div className={`styles.seatCinemas`}>
                   <h5 className={styles.chooseTitle}>Choose Your Seat</h5>
                   <Row
-                    className={`${styles.selectedMovies} d-flex justify-content-center`}
+                    className={`${styles.selectedSeat} d-flex justify-content-center`}
                   >
                     <Row className={`${styles.screen} justify-content-center`}>
                       <p className="text-center">Screen</p>
@@ -60,7 +60,7 @@ export default function Order() {
                         </Col>
                       </Row>
                       <Row>
-                        <Col xs={12} className={`d-flex flex-row flex-wrap justify-content-evenly`}>
+                        <Col xs={12} className={`d-flex flex-row flex-wrap justify-content-evenly ${styles.setSeat}`}>
                           <div className="d-flex flex-row align-items-center m-1">
                           <span className={styles.seatAvailable} />Available
                           </div>

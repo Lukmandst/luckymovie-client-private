@@ -26,6 +26,9 @@ import LayoutProfile from "../../components/layout/LayoutProfile";
 import styles from "./Profile.module.css";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
 import cineOne from "../../assets/img/cineone.png";
+import cineone from "../../assets/images/cinemas/cineOne21.png";
+import ebv from "../../assets/images/cinemas/ebv.id.png";
+import hiflix from "../../assets/images/cinemas/hiflix.png";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { GetUser, GetUserHistory } from "modules/axios";
@@ -66,7 +69,7 @@ const Profile = () => {
     isError: errorHistory,
   } = GetUserHistory(token);
   console.log(history);
-  console.log(errorHistory);
+  // console.log(errorHistory);
   const router = useRouter();
   const handleImage = (e) => {
     const file = e.target.files[0];
@@ -106,7 +109,7 @@ const Profile = () => {
       console.log(updateResult);
       setLoadingUpdate(false);
       setMsg("Update Success!");
-      setShowModalProfile(false)
+      setShowModalProfile(false);
       setTimeout(() => {
         window.scrollTo(0, 0);
         setMsg(false);
@@ -116,7 +119,7 @@ const Profile = () => {
       console.log(error);
       seterrMsg(error.response ? error.response.data.err.msg : error.response);
       setLoadingUpdate(false);
-      setShowModalProfile(false)
+      setShowModalProfile(false);
       // setEdit(false);
       setTimeout(() => {
         seterrMsg(false);
@@ -138,7 +141,7 @@ const Profile = () => {
     try {
       if (pass !== confirm) {
         seterrMsg("The password confirmation does not match!");
-        setShow(false)
+        setShow(false);
         setTimeout(() => {
           seterrMsg(false);
         }, 2000);
@@ -154,7 +157,7 @@ const Profile = () => {
         });
         console.log(updateResult);
         setLoadingUpdate(false);
-        setShow(false)
+        setShow(false);
         setMsg("Update Success please sign in again!");
         setTimeout(() => {
           setPass("");
@@ -177,7 +180,6 @@ const Profile = () => {
 
   const handleShowUpdatePassword = () => setShow(true);
   const handleCloseUpdatePassword = () => setShow(false);
-
 
   useEffect(() => {
     if (!token) {
@@ -220,7 +222,44 @@ const Profile = () => {
           </div>
           {showOrder ? (
             <>
-              <div className={styles.historyCard}>
+              {history && Array.isArray(history) ? (
+                history.map((item) => (
+                  <div key={item.id} className={styles.historyCard}>
+                    <div className={styles.titleCard}>
+                      <div className={styles.titleInfo}>
+                        <span>{item.detail[0].movie_date}</span>
+                        <span>{item.detail[0].movie}</span>
+                      </div>
+                      <div className={styles.studio}>
+                        <Image
+                          src={
+                            item.detail[0].movie === "hiflix"
+                              ? hiflix
+                              : item.detail[0].movie === "ebv.id"
+                              ? ebv
+                              : cineOne
+                          }
+                          alt="studio"
+                        />
+                      </div>
+                    </div>
+                    <div className={styles.line}></div>
+                    <div className={styles.footerCard}>
+                      <span>
+                        {item.detail[0].active
+                          ? "Ticket is Active"
+                          : "Ticket is Used"}
+                      </span>
+                      <span className={styles.detailsBtn} onClick={() => router.push(`/ticket/${item.id}`)}>
+                        Show Details
+                      </span>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <></>
+              )}
+              {/* <div className={styles.historyCard}>
                 <div className={styles.titleCard}>
                   <div className={styles.titleInfo}>
                     <span>Date</span>
@@ -251,23 +290,7 @@ const Profile = () => {
                   <span>Ticket In Active</span>
                   <span>Show Details</span>
                 </div>
-              </div>
-              <div className={styles.historyCard}>
-                <div className={styles.titleCard}>
-                  <div className={styles.titleInfo}>
-                    <span>Date</span>
-                    <span>Title</span>
-                  </div>
-                  <div className={styles.studio}>
-                    <Image src={cineOne} alt="studio" />
-                  </div>
-                </div>
-                <div className={styles.line}></div>
-                <div className={styles.footerCard}>
-                  <span>Ticket In Active</span>
-                  <span>Show Details</span>
-                </div>
-              </div>
+              </div> */}
             </>
           ) : (
             <>
@@ -349,7 +372,7 @@ const Profile = () => {
                           id="upload-button"
                           accept="image/*"
                           onChange={handleImage}
-                        // style={{ display: "none" }}
+                          // style={{ display: "none" }}
                         />
                       </div>
                     </div>
@@ -464,19 +487,31 @@ const Profile = () => {
                   </div>
                 )}
                 {edit ? (
-                  <div className={styles.updateBtn} onClick={handleShowUpdateUser}>
+                  <div
+                    className={styles.updateBtn}
+                    onClick={handleShowUpdateUser}
+                  >
                     <span>Update changes</span>
                   </div>
                 ) : editPass ? (
-                  <div className={styles.updateBtn} onClick={handleShowUpdatePassword}>
+                  <div
+                    className={styles.updateBtn}
+                    onClick={handleShowUpdatePassword}
+                  >
                     <span>Update Password</span>
                   </div>
                 ) : edit && editPass ? (
                   <>
-                    <div className={styles.updateBtn} onClick={handleShowUpdateUser}>
+                    <div
+                      className={styles.updateBtn}
+                      onClick={handleShowUpdateUser}
+                    >
                       <span>Update changes</span>
                     </div>
-                    <div className={styles.updateBtn} onClick={handleShowUpdatePassword}>
+                    <div
+                      className={styles.updateBtn}
+                      onClick={handleShowUpdatePassword}
+                    >
                       <span>Update Password</span>
                     </div>
                   </>
@@ -488,13 +523,22 @@ const Profile = () => {
           )}
         </div>
       </LayoutProfile>
-      <Modal show={show} onHide={handleCloseUpdatePassword} className={styles.modalUpdatePassword}>
+      <Modal
+        show={show}
+        onHide={handleCloseUpdatePassword}
+        className={styles.modalUpdatePassword}
+      >
         <Modal.Header>
           <Modal.Title className={styles.modalHeader}>Warning !</Modal.Title>
         </Modal.Header>
-        <Modal.Body className={styles.modalBody}>Do you want to Change Password?</Modal.Body>
+        <Modal.Body className={styles.modalBody}>
+          Do you want to Change Password?
+        </Modal.Body>
         <Modal.Footer>
-          <div className={styles.modalNoButton} onClick={handleCloseUpdatePassword}>
+          <div
+            className={styles.modalNoButton}
+            onClick={handleCloseUpdatePassword}
+          >
             No
           </div>
           <div className={styles.modalYesButton} onClick={updatePassword}>
@@ -502,11 +546,17 @@ const Profile = () => {
           </div>
         </Modal.Footer>
       </Modal>
-      <Modal show={showModalProfile} onHide={handleCloseUpdateUser} className={styles.modalUpdateUser}>
+      <Modal
+        show={showModalProfile}
+        onHide={handleCloseUpdateUser}
+        className={styles.modalUpdateUser}
+      >
         <Modal.Header>
           <Modal.Title className={styles.modalHeader}>Warning !</Modal.Title>
         </Modal.Header>
-        <Modal.Body className={styles.modalBody}>Do you want to Change Profile?</Modal.Body>
+        <Modal.Body className={styles.modalBody}>
+          Do you want to Change Profile?
+        </Modal.Body>
         <Modal.Footer>
           <div className={styles.modalNoButton} onClick={handleCloseUpdateUser}>
             No
