@@ -1,0 +1,224 @@
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color:  #F5F6F8;
+}
+.top{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    padding: 56px 70px;
+}
+.movieDescription{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 60%;
+}
+.movieDescription>span{
+    color:#000000;
+    font-size: 24px;
+    font-weight: 700;
+}
+.cardDesc{
+    background-color: #FFFFFF;
+    border-radius: 24px;
+    padding: 56px 40px;
+    width: 100%;
+    margin-top: 24px;
+}
+.topCard{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+}
+.cardImage{
+    padding: 36px;
+    border: 1px solid #DEDEDE;
+    border-radius: 16px;
+    width: 30%;
+}
+.cardImage>input{
+    opacity: 0;
+}
+.cardInput{
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+    position: relative;
+}
+.cardInput>input{
+    border: 1px solid #DEDEDE;
+    border-radius: 16px;
+    padding: 22px 24px;
+    background-color: #FCFDFE;
+}
+.cardInput>input:nth-child(6){
+    width: 50%;
+}
+.duration{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+}
+.inputHour{
+    display: flex;
+    justify-content: space-between;
+}
+.inputHour>input{
+    padding: 22px 24px;
+    border: 1px solid #DEDEDE;
+    border-radius: 16px;
+    padding: 22px 24px;
+    background-color: #FCFDFE;
+    width: 45%;
+}
+.bottomCard{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 12px;
+}
+.director:nth-child(2){
+    width: 65%;
+}
+.director{
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+    width: 30%;
+}
+.director>input{
+    border: 1px solid #DEDEDE;
+    border-radius: 16px;
+    padding: 22px 24px;
+    background-color: #FCFDFE;
+}
+.synopsis{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    row-gap: 12px;
+}
+.synopsis>textarea{
+    height: 108px;
+    width: 100%;
+    border: 1px solid #DEDEDE;
+    border-radius: 16px;
+    padding: 22px 24px;
+    background-color: #FCFDFE;
+}
+.synopsis>textarea:focus{
+    outline: none;
+}
+.premiere{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 40%;
+    flex-direction: column;
+    margin-left: 24px;
+}
+.premiereCard{
+    padding: 32px 40px;
+    background: #FFFFFF;
+    border-radius: 24px;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    row-gap: 46px;
+    margin-top: 24px;
+}
+.premiereImg{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.premiere>span{
+    color:#000000;
+    font-size: 24px;
+    font-weight: 700;
+}
+.showtime{
+    margin-top: 48px;
+    width: 100%;
+}
+.showtime>span{
+    color:#000000;
+    font-size: 24px;
+    font-weight: 700;
+}
+.showtimeCard{
+    padding: 32px 40px;
+    background: #FFFFFF;
+    border-radius: 24px;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    row-gap: 46px;
+    margin-top: 24px;
+}
+.setTime{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.filterValue{
+    height: 50px;
+    width: 300px;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 16px;
+    color: #4e4b66;
+    background-color: #eff0f6;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.filterValue:focus{
+    outline: none;
+}
+.button{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+.addMovie{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #5F2EEA;
+    font-size: 16px;
+    font-weight: 700;
+    color: #FFFFFF;
+    width: 40%;
+    margin-top: 40px;
+    border-radius: 16px;
+}
+.addMovie:hover{
+    background-color:#8f6af3;
+}
+.cinemaNameAct{
+    border: 1px solid #5F2EEA;
+    padding: 15px;
+    border-radius: 12px;
+}

@@ -2,13 +2,27 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
 import styles from "./Seat.module.css";
+import { getSoldSeat } from "modules/axios";
 // import { type1 } from "../../helper/seatType";
 
-const Seat = () => {
-  const [seatPick, setSeatPick] = useState([]);
-  const [soldSeat, setSoldSeat] = useState(["3B", "2A", "5C", "4B"]);
-  const [newAvail, setNewAvail] = useState([]);
+const Seat = (props) => {
 
+  const [soldSeat, setSoldSeat] = useState([]);
+  const {setSeatPick, seatPick} = props
+
+  useEffect(()=>{
+    const getSeatReserved = async ()=>{
+      try {
+        const res = await getSoldSeat(5, 5)
+        let seater =  res && res.data.data.map(data=>data.seat)
+        setSoldSeat(seater)
+        console.log(soldSeat);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getSeatReserved()
+  }, [])
   const listColumn = (number, alphabet) => {
     let length = 14;
     let seat = [];
@@ -17,7 +31,6 @@ const Seat = () => {
     }
     return seat;
   };
-  console.log(seatPick);
   const availSeat = (alpha) => {
     const variable = listColumn(1, [alpha]).filter((item, i) => {
       return !soldSeat.includes(item);
@@ -25,7 +38,7 @@ const Seat = () => {
     return variable;
   };
 //   console.log(availSeat("A"));
- 
+
   return (
     <>
       <div className={styles.seatContainer}>
