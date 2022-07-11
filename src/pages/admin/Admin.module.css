@@ -217,3 +217,8 @@
 .addMovie:hover{
     background-color:#8f6af3;
 }
+.cinemaNameAct{
+    border: 1px solid #5F2EEA;
+    padding: 15px;
+    border-radius: 12px;
+}

@@ -63,7 +63,6 @@ export const postNewMovie = (body, token)=>{
 
 export const postNewCinema = (body, token)=>{
   const config = {
-    
     headers : {
       "x-access-token" : token
     }

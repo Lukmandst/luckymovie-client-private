@@ -35,7 +35,7 @@ const AddMovie = () => {
     date : ""
   })
   const token = useSelector(state=>state.auth.token)
-  const addMovie = async ()=>{
+  const addNewMovie = async ()=>{
     try {
       const formData = new FormData()
       const body = {...detailMovie, duration : `${hour} Hour ${minute} Minutes`}
@@ -49,11 +49,16 @@ const AddMovie = () => {
       console.log(error);
     }
   }
-
+  console.log(detailCinema);
   const addCinema = async ()=>{
     try {
+      if(!movie_id){
+        throw alert('movie_id must be filled')
+      }
       const body = {...detailCinema, movie_id, times}
+      console.log(body);
       const res = await postNewCinema(body, token)
+      console.log(res);
       alert(res.data.message)
     } catch (error) {
       console.log(error);
@@ -127,7 +132,7 @@ const AddMovie = () => {
                 </div>
               </div>
               <div className={styles.button}>
-                  <div className={styles.addMovie} onClick={addMovie}>Add Movie</div>
+                  <div className={styles.addMovie} onClick={addNewMovie}>Add Movie</div>
               </div>
             </div>
             <div className={styles.premiere}>
@@ -153,15 +158,21 @@ const AddMovie = () => {
                     <option value="Surabaya">Surabaya</option>
                   </select>
                 <div className={styles.premiereImg}>
-                  <Image src={ibv} alt="IBV" onClick={()=>{
+                  <div className={detailCinema.cinema_name === "ibv.id" ? styles.cinemaNameAct : ""}>
+                  <Image src={ibv} alt="IBV" className={styles.cinemaNameAct} onClick={()=>{
                     setDetailCinema({...detailCinema, cinema_name : "ibv.id"})
                   }}/>
+                  </div>
+                  <div className={detailCinema.cinema_name === "hiflix" ? styles.cinemaNameAct : ""}>
                   <Image src={hiflix} alt="hiflix" onClick={()=>{
                     setDetailCinema({...detailCinema, cinema_name : "hiflix"})
                   }}/>
+                  </div>
+                  <div className={detailCinema.cinema_name === "cineOne21" ? styles.cinemaNameAct : ""}>
                   <Image src={cineone} alt="cineone" onClick={()=>{
                     setDetailCinema({...detailCinema, cinema_name : "cineOne21"})
                   }}/>
+                  </div>
                 </div>
                 <div className={styles.inputPrice}>
                   <input type="number" onChange={(e)=>{
@@ -176,13 +187,16 @@ const AddMovie = () => {
                 <MdCalendarToday
                   style={{ position: "absolute", left: "1rem", top: "1rem" }}
                 />
-                <select className={styles.filterValue} onChange={(e)=>{
+                <input type="date" className={styles.filterValue} onChange={(e)=>{
+                  setDetailCinema({...detailCinema, date : e.target.value})
+                }}/>
+                {/* <select className={styles.filterValue} onChange={(e)=>{
                     setDetailCinema({...detailCinema, date : e.target.value})
                 }}>
                   <option value="21/07/20">21/07/20</option>
                   <option value="22/07/20">22/07/20</option>
                   <option value="23/07/20">23/07/20</option>
-                </select>
+                </select> */}
               </div>
                   <div className={styles.setTime}>
                     <span onClick={()=>{
