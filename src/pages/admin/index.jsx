@@ -31,24 +31,24 @@ const Admin = () => {
 
   // const[location_id, setLocationId] = useState(27)
   const { token } = useSelector((state) => state.auth);
-  const {
+  let {
     locationSales: Jakarta,
-    // isLoading: loadingLocationSales,
+    isLoading: loadingJakarta,
     // isError: errorLocationSales
   } = GetSalesLocation(filter, 26, token);
-  const {
+  let {
     locationSales: Bandung,
-    // isLoading: loadingLocationSales,
+    isLoading: loadingBandung,
     // isError: errorLocationSales
   } = GetSalesLocation(filter, 27, token);
   const {
     locationSales: Semarang,
-    // isLoading: loadingLocationSales,
+    isLoading: loadingSemarang,
     // isError: errorLocationSales,
   } = GetSalesLocation(filter, 28, token);
   const {
     locationSales: Surabaya,
-    // isLoading: loadingLocationSales,
+    isLoading: loadingSurabaya,
     // isError: errorLocationSales,
   } = GetSalesLocation(filter, 29, token);
   const {
@@ -56,6 +56,7 @@ const Admin = () => {
     isLoading: loadingMovieSalesNew,
     isError,
   } = GetSalesMovieNew(filter);
+
   // const getId = ()=>{
 
   // }
@@ -86,7 +87,6 @@ const Admin = () => {
     }
     getDetailMovie()
   }, [])
-
 
   return (
     <>
@@ -136,7 +136,7 @@ const Admin = () => {
             <div
               className={`${styles.pembungkus}`}
             >
-              {allMovieSales ? (
+              {allMovieSales && !loadingMovieSalesNew && !loadingBandung && !loadingJakarta && !loadingSemarang && !loadingSurabaya ? (
                 Array.isArray(allMovieSales) &&
                 allMovieSales.map((result, i) => (
                   <ChartMovie
@@ -146,7 +146,9 @@ const Admin = () => {
                   />
                 ))
               ) : (
-                <></>
+                <><br/><br/>
+                  <div className="spinner-border text-secondary" role="status"/>
+                </>
               )}
             </div>
           </div>

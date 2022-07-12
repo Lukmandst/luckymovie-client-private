@@ -21,6 +21,10 @@ function HeaderAfterLoginResponsive({ showToggle, handleShowLogout }) {
   return (
     <>
       <div className="p-2 py-3">
+      {isLoading ? 
+        <>
+            <div className="spinner-border text-secondary" role="status"/>
+        </>:
         <Image
           src={
             user && !user.picture
@@ -35,7 +39,7 @@ function HeaderAfterLoginResponsive({ showToggle, handleShowLogout }) {
           width={65}
           height={65}
           style={{ borderRadius: "50px", cursor: "pointer" }}
-        />
+        />}
         {showToggle && (
           <div className={styles.dropProfile}>
             <Link href={"/profile"}>
