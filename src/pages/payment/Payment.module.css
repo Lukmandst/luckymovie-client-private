@@ -1,6 +1,6 @@
-.container{
+.container {
     width: 100%;
-    background-color:  #F5F6F8;
+    background-color: #F5F6F8;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -8,7 +8,8 @@
     padding-top: 56px;
     /* flex-direction: column; */
 }
-.paymentInfo{
+
+.paymentInfo {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
@@ -16,7 +17,8 @@
     width: 60%;
     padding-right: 24px;
 }
-.personalInfo{
+
+.personalInfo {
     display: flex;
     width: 40%;
     align-items: flex-start;
@@ -25,17 +27,20 @@
     padding-right: 48px;
     padding-left: 24px;
 }
-.personalInfo>span{
+
+.personalInfo>span {
     font-size: 24px;
     font-weight: 700;
     color: #14142B;
 }
-.paymentInfo>span{
+
+.paymentInfo>span {
     font-size: 24px;
     font-weight: 700;
     color: #14142B;
 }
-.cardPayment{
+
+.cardPayment {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -48,7 +53,8 @@
     margin-top: 24px;
     margin-bottom: 48px;
 }
-.cardPaymentItem{
+
+.cardPaymentItem {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -56,17 +62,20 @@
     padding-bottom: 24px;
     border-bottom: 1px solid #E6E6E6;
 }
-.cardPaymentItem>span:nth-child(1){
+
+.cardPaymentItem>span:nth-child(1) {
     font-size: 20px;
     font-weight: 400;
-    color:#6B6B6B;
+    color: #6B6B6B;
 }
-.cardPaymentItem>span:nth-child(2){
+
+.cardPaymentItem>span:nth-child(2) {
     font-size: 20px;
     font-weight: 400;
-    color:#000000;
+    color: #000000;
 }
-.cardPaymentMethod{
+
+.cardPaymentMethod {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -79,41 +88,51 @@
     margin-top: 24px;
     margin-bottom: 48px;
 }
-.imgCard{
+
+.imgCard {
     padding: 14px 36px;
     border: 2px solid #DEDEDE;
     border-radius: 16px;
     cursor: pointer;
 }
-.imgCard:hover, .imgCard:focus{
-    border: 2px solid  #5F2EEA ;
+
+.imgCard:hover,
+.imgCard:focus {
+    border: 2px solid #5F2EEA;
 }
-.imgCard.Act{
-    border: 2px solid  #5F2EEA ;
+
+.imgCard.Act {
+    border: 2px solid #5F2EEA;
 }
-.topImg{
+
+.topImg {
     display: flex;
     align-items: center;
     justify-content: space-around;
     width: 100%;
 }
-.line{
+
+.line {
     display: flex;
     align-items: center;
     justify-content: space-around;
     width: 100%;
 }
-.line>span:nth-child(1), .line>span:nth-child(3){
+
+.line>span:nth-child(1),
+.line>span:nth-child(3) {
     height: 2px;
     border-top: 1px solid #DEDEDE;
     width: 40%;
 }
-.line>span:nth-child(2){
+
+.line>span:nth-child(2) {
     color: #A0A3BD;
     font-size: 16px;
     font-weight: 400;
 }
-.cardPaymentMethod>span{
+
+.cardPaymentMethod>span {
     width: 100%;
     display: flex;
     align-items: center;
@@ -122,12 +141,13 @@
     font-weight: 400;
     color: #6E7191;
 }
-.cardPaymentMethod>span>b{
+
+.cardPaymentMethod>span>b {
     color: #5F2EEA;
     cursor: pointer;
 }
 
-.cardPersonalInfo{
+.cardPersonalInfo {
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -140,55 +160,63 @@
     margin-top: 24px;
     margin-bottom: 48px;
 }
-.cardPersonalInfo>input{
+
+.cardPersonalInfo>input {
     padding: 20px 32px;
     border: 1px solid #DEDEDE;
     border-radius: 16px;
     width: 100%;
 }
-.cardPersonalInfo>input:focus{
+
+.cardPersonalInfo>input:focus {
     outline: none;
 }
-.button{
+
+.button {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     margin-bottom: 72px;
 }
-.back:hover{
+
+.back:hover {
     background-color: #d5defa;
 }
-.backModal{
+
+.backModal {
     display: flex;
     align-items: center;
     justify-content: center;
     border: 1px solid #5F2EEA;
     border-radius: 16px;
-    color:  #5F2EEA;
+    color: #5F2EEA;
     padding: 8px;
     width: 40%;
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
 }
-.back{
+
+.back {
     display: flex;
     align-items: center;
     justify-content: center;
     border: 1px solid #5F2EEA;
     border-radius: 16px;
-    color:  #5F2EEA;
+    color: #5F2EEA;
     padding: 20px;
     width: 40%;
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
 }
-.pay:hover{
+
+.pay:hover {
     background-color: #9677eb;
 }
-.pay{
+
+.pay {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -201,22 +229,71 @@
     font-weight: 700;
     cursor: pointer;
 }
-@media screen and (max-width:768px){
-    .container{
+
+.modalHeader {
+    width: 100%;
+    /* background-color: #5f2eea; */
+    color: red;
+    text-align: center;
+    font-weight: 900;
+}
+
+.modalBody {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.modalYesButton {
+    background-color: #5f2eea;
+    cursor: pointer;
+    width: 80px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    border-radius: 10px;
+}
+
+.modalYesButton:hover {
+    background-color: #835de9;
+}
+
+.modalNoButton {
+    background-color: #808080;
+    cursor: pointer;
+    width: 80px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    border-radius: 10px;
+}
+
+.modalNoButton:hover {
+    background-color: #545252;
+}
+
+@media screen and (max-width:768px) {
+    .container {
         display: flex;
         flex-direction: column-reverse;
         padding: 40px;
     }
-    .personalInfo{
-        width: 100%;
-        padding: 20px;
-    }
-    .paymentInfo{
+
+    .personalInfo {
         width: 100%;
         padding: 20px;
     }
 
-    .imgCard{
+    .paymentInfo {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .imgCard {
         padding: 20px;
     }
 }

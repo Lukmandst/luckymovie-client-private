@@ -22,16 +22,18 @@ function SignUp() {
         try {
             setIsError(false)
             setMsg(false)
+            setIsLoading(false)
             if (!isAgree) {
                 setIsError(true)
                 setMsg("You have not agree to terms & conditions")
             }
             else {
                 let body = { email, password }
+                setIsLoading(true)
                 let response = await doSignUp(body)
                 console.log(response);
                 setIsError(false)
-                setIsLoading(true)
+                setIsLoading(false)
                 setMsg(response.data.data.msg)
             }
         }
@@ -78,7 +80,13 @@ function SignUp() {
 
                     {!isError ? <div key={msg} className={styles.successMsg}> {msg} </div> : <></>}
 
-                    <div className={styles.button} onClick={signUpHandler}>Join for free now</div>
+                    <div className={styles.button} onClick={signUpHandler}>
+                        {isLoading ? 
+                        <>
+                            <div className="spinner-border text-light" role="status"/>
+                        </>
+                        :"Join for free now"}
+                    </div>
                     <div className={styles.login}>Do you already have an account? <Link href={"/signin"}><a className={styles.link}>Log in</a></Link></div>
                     <div className={styles.wrapperOr}>
                         <div className={styles.underline}></div>
