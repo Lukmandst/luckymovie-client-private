@@ -47,6 +47,11 @@ function Reset() {
                 setIsLoading(false)
                 setIsSuccess(true)
                 setMsg(response.data.data.msg)
+                {
+                    setTimeout(() => {
+                        router.push("/signin")
+                    }, 2000)
+                }
             }
         }
         catch (error) {
@@ -80,7 +85,9 @@ function Reset() {
                             {showPasswordConfirm ? <Eye className={styles.eye} onClick={showPassConHandler} /> : <EyeSlash className={styles.icon} onClick={showPassConHandler} />}
                         </div>
                     </div>
-                    {isSuccess ? <div key={msg} className={styles.successMsg}> {msg} </div> : <></>}
+                    {isSuccess ? <div key={msg} className={styles.successMsg}> {msg}  </div>
+                        :
+                        <></>}
 
                     {!isSuccess && Array.isArray(errMsg) ? (
                         errMsg.map((erroritem) => <div key={errMsg} className={styles.errorMsg} > {erroritem.msg}</div>)) : !isSuccess && <div key={errMsg} className={styles.errorMsg} > {errMsg} </div>
