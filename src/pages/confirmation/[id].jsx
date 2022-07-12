@@ -14,6 +14,7 @@ function Confirm() {
     const [errMsg, setErrMsg] = useState("")
     const router = useRouter()
     const { query: { id } } = useRouter()
+    const [isLoading, setIsLoading] = useState(false)
 
 
     const resendHandler = async () => {
@@ -21,15 +22,15 @@ function Confirm() {
             setErrMsg("")
             setMsg("")
             let body = { email: email };
+            setIsLoading(true)
             let response = await axios.post(`${process.env.NEXT_PUBLIC_API_HOST}/auth/resend`, body)
-            console.log(response);
+            setIsLoading(false)
             setMsg(response.data.data.msg)
             setIsSuccess(true)
 
         }
         catch (error) {
-            console.log(error);
-            // console.log(error.response.data.err.msg);
+            setIsLoading(false)
             setErrMsg(error.response.data.err.msg)
             setIsSuccess(false)
 
@@ -78,7 +79,14 @@ function Confirm() {
                                     <input type="email" name="email" placeholder="Enter your e-mail" className={styles.formInput}
                                         onChange={e => setEmail(e.target.value)} />
                                 </div>
-                                <div className={styles.button} onClick={resendHandler} >Resend Email</div>
+                                <div className={styles.button} onClick={resendHandler} >
+                                {isLoading ? 
+                                    <>
+                                        <div className="spinner-border text-light" role="status"/>
+                                    </>
+                                    :"Resend Email"
+                                }
+                                </div>
                             </>
                             :
                             <>
