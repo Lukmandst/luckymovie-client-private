@@ -11,6 +11,7 @@ import { useRouter } from "next/router"
 import { loginAction } from "redux/actionCreators/auth"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
+import Loading from "../../components/loading/Loading.jsx"
 
 function SignIn() {
     const [showPassword, setShowPassword] = useState(false)
@@ -71,7 +72,12 @@ function SignIn() {
                         errorMsg.map((erroritem) => <div key={errorMsg} className={styles.errorMsg} > {erroritem.msg}</div>)) : !isSuccess && <div key={errorMsg} className={styles.errorMsg} > {errorMsg} </div>
                     }
 
-                    <div className={styles.button} onClick={handlerLogin}>Sign In</div>
+                    <div className={styles.button} onClick={handlerLogin}>{isLoading ? 
+                    <>
+                        <div className="spinner-border text-light" role="status"/>
+                    </>
+                    :"Sign In"}</div>
+                    
                     <div className={styles.login}>Don’t have an account? Let’s <Link href={"/signup"}><a className={styles.link}>Sign Up</a></Link></div>
                     <div className={styles.wrapperOr}>
                         <div className={styles.underline}></div>

@@ -69,7 +69,6 @@ const Profile = () => {
     isLoading: loadingHistory,
     isError: errorHistory,
   } = GetUserHistory(token);
-  console.log(history);
   // console.log(errorHistory);
   const router = useRouter();
   const dispatch = useDispatch();
@@ -108,7 +107,6 @@ const Profile = () => {
           "content-type": "multipart/form-data",
         },
       });
-      console.log(updateResult);
       setLoadingUpdate(false);
       setMsg("Update Success!");
       setShowModalProfile(false);
@@ -118,7 +116,6 @@ const Profile = () => {
       }, 2000);
       setEdit(false);
     } catch (error) {
-      console.log(error);
       seterrMsg(error.response ? error.response.data.err.msg : error.response);
       setLoadingUpdate(false);
       setShowModalProfile(false);
@@ -139,7 +136,6 @@ const Profile = () => {
     const body = {
       password: pass,
     };
-    console.log(body);
     try {
       if (pass !== confirm) {
         seterrMsg("The password confirmation does not match!");
@@ -157,7 +153,6 @@ const Profile = () => {
             "x-access-token": `${token}`,
           },
         });
-        console.log(updateResult);
         setLoadingUpdate(false);
         setShow(false);
         setMsg("Update Success please sign in again!");
@@ -172,7 +167,6 @@ const Profile = () => {
         setEditPass(false);
       }
     } catch (error) {
-      console.log(error);
       seterrMsg(error.response ? error.response.data.err.msg : error.response);
       setLoadingUpdate(false);
       // setEdit(false);
@@ -226,7 +220,7 @@ const Profile = () => {
           </div>
           {showOrder ? (
             <>
-              {history && Array.isArray(history) ? (
+              {history && Array.isArray(history) && !isLoading ? (
                 history.map((item) => (
                   <div key={item.id} className={styles.historyCard}>
                     <div className={styles.titleCard}>
@@ -261,7 +255,9 @@ const Profile = () => {
                   </div>
                 ))
               ) : (
-                <></>
+                  <div className={styles.historyCardLoading}>
+                      <div className="spinner-border text-secondary" role="status"/>
+                  </div>
               )}
               {/* <div className={styles.historyCard}>
                 <div className={styles.titleCard}>
@@ -321,6 +317,10 @@ const Profile = () => {
                   </div>
                   <span></span>
                 </div>
+                {isLoading ? 
+                <>
+                    <div className="spinner-border text-secondary" role="status"/>
+                </>:
                 <form className={styles.form}>
                   <div className={styles.first}>
                     <div className={styles.inputProfile}>
@@ -381,7 +381,7 @@ const Profile = () => {
                       </div>
                     </div>
                   )}
-                </form>
+                </form>}
               </div>
               <div className={styles.privacy}>
                 <div className={styles.title}>
@@ -406,17 +406,16 @@ const Profile = () => {
                   </div>
                   <span></span>
                 </div>
-                <div className={styles.first}>
+                <div className={editPass ? `${styles.first}`: `${styles.firstNone}` }>
                   <div className={styles.inputProfile}>
                     <label>New Password</label>
                     <input
-                      disabled={!editPass}
                       type={eye1 ? "text" : "password"}
                       placeholder="Write your password"
                       value={pass}
                       onChange={(e) => setPass(e.target.value)}
                     />
-                    {editPass ? (
+                    {
                       eye1 ? (
                         <Eye
                           className={styles.eye}
@@ -430,20 +429,17 @@ const Profile = () => {
                           onClick={() => setEye1(!eye1)}
                         />
                       )
-                    ) : (
-                      <></>
-                    )}
+                    }
                   </div>
                   <div className={styles.inputProfile}>
                     <label>Confirm Password</label>
                     <input
-                      disabled={!editPass}
                       type={eye2 ? "text" : "password"}
                       placeholder="Confirm your password"
                       value={confirm}
                       onChange={(e) => setConfirm(e.target.value)}
                     />
-                    {editPass ? (
+                    {
                       eye2 ? (
                         <Eye
                           className={styles.eye}
@@ -456,10 +452,7 @@ const Profile = () => {
                           color="gray"
                           onClick={() => setEye2(!eye2)}
                         />
-                      )
-                    ) : (
-                      <></>
-                    )}
+                      )}
                   </div>
                 </div>
               </div>
@@ -494,15 +487,21 @@ const Profile = () => {
                   <div
                     className={styles.updateBtn}
                     onClick={handleShowUpdateUser}
-                  >
-                    <span>Update changes</span>
+                  >{loadingUpdate ? 
+                    <>
+                        <div className="spinner-border text-light" role="status"/>
+                    </>
+                    :<span>Update changes</span>}
                   </div>
                 ) : editPass ? (
                   <div
                     className={styles.updateBtn}
                     onClick={handleShowUpdatePassword}
-                  >
-                    <span>Update Password</span>
+                  >{loadingUpdate ? 
+                    <>
+                        <div className="spinner-border text-light" role="status"/>
+                    </>:
+                    <span>Update Password</span>}
                   </div>
                 ) : edit && editPass ? (
                   <>
@@ -545,7 +544,10 @@ const Profile = () => {
           >
             No
           </div>
-          <div className={styles.modalYesButton} onClick={updatePassword}>
+          <div className={styles.modalYesButton} onClick={()=>{
+            updatePassword()
+            setShow(false)
+          }}>
             Yes
           </div>
         </Modal.Footer>
@@ -565,7 +567,10 @@ const Profile = () => {
           <div className={styles.modalNoButton} onClick={handleCloseUpdateUser}>
             No
           </div>
-          <div className={styles.modalYesButton} onClick={updateUser}>
+          <div className={styles.modalYesButton} onClick={() => {
+            updateUser()
+            setShowModalProfile(false)
+          }}>
             Yes
           </div>
         </Modal.Footer>

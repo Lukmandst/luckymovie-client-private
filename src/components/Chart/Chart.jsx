@@ -207,22 +207,22 @@ const ChartSales = ({
             </span>
           </div>
         </div>
-        <div className={`row col-lg-4 ${styles.space}`}>
+        <div className={`${styles.space}`}>
           <div className={`${styles.singleChart}`}>
             <Line options={options} data={data} />
           </div>
         </div>
-        <div className={`row col-lg-4 ${styles.space}`}>
+        <div className={`${styles.space}`}>
           <div className={`${styles.singleChart}`}>
             <Line options={optionsBandung} data={dataBandung} />
           </div>
         </div>
-        <div className={`row col-lg-4 ${styles.space}`}>
+        <div className={`${styles.space}`}>
           <div className={`${styles.singleChart}`}>
             <Line options={optionsSemarang} data={dataSemarang} />
           </div>
         </div>
-        <div className={`row col-lg-4 ${styles.space}`}>
+        <div className={`${styles.space}`}>
           <div className={`${styles.singleChart}`}>
             <Line options={optionSurabaya} data={dataSurabaya} />
           </div>

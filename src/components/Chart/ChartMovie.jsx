@@ -55,7 +55,6 @@ const ChartMovie = ({ movies, filter }) => {
   };
   return (
     <>
-      
         <div className={styles.space2}>
           <div className={`${styles.singleChart}`}>
             <Line options={options} data={data} />
