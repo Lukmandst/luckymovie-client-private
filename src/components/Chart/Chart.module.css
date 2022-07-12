@@ -3,18 +3,22 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 70px;
+  /* padding: 70px; */
+  flex-direction: column;
 }
 .singleChart {
   background: #ffffff;
   box-shadow: 0px 8px 16px rgba(17, 17, 17, 0.08);
   border-radius: 24px;
-  padding: 30px;
-  width: 100%;
+  padding: 20px;
+  width: 100vh;
 }
 .space,
 .space2 {
-  padding: 20px;
+  padding-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .topChart {
   width: 100%;
