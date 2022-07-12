@@ -32,12 +32,13 @@ import hiflix from "../../assets/images/cinemas/hiflix.png";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { GetUser, GetUserHistory } from "modules/axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { currencyFormatter, formatPhoneNumber } from "helper/formatter";
 import SideProfile from "components/sideProfile/SideProfile";
 import { useRouter } from "next/router";
 import { Modal } from "react-bootstrap";
+import { logoutAction } from "redux/actionCreators/auth";
 
 const Profile = () => {
   const [showOrder, setShowOrder] = useState(false);
@@ -70,6 +71,7 @@ const Profile = () => {
   } = GetUserHistory(token);
   // console.log(errorHistory);
   const router = useRouter();
+  const dispatch = useDispatch();
   const handleImage = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -159,6 +161,8 @@ const Profile = () => {
           setConfirm("");
           window.scrollTo(0, 0);
           setMsg(false);
+          dispatch(logoutAction());
+          router.push("/signin")
         }, 1000);
         setEditPass(false);
       }
@@ -230,8 +234,8 @@ const Profile = () => {
                             item.detail[0].movie === "hiflix"
                               ? hiflix
                               : item.detail[0].movie === "ebv.id"
-                              ? ebv
-                              : cineOne
+                                ? ebv
+                                : cineOne
                           }
                           alt="studio"
                         />
@@ -372,7 +376,7 @@ const Profile = () => {
                           id="upload-button"
                           accept="image/*"
                           onChange={handleImage}
-                          // style={{ display: "none" }}
+                        // style={{ display: "none" }}
                         />
                       </div>
                     </div>

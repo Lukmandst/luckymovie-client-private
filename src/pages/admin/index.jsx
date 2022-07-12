@@ -20,8 +20,6 @@ import { useEffect, useState } from "react";
 import ChartMovie from "components/Chart/ChartMovie";
 import { useRouter } from "next/router";
 
-
-
 const Admin = () => {
   const [filter, setFilter] = useState("weekly");
   const [movieSales, setMovieSales] = useState([]);
@@ -30,7 +28,8 @@ const Admin = () => {
   const [detailMovie, setDetailMovie] = useState([])
 
   // const[location_id, setLocationId] = useState(27)
-  const { token } = useSelector((state) => state.auth);
+  const { token, role } = useSelector((state) => state.auth);
+  const router = useRouter()
   let {
     locationSales: Jakarta,
     isLoading: loadingJakarta,
@@ -75,8 +74,8 @@ const Admin = () => {
 
   // console.log(allMovieSales.map(result=> result.title));
   // const {id } = useRouter()
-  useEffect(()=>{
-    const getDetailMovie = async ()=>{
+  useEffect(() => {
+    const getDetailMovie = async () => {
       try {
         const result = await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/movies/15`)
         console.log(result);
@@ -88,6 +87,11 @@ const Admin = () => {
     getDetailMovie()
   }, [])
 
+  useEffect(() => {
+    if (role !== 1) {
+      router.push("/")
+    }
+  }, [role])
   return (
     <>
       <Head>
@@ -114,8 +118,8 @@ const Admin = () => {
                 <span onClick={() => setMovie(false)}>Based on Location</span>
               </div>
               <div className={styles.filter}>
-              <span
-                className={filter=== 'weekly'&& styles.active}
+                <span
+                  className={filter === 'weekly' && styles.active}
                   onClick={() => {
                     setFilter("weekly");
                   }}
@@ -123,14 +127,14 @@ const Admin = () => {
                   Weekly
                 </span>
                 <span
-                className={filter=== 'monthly'&& styles.active}
+                  className={filter === 'monthly' && styles.active}
                   onClick={() => {
                     setFilter("monthly");
                   }}
                 >
                   Monthly
                 </span>
-                
+
               </div>
             </div>
             <div
@@ -146,8 +150,8 @@ const Admin = () => {
                   />
                 ))
               ) : (
-                <><br/><br/>
-                  <div className="spinner-border text-secondary" role="status"/>
+                <><br /><br />
+                  <div className="spinner-border text-secondary" role="status" />
                 </>
               )}
             </div>

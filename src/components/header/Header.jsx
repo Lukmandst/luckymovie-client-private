@@ -30,7 +30,7 @@ const Header = () => {
 
   const router = useRouter();
   const dispatch = useDispatch();
-  const { token } = useSelector((state) => state.auth);
+  const { token, role } = useSelector((state) => state.auth);
 
   const handleShowLogout = () => setShow(true);
   const handleCloseLogout = () => setShow(false);
@@ -45,7 +45,6 @@ const Header = () => {
       console.log(response);
       dispatch(logoutAction());
       setShow(false);
-      router.push("/");
     } catch (error) {
       console.log(error);
     }
@@ -54,6 +53,7 @@ const Header = () => {
   // if (isError) {
   //   dispatch(logoutAction());
   // }
+
 
   return (
     <>
@@ -73,11 +73,19 @@ const Header = () => {
             />
           </Navbar.Brand>
           <Navbar className="row navbar-collapse collapse">
-            <Nav className="mr-auto">
-              <Nav.Link>Movie</Nav.Link>
-              <Nav.Link>Cinema</Nav.Link>
-              <Nav.Link>Buy Ticket</Nav.Link>
-            </Nav>
+            {role !== 1 ?
+              <Nav className="mr-auto">
+                <Nav.Link href="/">Movie</Nav.Link>
+                <Nav.Link href="/profil">Profil</Nav.Link>
+                <Nav.Link href="/profil">My Ticket</Nav.Link>
+              </Nav>
+              :
+              <Nav className="mr-auto">
+                <Nav.Link href="/">Movie</Nav.Link>
+                <Nav.Link href="/admin">Dashboard</Nav.Link>
+                <Nav.Link href="/admin/add-movie">Add Movie</Nav.Link>
+              </Nav>
+            }
             <div className="d-flex flex-row justify-content-end navbar-nav-right align-items-center">
               <ul className="navbar-nav d-flex align-items-center">
                 <li className="nav-item dropdown text-center">
@@ -234,7 +242,7 @@ const Header = () => {
               ) : (
                 <HeaderAfterLoginResponsive
                   showToggle={showToggle}
-                  
+
                   handleShowLogout={handleShowLogout}
                 />
               )}
