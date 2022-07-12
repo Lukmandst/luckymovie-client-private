@@ -37,18 +37,18 @@ export default function Footer() {
                     <Col xs={12} md={2} className={`${styles.footerExplore} my-5 mb-3`}>
                         <h5><b>Explore</b></h5>
                         <div className='d-flex flex-md-column gap-2 justify-content-center flex-row flex-wrap pt-4'>
-                            <p>
-                                <a href='#'>Cinemas</a>
-                            </p>
-                            <p>
-                                <a href=''>Movie List</a>
-                            </p>
-                            <p>
-                                <a href=''>My Ticket</a>
-                            </p>
-                            <p>
-                                <a href=''>Notivication</a>
-                            </p>
+                            <div>
+                                <p href='#'>Cinemps</p>
+                            </div>
+                            <div>
+                                <p href=''>Movie List</p>
+                            </div>
+                            <div>
+                                <p href=''>My Ticket</p>
+                            </div>
+                            <div>
+                                <p href=''>Notification</p>
+                            </div>
                         </div>
                     </Col>
                     <Col xs={12} md={3} className={`my-5 mb-3`}>
@@ -71,30 +71,30 @@ export default function Footer() {
                     <Col xs={12} md={3} className='col-12 col-md-3 mb-3 my-5'>
                         <h5><b>Follow us</b></h5>
                         <div className={`${styles.footerFollow} d-flex justify-content-center gap-2 flex-md-column flex-row flex-wrap pt-4`}>
-                            <p>
-                                <a href='#'>
+                            <div>
+                                <p href='#'>
                                     <FiFacebook />
                                     <span className=''> Tickitz Cinema id</span>
-                                </a>
-                            </p>
-                            <p>
-                                <a href='#'>
+                                </p>
+                            </div>
+                            <div>
+                                <p href='#'>
                                     <FiInstagram />
                                     <span className=''> tickitz.id</span>
-                                </a>
-                            </p>
-                            <p>
-                                <a href='#'>
+                                </p>
+                            </div>
+                            <div>
+                                <p href='#'>
                                     <FiTwitter />
                                     <span className=''> tickitz.id</span>
-                                </a>
-                            </p>
-                            <p>
-                                <a href='#'>
+                                </p>
+                            </div>
+                            <div>
+                                <p href='#'>
                                     <FiYoutube />
                                     <span className=''> Tickitz Cinema id</span>
-                                </a>
-                            </p>
+                                </p>
+                            </div>
                         </div>
                     </Col>
                 </Row>

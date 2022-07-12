@@ -63,6 +63,9 @@
 }
 
 @media screen and (max-width: 426px) {
+  .basedon{
+    display: flex;
+  }
   .container {
     padding: 0 1%;
   }

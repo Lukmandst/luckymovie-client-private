@@ -263,12 +263,9 @@ const Profile = () => {
                   </div>
                 ))
               ) : (
-                <div className={styles.historyCardLoading}>
-                  <div
-                    className="spinner-border text-secondary"
-                    role="status"
-                  />
-                </div>
+                  <div className={styles.historyCardLoading}>
+                      <div className="spinner-border text-secondary" role="status"/>
+                  </div>
               )}
               {/* <div className={styles.historyCard}>
                 <div className={styles.titleCard}>
