@@ -4,6 +4,7 @@ import { useState } from "react"
 import styles from "../../styles/Auth.module.css"
 import AsideReset from "components/aside/AsideReset"
 import axios from "axios"
+import { useRouter } from "next/router"
 
 
 function Forgot() {
@@ -12,6 +13,7 @@ function Forgot() {
     const [errMsg, setErrMsg] = useState("")
     const [isSuccess, setIsSuccess] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
+    const router = useRouter();
 
     const forgotHandler = async () => {
         try {
@@ -23,6 +25,12 @@ function Forgot() {
             setMsg(response.data.data.msg)
             setIsSuccess(true)
             setIsLoading(false)
+            {
+                setTimeout(() => {
+                    router.push("/signin")
+                }, 2000)
+            }
+
         }
         catch (error) {
             console.log(error);
@@ -48,7 +56,10 @@ function Forgot() {
                             />
                         </div>
                     </div>
-                    {isSuccess ? <div key={msg} className={styles.successMsg}> {msg} </div> : <></>}
+
+                    {isSuccess ? <div key={msg} className={styles.successMsg}> {msg}   </div>
+                        :
+                        <></>}
 
                     {!isSuccess && Array.isArray(errMsg) ? (
                         errMsg.map((erroritem) => <div key={errMsg} className={styles.errorMsg} > {erroritem.msg}</div>)) : !isSuccess && <div key={errMsg} className={styles.errorMsg} > {errMsg} </div>
