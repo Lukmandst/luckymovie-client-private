@@ -10,7 +10,6 @@ import { useSelector } from "react-redux";
 import { currencyFormatter } from "helper/formatter";
 import jsPdf from "jspdf";
 import html2canvas from "html2canvas";
-import React, { useRef } from 'react'
 
 const Ticket = () => {
   const { token } = useSelector((state) => state.auth);
@@ -63,8 +62,6 @@ const Ticket = () => {
       window.open(pdf.output("bloburl"));
     });
   }
-
-  const canvasRef = useRef()
 
   return (
     <>
