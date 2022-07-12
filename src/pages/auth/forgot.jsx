@@ -25,6 +25,11 @@ function Forgot() {
             setMsg(response.data.data.msg)
             setIsSuccess(true)
             setIsLoading(false)
+            {
+                setTimeout(() => {
+                    router.push("/signin")
+                }, 2000)
+            }
 
         }
         catch (error) {
@@ -52,10 +57,7 @@ function Forgot() {
                         </div>
                     </div>
 
-                    {isSuccess ? <div key={msg} className={styles.successMsg}> {msg} {setTimeout(() => {
-
-                        router.push("/signin")
-                    }, 2000)}  </div>
+                    {isSuccess ? <div key={msg} className={styles.successMsg}> {msg}   </div>
                         :
                         <></>}
 
