@@ -164,3 +164,17 @@ export const GetSalesMovieNew = (filter) => {
     isError: error,
   };
 };
+
+export const editMovie = (movie_id, body, token) => {
+  const config = {
+    headers: {
+      "x-access-token": token,
+      "Content-type": "multipart/form-data",
+    },
+  };
+  return axios.patch(
+    `${process.env.NEXT_PUBLIC_API_HOST}/movies/${movie_id}`,
+    body,
+    config
+  );
+};

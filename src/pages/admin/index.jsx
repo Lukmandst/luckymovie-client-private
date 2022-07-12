@@ -79,8 +79,8 @@ const Admin = () => {
       <div className={styles.container}>
         <div className={styles.top}>
           <div className={styles.movieDescription}>
-            <span>Movie Description</span>
-            <div className={styles.cardDesc}>
+            <span>Sales Charts</span>
+            {/* <div className={styles.cardDesc}>
               <div className={styles.topCard}>
                 <div className={styles.cardImage}>
                   <Image src={spiderman} alt="movie_img" />
@@ -117,9 +117,9 @@ const Admin = () => {
                   <textarea name="" id="" cols="30" rows="10"></textarea>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
-          <div className={styles.premiere}>
+          {/* <div className={styles.premiere}>
             <span>Premiere Location</span>
             <div className={styles.premiereCard}>
               <select name="" id="">
@@ -163,7 +163,7 @@ const Admin = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         {!movie ? (
           <ChartSales
