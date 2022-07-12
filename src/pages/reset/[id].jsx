@@ -38,12 +38,13 @@ function Reset() {
             let newPasswordConfirm = passwordConfirm
             if (newPassword !== newPasswordConfirm) {
                 setErrMsg("Password & Password Confirm does not match")
+                setIsLoading(false)
             }
             else {
                 let token = router.query.id
                 let body = { newPassword }
                 let response = await axios.patch(`${process.env.NEXT_PUBLIC_API_HOST}/auth/reset/${token}`, body)
-                console.log(response);
+                setIsLoading(false)
                 setIsSuccess(true)
                 setMsg(response.data.data.msg)
             }
@@ -52,6 +53,7 @@ function Reset() {
             console.log(error);
             setErrMsg(error.response.data.err.msg)
             setIsSuccess(false)
+            setIsLoading(false)
         }
     }
 
@@ -86,7 +88,14 @@ function Reset() {
                     {isSuccess ?
                         <div className={styles.button} onClick={() => router.push("/signin")}>Sign In</div>
                         :
-                        <div className={styles.button} onClick={resetHandler} >Reset Password</div>
+                        <div className={styles.button} onClick={resetHandler} >
+                            {isLoading ? 
+                            <>
+                                <div className="spinner-border text-light" role="status"/>
+                            </>
+                            :"Reset Password"
+                            }
+                        </div>
                     }
                 </div>
             </main>

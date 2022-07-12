@@ -18,8 +18,8 @@ function Forgot() {
             setErrMsg("")
             setMsg("")
             let body = { email: email };
+            setIsLoading(true)
             let response = await axios.post(`${process.env.NEXT_PUBLIC_API_HOST}/auth/forgot`, body)
-            console.log(response);
             setMsg(response.data.data.msg)
             setIsSuccess(true)
             setIsLoading(false)
@@ -54,7 +54,11 @@ function Forgot() {
                         errMsg.map((erroritem) => <div key={errMsg} className={styles.errorMsg} > {erroritem.msg}</div>)) : !isSuccess && <div key={errMsg} className={styles.errorMsg} > {errMsg} </div>
                     }
 
-                    <div className={styles.button} onClick={forgotHandler}>Confirm</div>
+                    <div className={styles.button} onClick={forgotHandler}>{isLoading ? 
+                    <>
+                        <div className="spinner-border text-light" role="status"/>
+                    </>
+                    :"Confirms"}</div>
                 </div>
             </main>
         </Layout>
