@@ -45,7 +45,6 @@ const Header = () => {
       console.log(response);
       dispatch(logoutAction());
       setShow(false);
-      router.push("/");
     } catch (error) {
       console.log(error);
     }
@@ -54,6 +53,7 @@ const Header = () => {
   // if (isError) {
   //   dispatch(logoutAction());
   // }
+
 
   return (
     <>
@@ -74,9 +74,9 @@ const Header = () => {
           </Navbar.Brand>
           <Navbar className="row navbar-collapse collapse">
             <Nav className="mr-auto">
-              <Nav.Link>Movie</Nav.Link>
-              <Nav.Link>Cinema</Nav.Link>
-              <Nav.Link>Buy Ticket</Nav.Link>
+              <Nav.Link href="/">Movie</Nav.Link>
+              <Nav.Link href="/profil">Profil</Nav.Link>
+              <Nav.Link href="/profil">My Ticket</Nav.Link>
             </Nav>
             <div className="d-flex flex-row justify-content-end navbar-nav-right align-items-center">
               <ul className="navbar-nav d-flex align-items-center">
@@ -234,7 +234,7 @@ const Header = () => {
               ) : (
                 <HeaderAfterLoginResponsive
                   showToggle={showToggle}
-                  
+
                   handleShowLogout={handleShowLogout}
                 />
               )}

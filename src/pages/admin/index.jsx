@@ -17,6 +17,7 @@ import {
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import ChartMovie from "components/Chart/ChartMovie";
+import { useRouter } from "next/router";
 
 const Admin = () => {
   const [filter, setFilter] = useState("weekly");
@@ -25,7 +26,8 @@ const Admin = () => {
   const [location, setLocation] = useState(false);
 
   // const[location_id, setLocationId] = useState(27)
-  const { token } = useSelector((state) => state.auth);
+  const { token, role } = useSelector((state) => state.auth);
+  const router = useRouter()
   const {
     locationSales: Jakarta,
     // isLoading: loadingLocationSales,
@@ -68,8 +70,13 @@ const Admin = () => {
   // }, [filter, token])
 
   // console.log(allMovieSales.map(result=> result.title));
-  const getAllRevenueMovie = () => {};
+  const getAllRevenueMovie = () => { };
 
+  useEffect(() => {
+    if (role !== 1) {
+      router.push("/")
+    }
+  }, [role])
   return (
     <>
       <Head>
@@ -184,8 +191,8 @@ const Admin = () => {
                 <span onClick={() => setMovie(false)}>Based on Location</span>
               </div>
               <div className={styles.filter}>
-              <span
-                className={filter=== 'weekly'&& styles.active}
+                <span
+                  className={filter === 'weekly' && styles.active}
                   onClick={() => {
                     setFilter("weekly");
                   }}
@@ -193,20 +200,20 @@ const Admin = () => {
                   Weekly
                 </span>
                 <span
-                className={filter=== 'monthly'&& styles.active}
+                  className={filter === 'monthly' && styles.active}
                   onClick={() => {
                     setFilter("monthly");
                   }}
                 >
                   Monthly
                 </span>
-                
+
               </div>
             </div>
 
             <div
               className={styles.pembungkus}
-              
+
             >
               {allMovieSales ? (
                 Array.isArray(allMovieSales) &&
