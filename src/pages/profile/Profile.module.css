@@ -78,6 +78,9 @@
   justify-content: space-between;
   width: 100%;
 }
+.firstNone{
+  display: none;
+}
 .inputProfile {
   font-weight: 600;
   display: flex;
@@ -130,6 +133,17 @@
   justify-content: center;
   flex-direction: column;
   background: #ffffff;
+  border-radius: 24px;
+  width: 100%;
+  row-gap: 49px;
+  margin-bottom: 30px;
+}
+.historyCardLoading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: transparent;
   border-radius: 24px;
   width: 100%;
   row-gap: 49px;

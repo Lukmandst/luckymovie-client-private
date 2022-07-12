@@ -12,7 +12,6 @@ const SideProfile = ({ photo, previewImg }) => {
   const { token } = useSelector((state) => state.auth);
   const { user, isLoading, isError } = GetUser(token);
   // console.log(user);
-  console.log(photo);
   return (
     <>
       <div className={`${styles.container} ${show ? styles.show : ""}`}>
@@ -21,6 +20,10 @@ const SideProfile = ({ photo, previewImg }) => {
             <span>INFO</span>
             <Image src={more} alt="more" />
           </div>
+          {isLoading ? 
+          <div className={styles.imgProfile}>
+              <div className="spinner-border text-secondary" role="status"/>
+          </div> :<>
           <div className={styles.imgProfile}>
             {photo ? (
               <Image
@@ -49,7 +52,7 @@ const SideProfile = ({ photo, previewImg }) => {
                 style={{ borderRadius: "200px" }}
               />
             )}
-          </div>
+          </div></>}
           <div className={styles.displayName}>
             <span>
               {user && user.first_name ? user.first_name : user && user.email}{" "}

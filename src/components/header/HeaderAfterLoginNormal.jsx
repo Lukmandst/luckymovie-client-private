@@ -23,8 +23,11 @@ function HeaderAfterLogin({ showToggle, setShowToggle, handleShowLogout }) {
           display: "flex",
           alignItems: "center",
         }}
-      >
-        <Image
+      >{isLoading ? 
+        <>
+            <div className="spinner-border text-secondary" role="status"/>
+        </>
+        :<Image
           src={
             user && !user.picture
               ? dummy
@@ -39,7 +42,7 @@ function HeaderAfterLogin({ showToggle, setShowToggle, handleShowLogout }) {
           height={65}
           style={{ borderRadius: "50px", cursor: "pointer" }}
           onClick={() => setShowToggle(!showToggle)}
-        />
+        />}
         {showToggle && (
           <div className={styles.dropProfile}>
             {role !== 1?

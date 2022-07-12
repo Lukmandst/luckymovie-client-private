@@ -15,6 +15,8 @@ import { postNewMovie, postNewCinema } from 'modules/axios'
 import { useSelector } from 'react-redux'
 
 const AddMovie = () => {
+  const [isLoading, setIsLoading] = useState(false)
+  const [isLoadingCinema, setIsLoadingCinema] = useState(false)
   const [detailMovie, setDetailMovie] = useState({
     title : "", 
     genre : "",
@@ -37,6 +39,7 @@ const AddMovie = () => {
   })
   const token = useSelector(state=>state.auth.token)
   const addNewMovie = async ()=>{
+    setIsLoading(true)
     try {
       const formData = new FormData()
       const body = {...detailMovie, duration : `${hour} Hour ${minute} Minutes`}
@@ -44,14 +47,17 @@ const AddMovie = () => {
         formData.append(key, body[key])
       }
       const res = await postNewMovie(formData, token)
+      setIsLoading(false)
       setMovie_Id(res.data.data.id)
       alert("Succes add movie")
     } catch (error) {
+      setIsLoading(false)
       console.log(error);
     }
   }
   console.log(detailCinema);
   const addCinema = async ()=>{
+    setIsLoadingCinema(true)
     try {
       if(!movie_id){
         throw alert('movie_id must be filled')
@@ -60,9 +66,11 @@ const AddMovie = () => {
       console.log(body);
       const res = await postNewCinema(body, token)
       console.log(res);
+      setIsLoadingCinema(false)
       alert(res.data.message)
     } catch (error) {
       console.log(error);
+      setIsLoadingCinema(false)
       alert(error.response.data.msg)
     }
   }
@@ -142,7 +150,11 @@ const AddMovie = () => {
                 </div>
               </div>
               <div className={styles.button}>
-                  <div className={styles.addMovie} onClick={addNewMovie}>Add Movie</div>
+                  <div className={styles.addMovie} onClick={addNewMovie}>{isLoading ? 
+                        <>
+                            <div className="spinner-border text-light" role="status"/>
+                        </>
+                        :"Add Movie"}</div>
               </div>
             </div>
             <div className={styles.premiere}>
@@ -222,7 +234,11 @@ const AddMovie = () => {
                 </div>
               </div>
               <div className={styles.button}>
-                <div className={styles.addMovie} onClick={addCinema}>Add Cinema</div>
+                <div className={styles.addMovie} onClick={addCinema}>{isLoadingCinema ? 
+                        <>
+                            <div className="spinner-border text-light" role="status"/>
+                        </>
+                        :"Add Cinema"}</div>
             </div>
             </div>
         </div>
