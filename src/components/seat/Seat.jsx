@@ -1,26 +1,37 @@
+import { GetSoldSeat, getSoldSeat } from "modules/axios";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
 import styles from "./Seat.module.css";
 
 const Seat = (props) => {
-
   const [soldSeat, setSoldSeat] = useState([]);
-  const {setSeatPick, seatPick} = props
+  const { setSeatPick, seatPick, reset, setReset } = props;
+  const {
+    query: { movie_id, cinema_id },
+  } = useRouter();
+  // console.log(movie_id, cinema_id);
 
-  useEffect(()=>{
-    const getSeatReserved = async ()=>{
-      try {
-        const res = await getSoldSeat(5, 5)
-        let seater =  res && res.data.data.map(data=>data.seat)
-        setSoldSeat(seater)
-        console.log(soldSeat);
-      } catch (error) {
-        console.log(error);
-      }
+  const { soldSeatRaw } = GetSoldSeat(cinema_id, movie_id);
+  // console.log(soldSeatRaw)
+  useEffect(() => {
+    // const getSeatReserved = async () => {
+    //   try {
+    //     const res = await GetSoldSeat(cinema_id, movie_id);
+    //     let seater = res && res.data.data.map((data) => data.seat);
+    //     setSoldSeat(seater);
+    //     console.log(soldSeat);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
+    // getSeatReserved();
+    if (soldSeatRaw) {
+      let seater = soldSeatRaw && soldSeatRaw.map((data) => data.seat);
+      setSoldSeat(seater);
     }
-    getSeatReserved()
-  }, [])
+  }, [soldSeatRaw]);
   const listColumn = (number, alphabet) => {
     let length = 14;
     let seat = [];
@@ -52,11 +63,14 @@ const Seat = (props) => {
             {listColumn(1, "A").map((data, i) => (
               <>
                 <input
+                  // disabled
+                  checked={reset ? false : reset[i]}
                   type="checkbox"
                   key={i}
                   id="mark"
                   onClick={(e) => {
-                    if(!seatPick.includes(e.target.value)){
+                    if (!seatPick.includes(e.target.value)) {
+                      setReset(false);
                       setSeatPick([...seatPick, data]);
                     }
                   }}
@@ -70,10 +84,12 @@ const Seat = (props) => {
             {listColumn(1, "B").map((data, i) => (
               <>
                 <input
+                  checked={reset ? false : reset[i]}
                   type="checkbox"
                   key={i}
                   id="mark"
                   onClick={(e) => {
+                    setReset(false);
                     setSeatPick([...seatPick, data]);
                   }}
                   // checked={availSeat("B").includes(data) ? false : true}
@@ -87,10 +103,12 @@ const Seat = (props) => {
             {listColumn(1, "C").map((data, i) => (
               <>
                 <input
+                  checked={reset ? false : reset[i]}
                   type="checkbox"
                   key={i}
                   id="mark"
                   onClick={(e) => {
+                    setReset(false);
                     setSeatPick([...seatPick, data]);
                   }}
                   // checked={availSeat("B").includes(data) ? false : true}
@@ -104,10 +122,12 @@ const Seat = (props) => {
             {listColumn(1, "D").map((data, i) => (
               <>
                 <input
+                  checked={reset ? false : reset[i]}
                   type="checkbox"
                   key={i}
                   id="mark"
                   onClick={(e) => {
+                    setReset(false);
                     setSeatPick([...seatPick, data]);
                   }}
                   // checked={availSeat("B").includes(data) ? false : true}
@@ -121,10 +141,12 @@ const Seat = (props) => {
             {listColumn(1, "E").map((data, i) => (
               <>
                 <input
+                  checked={reset ? false : reset[i]}
                   type="checkbox"
                   key={i}
                   id="mark"
                   onClick={(e) => {
+                    setReset(false);
                     setSeatPick([...seatPick, data]);
                   }}
                   // checked={availSeat("B").includes(data) ? false : true}
@@ -138,10 +160,12 @@ const Seat = (props) => {
             {listColumn(1, "F").map((data, i) => (
               <>
                 <input
+                  checked={reset ? false : reset[i]}
                   type="checkbox"
                   key={i}
                   id="mark"
                   onClick={(e) => {
+                    setReset(false);
                     setSeatPick([...seatPick, data]);
                   }}
                   // checked={availSeat("B").includes(data) ? false : true}
@@ -155,10 +179,12 @@ const Seat = (props) => {
             {listColumn(1, "G").map((data, i) => (
               <>
                 <input
+                  checked={reset ? false : reset[i]}
                   type="checkbox"
                   key={i}
                   id="mark"
                   onClick={(e) => {
+                    setReset(false);
                     setSeatPick([...seatPick, data]);
                   }}
                   // checked={availSeat("B").includes(data) ? false : true}
@@ -178,7 +204,7 @@ const Seat = (props) => {
               <span>5</span>
               <span>6</span>
               <span>7</span>
-            {/* </div>
+              {/* </div>
             <div className={styles.seatNumber}> */}
               <span>8</span>
               <span>9</span>

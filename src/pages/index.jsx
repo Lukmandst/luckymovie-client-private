@@ -21,17 +21,18 @@ export async function getStaticProps() {
   const getMovies = await getMoviesHome();
   const getUpdate = await getUpdateMovies();
   return {
-    props : { 
-      movies : await getMovies.json(),
-      updateMovies : await getUpdate.json()
-    }
-  }
+    props: {
+      movies: await getMovies.json(),
+      updateMovies: await getUpdate.json(),
+    },
+    revalidate: 30,
+  };
 }
 
-export default function Home({movies, updateMovies}) {
+export default function Home({ movies, updateMovies }) {
   // const { movies } = props;
-  console.log(movies)
-  console.log(updateMovies)
+  // console.log(movies);
+  // console.log(updateMovies);
   // const [movies, setMovies] = useState([]);
   // const [errMsg, setErrMsg] = useState("");
 
@@ -46,22 +47,22 @@ export default function Home({movies, updateMovies}) {
   //     });
   // }, []);
 
-  const months = [
-    { id: 1, month: "Januari" },
-    { id: 2, month: "February" },
-    { id: 3, month: "Maret" },
-    { id: 4, month: "April" },
-    { id: 5, month: "May" },
-    { id: 6, month: "June" },
-    { id: 7, month: "July" },
-    { id: 8, month: "August" },
-    { id: 9, month: "September" },
-    { id: 10, month: "October" },
-    { id: 11, month: "November" },
-    { id: 12, month: "December" },
+  // const months = [
+  //   { id: 1, month: "Januari" },
+  //   { id: 2, month: "February" },
+  //   { id: 3, month: "Maret" },
+  //   { id: 4, month: "April" },
+  //   { id: 5, month: "May" },
+  //   { id: 6, month: "June" },
+  //   { id: 7, month: "July" },
+  //   { id: 8, month: "August" },
+  //   { id: 9, month: "September" },
+  //   { id: 10, month: "October" },
+  //   { id: 11, month: "November" },
+  //   { id: 12, month: "December" },
+  // ];
 
-  ];
-
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -94,24 +95,35 @@ export default function Home({movies, updateMovies}) {
         </div>
       </section>
       <main className={`${styles.horizontalList} row bg-grey`}>
-        <div className="d-flex justify-content-between">
-          <p className="p-5 fw-bold">Now Showing</p>
-          <a href="/movie">
+        <div className="d-flex justify-content-around">
+          <p className="p-5 fw-bold " style={{ fontSize: "24px" }}>
+            Now Showing
+          </p>
+          {/* <a href="/movie">
             <p className="p-5">view all</p>
-          </a>
+          </a> */}
         </div>
-        <div className="d-flex justify-content-evenly flex-wrap mt-3 mb-5">
+        <div
+          className="d-flex  mt-3 mb-5"
+          style={{ overflow: "scroll", padding: " 0 5rem", width: "100vw" }}
+        >
           {movies.data.map((item) => (
-            <NowShowing image={item.image} id={item.movies_id} key={item.movies_id} />         
+            <NowShowing
+              image={item.image}
+              id={item.movies_id}
+              key={item.movies_id}
+            />
           ))}
         </div>
       </main>
       <section>
         <div className="d-flex justify-content-between">
-          <p className="p-5 fw-bold">Upcoming Movies</p>
-          <a href="/movie">
+          <p className="p-5 fw-bold" style={{ fontSize: "24px" }}>
+            Upcoming Movies
+          </p>
+          {/* <a href="/movie">
             <p className="p-5">view all</p>
-          </a>
+          </a> */}
         </div>
         {/* <div className="d-flex flex-wrap justify-content-center py-5 px-3 ">
           {months.map((item) => (
@@ -124,10 +136,19 @@ export default function Home({movies, updateMovies}) {
           ))}
         </div> */}
         <div className="py-5 px-3 mb-5">
-          <div className="d-flex flex-wrap justify-content-center mb-3">
-          {updateMovies.data.map((item) => (
-            <UpComing title={item.title} genre={item.genre} image={item.image} id={item.movies_id} key={item.movies_id} />
-          ))}
+          <div
+            className="d-flex justify-content-around mb-3"
+            style={{ overflow: "scroll", padding: " 0 5rem", width: "100vw" }}
+          >
+            {updateMovies.data.map((item) => (
+              <UpComing
+                title={item.title}
+                genre={item.genre}
+                image={item.image}
+                id={item.movies_id}
+                key={item.movies_id}
+              />
+            ))}
           </div>
         </div>
       </section>

@@ -203,10 +203,11 @@
   cursor:not-allowed;
 }
 .timewrapper {
+  gap: 1rem 4rem;
   width: auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: start;
   /* height: 100%; */
 }
 .priceWrapper {
@@ -258,6 +259,9 @@
   .cinemaSection {
     gap: 1rem 0;
   }
+  .timewrapper {
+    gap: 1rem 2.5rem;
+  }
 }
 @media screen and (max-width: 426px) {
   .filter {
@@ -266,5 +270,8 @@
   }
   .cinemaCard {
     width: 100%;
+  }
+  .timewrapper {
+    gap: 1rem 3.5rem;
   }
 }

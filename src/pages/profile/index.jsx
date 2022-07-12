@@ -162,7 +162,7 @@ const Profile = () => {
           window.scrollTo(0, 0);
           setMsg(false);
           dispatch(logoutAction());
-          router.push("/signin")
+          router.push("/signin");
         }, 1000);
         setEditPass(false);
       }
@@ -191,6 +191,7 @@ const Profile = () => {
       }
     }
   }, [router, token, user]);
+  
   // >>>>>>> 1d15f5fb0b73d95a090b8c8ef9a148834ba3cbfb
   return (
     <>
@@ -225,18 +226,22 @@ const Profile = () => {
                   <div key={item.id} className={styles.historyCard}>
                     <div className={styles.titleCard}>
                       <div className={styles.titleInfo}>
-                        <span>{item.detail[0].movie_date}</span>
+                        <span>{new Date( item.detail[0].movie_date).toUTCString().split('00')[0]} {item.detail[0].movie_time}</span>
                         <span>{item.detail[0].movie}</span>
                       </div>
                       <div className={styles.studio}>
                         <Image
                           src={
-                            item.detail[0].movie === "hiflix"
+                            item.detail[0].cinema === "hiflix"
                               ? hiflix
-                              : item.detail[0].movie === "ebv.id"
-                                ? ebv
-                                : cineOne
+                              : item.detail[0].cinema === "ibv.id" ||
+                                item.detail[0].cinema === "ebv.id"
+                              ? ebv
+                              : cineOne
                           }
+                          width={120}
+                          height={100}
+                          objectFit="contain"
                           alt="studio"
                         />
                       </div>
@@ -248,16 +253,22 @@ const Profile = () => {
                           ? "Ticket is Active"
                           : "Ticket is Used"}
                       </span>
-                      <span className={styles.detailsBtn} onClick={() => router.push(`/ticket/${item.id}`)}>
+                      <span
+                        className={styles.detailsBtn}
+                        onClick={() => router.push(`/ticket/${item.id}`)}
+                      >
                         Show Details
                       </span>
                     </div>
                   </div>
                 ))
               ) : (
-                  <div className={styles.historyCardLoading}>
-                      <div className="spinner-border text-secondary" role="status"/>
-                  </div>
+                <div className={styles.historyCardLoading}>
+                  <div
+                    className="spinner-border text-secondary"
+                    role="status"
+                  />
+                </div>
               )}
               {/* <div className={styles.historyCard}>
                 <div className={styles.titleCard}>
@@ -317,71 +328,76 @@ const Profile = () => {
                   </div>
                   <span></span>
                 </div>
-                {isLoading ? 
-                <>
-                    <div className="spinner-border text-secondary" role="status"/>
-                </>:
-                <form className={styles.form}>
-                  <div className={styles.first}>
-                    <div className={styles.inputProfile}>
-                      <label>First name</label>
-                      <input
-                        disabled={!edit}
-                        type="text"
-                        defaultValue={user ? user.first_name : null}
-                        placeholder="Enter your first name"
-                        onChange={(e) => setFirstname(e.target.value)}
-                      />
-                    </div>
-                    <div className={styles.inputProfile}>
-                      <label>Last name</label>
-                      <input
-                        disabled={!edit}
-                        type="text"
-                        defaultValue={user ? user.last_name : null}
-                        placeholder="Enter your last name"
-                        onChange={(e) => setLastname(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  <div className={styles.first}>
-                    <div className={styles.inputProfile}>
-                      <label>Email</label>
-                      <input
-                        disabled
-                        type="email"
-                        defaultValue={user ? user.email : null}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                    </div>
-                    <div className={styles.inputProfile}>
-                      <label>Phone number</label>
-                      <input
-                        disabled={!edit}
-                        type="number"
-                        defaultValue={user ? user.phone_number : null}
-                        placeholder="Enter your phone number"
-                        onChange={(e) => setPhone(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  {edit && (
+                {isLoading ? (
+                  <>
+                    <div
+                      className="spinner-border text-secondary"
+                      role="status"
+                    />
+                  </>
+                ) : (
+                  <form className={styles.form}>
                     <div className={styles.first}>
                       <div className={styles.inputProfile}>
-                        <label>Profile Image</label>
+                        <label>First name</label>
                         <input
                           disabled={!edit}
-                          // className="d-none"
-                          type="file"
-                          id="upload-button"
-                          accept="image/*"
-                          onChange={handleImage}
-                        // style={{ display: "none" }}
+                          type="text"
+                          defaultValue={user ? user.first_name : null}
+                          placeholder="Enter your first name"
+                          onChange={(e) => setFirstname(e.target.value)}
+                        />
+                      </div>
+                      <div className={styles.inputProfile}>
+                        <label>Last name</label>
+                        <input
+                          disabled={!edit}
+                          type="text"
+                          defaultValue={user ? user.last_name : null}
+                          placeholder="Enter your last name"
+                          onChange={(e) => setLastname(e.target.value)}
                         />
                       </div>
                     </div>
-                  )}
-                </form>}
+                    <div className={styles.first}>
+                      <div className={styles.inputProfile}>
+                        <label>Email</label>
+                        <input
+                          disabled
+                          type="email"
+                          defaultValue={user ? user.email : null}
+                          onChange={(e) => setEmail(e.target.value)}
+                        />
+                      </div>
+                      <div className={styles.inputProfile}>
+                        <label>Phone number</label>
+                        <input
+                          disabled={!edit}
+                          type="number"
+                          defaultValue={user ? user.phone_number : null}
+                          placeholder="Enter your phone number"
+                          onChange={(e) => setPhone(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                    {edit && (
+                      <div className={styles.first}>
+                        <div className={styles.inputProfile}>
+                          <label>Profile Image</label>
+                          <input
+                            disabled={!edit}
+                            // className="d-none"
+                            type="file"
+                            id="upload-button"
+                            accept="image/*"
+                            onChange={handleImage}
+                            // style={{ display: "none" }}
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </form>
+                )}
               </div>
               <div className={styles.privacy}>
                 <div className={styles.title}>
@@ -406,7 +422,11 @@ const Profile = () => {
                   </div>
                   <span></span>
                 </div>
-                <div className={editPass ? `${styles.first}`: `${styles.firstNone}` }>
+                <div
+                  className={
+                    editPass ? `${styles.first}` : `${styles.firstNone}`
+                  }
+                >
                   <div className={styles.inputProfile}>
                     <label>New Password</label>
                     <input
@@ -415,21 +435,19 @@ const Profile = () => {
                       value={pass}
                       onChange={(e) => setPass(e.target.value)}
                     />
-                    {
-                      eye1 ? (
-                        <Eye
-                          className={styles.eye}
-                          color="black"
-                          onClick={() => setEye1(!eye1)}
-                        />
-                      ) : (
-                        <EyeSlash
-                          className={styles.eye}
-                          color="gray"
-                          onClick={() => setEye1(!eye1)}
-                        />
-                      )
-                    }
+                    {eye1 ? (
+                      <Eye
+                        className={styles.eye}
+                        color="black"
+                        onClick={() => setEye1(!eye1)}
+                      />
+                    ) : (
+                      <EyeSlash
+                        className={styles.eye}
+                        color="gray"
+                        onClick={() => setEye1(!eye1)}
+                      />
+                    )}
                   </div>
                   <div className={styles.inputProfile}>
                     <label>Confirm Password</label>
@@ -439,20 +457,19 @@ const Profile = () => {
                       value={confirm}
                       onChange={(e) => setConfirm(e.target.value)}
                     />
-                    {
-                      eye2 ? (
-                        <Eye
-                          className={styles.eye}
-                          color="black"
-                          onClick={() => setEye2(!eye2)}
-                        />
-                      ) : (
-                        <EyeSlash
-                          className={styles.eye}
-                          color="gray"
-                          onClick={() => setEye2(!eye2)}
-                        />
-                      )}
+                    {eye2 ? (
+                      <Eye
+                        className={styles.eye}
+                        color="black"
+                        onClick={() => setEye2(!eye2)}
+                      />
+                    ) : (
+                      <EyeSlash
+                        className={styles.eye}
+                        color="gray"
+                        onClick={() => setEye2(!eye2)}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
@@ -487,21 +504,33 @@ const Profile = () => {
                   <div
                     className={styles.updateBtn}
                     onClick={handleShowUpdateUser}
-                  >{loadingUpdate ? 
-                    <>
-                        <div className="spinner-border text-light" role="status"/>
-                    </>
-                    :<span>Update changes</span>}
+                  >
+                    {loadingUpdate ? (
+                      <>
+                        <div
+                          className="spinner-border text-light"
+                          role="status"
+                        />
+                      </>
+                    ) : (
+                      <span>Update changes</span>
+                    )}
                   </div>
                 ) : editPass ? (
                   <div
                     className={styles.updateBtn}
                     onClick={handleShowUpdatePassword}
-                  >{loadingUpdate ? 
-                    <>
-                        <div className="spinner-border text-light" role="status"/>
-                    </>:
-                    <span>Update Password</span>}
+                  >
+                    {loadingUpdate ? (
+                      <>
+                        <div
+                          className="spinner-border text-light"
+                          role="status"
+                        />
+                      </>
+                    ) : (
+                      <span>Update Password</span>
+                    )}
                   </div>
                 ) : edit && editPass ? (
                   <>
@@ -544,10 +573,13 @@ const Profile = () => {
           >
             No
           </div>
-          <div className={styles.modalYesButton} onClick={()=>{
-            updatePassword()
-            setShow(false)
-          }}>
+          <div
+            className={styles.modalYesButton}
+            onClick={() => {
+              updatePassword();
+              setShow(false);
+            }}
+          >
             Yes
           </div>
         </Modal.Footer>
@@ -567,10 +599,13 @@ const Profile = () => {
           <div className={styles.modalNoButton} onClick={handleCloseUpdateUser}>
             No
           </div>
-          <div className={styles.modalYesButton} onClick={() => {
-            updateUser()
-            setShowModalProfile(false)
-          }}>
+          <div
+            className={styles.modalYesButton}
+            onClick={() => {
+              updateUser();
+              setShowModalProfile(false);
+            }}
+          >
             Yes
           </div>
         </Modal.Footer>

@@ -236,6 +236,7 @@
   background-color: #8f6af3;
 }
 .cinemaNameAct {
+  /* cursor: pointer; */
   border: 1px solid #5f2eea;
   padding: 15px;
   border-radius: 12px;

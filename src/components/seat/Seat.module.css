@@ -64,6 +64,14 @@
   background-color: #5f2eea;
   transition: all 0.2s linear;
 }
+.seat > label > input[type="checkbox"]:disabled:before {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background-color: gray;
+  transition: all 0.2s linear;
+  cursor: not-allowed;
+}
 
 .seat > label > input[type="checkbox"]:before {
   content: "";
@@ -129,6 +137,10 @@
     width: 12px;
     height: 12px;
   }
+  .seat > label > input[type="checkbox"]:disabled:before{
+    width: 12px;
+    height: 12px;
+  }
   .key {
     gap: 14px;
   }
@@ -157,6 +169,10 @@
     height: 18px;
   }
   .seat > label > input[type="checkbox"]:checked:before {
+    width: 18px;
+    height: 18px;
+  }
+  .seat > label > input[type="checkbox"]:disabled:before{
     width: 18px;
     height: 18px;
   }
@@ -192,6 +208,7 @@
     width: 18px;
     height: 18px;
   }
+  
   .key {
     gap: 14px;
   }
@@ -220,6 +237,10 @@
     height: 25px;
   }
   .seat > label > input[type="checkbox"]:checked:before {
+    width: 25px;
+    height: 25px;
+  }
+  .seat > label > input[type="checkbox"]:disabled:before{
     width: 25px;
     height: 25px;
   }

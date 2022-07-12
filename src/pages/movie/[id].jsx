@@ -22,6 +22,7 @@ import biPlus from "../../assets/img/bi_plus.png";
 import camera from "../../assets/img/camera-blank.png";
 import { useSelector } from "react-redux";
 import { postNewCinema } from "modules/axios";
+import dynamic from "next/dynamic";
 
 export const getServerSideProps = async ({ params }) => {
   const movieDetail = await axios({
@@ -39,13 +40,21 @@ export const getServerSideProps = async ({ params }) => {
 function MovieDetail({ movie }) {
   // console.log(movie);
   // console.log(cinema);
+  const [loadingCinema, setLoadingCinema] = useState(false);
+  const [loadingMovie, setLoadingMovie] = useState(false);
+  const [msg, setMsg] = useState(false);
+  const [errmsg, seterrMsg] = useState(false);
+  const [msgCinema, setMsgCinema] = useState(false);
+  const [errmsgCinema, seterrMsgCinema] = useState(false);
+
+  const [reset, setReset] = useState(false);
   const release_date = new Date(movie.data.release_date);
   const dateFilter = new Date();
   const day = dateFilter.getDate();
   const month = dateFilter.getMonth();
   const year = dateFilter.getFullYear();
   const todayTime = dateFilter.getHours();
-  console.log(movie.data.release_date.split("T")[0]);
+  // console.log(movie.data.release_date.split("T")[0]);
   const {
     query: { id, location: paramLocation, date: paramDate },
   } = useRouter();
@@ -84,7 +93,7 @@ function MovieDetail({ movie }) {
     location_id: "26",
     date: "",
   });
-  console.log(times);
+  // console.log(times);
 
   let arr = [];
   for (let index = day; index < day + 3; index++) {
@@ -92,23 +101,46 @@ function MovieDetail({ movie }) {
   }
 
   const addCinema = async () => {
+    setLoadingCinema(false);
+    setMsgCinema(false);
+    seterrMsgCinema(false);
     try {
-      if (!movie_id) {
-        throw alert("movie_id must be filled");
+      if (!detailCinema.date || !detailCinema.time) {
+        setLoadingCinema(false);
+        seterrMsgCinema("Date and times must be filled");
+        setTimeout(() => {
+          seterrMsgCinema(false);
+        }, 1000);
+      } else {
+        setLoadingCinema(true);
+
+        const body = { ...detailCinema, movie_id, times };
+        // console.log(body);
+        const res = await postNewCinema(body, token);
+        setLoadingCinema(false);
+
+        // console.log(res);
+        setMsgCinema(res.data.message);
+        setTimeout(() => {
+          setMsgCinema(false);
+        }, 1000);
       }
-      const body = { ...detailCinema, movie_id, times };
-      console.log(body);
-      const res = await postNewCinema(body, token);
-      console.log(res);
-      alert(res.data.message);
     } catch (error) {
-      console.log(error);
-      alert(error.response.data.msg);
+      setLoadingCinema(false);
+      // console.log(error);
+      seterrMsgCinema(error.response.data.msg);
+      setTimeout(() => {
+        seterrMsgCinema(false);
+      }, 1000);
     }
   };
-  console.log(previewImg);
+  // console.log(previewImg);
   const updateMovie = async () => {
+    setLoadingMovie(false);
+    setMsg(false);
+    seterrMsg(false);
     try {
+      setLoadingMovie(true);
       const formData = new FormData();
       const body = {
         ...detailMovie,
@@ -118,8 +150,20 @@ function MovieDetail({ movie }) {
         formData.append(key, body[key]);
       }
       const updateResult = await editMovie(id, body, token);
-      console.log(updateResult);
-    } catch (error) {}
+      // console.log(updateResult);
+      setLoadingMovie(false);
+      setMsg("Update Movie Success!");
+      setTimeout(() => {
+        setMsg(false);
+      }, 1000);
+    } catch (error) {
+      setLoadingCinema(false);
+      // console.log(error);
+      seterrMsg(error.response.data.msg);
+      setTimeout(() => {
+        seterrMsg(false);
+      }, 1000);
+    }
   };
 
   useEffect(() => {
@@ -171,9 +215,9 @@ function MovieDetail({ movie }) {
   // console.log(movie_id);
   // console.log(cinema);
   // console.log(time, cinemasId);
-  console.log(cinema);
+  // console.log(cinema);
   return (
-    <>
+    <div>
       <Head>
         <title>{movie.data.title}</title>
       </Head>
@@ -282,7 +326,7 @@ function MovieDetail({ movie }) {
                       <div className={style.cinemaLogo}>
                         <Image
                           src={
-                            result.name === "CineOne21"
+                            result.name === "CineOne21" || result.name ==='cineOne21'
                               ? cineone
                               : result.name === "hiflix"
                               ? hiflix
@@ -311,10 +355,14 @@ function MovieDetail({ movie }) {
                               // disabled={todayTime > data.time.split(":")[0]?true:day +1 || day+2? false:true}
                               // disabled={todayTime > data.time.split(":")[0]&& !day+1&&!day+2}
                               // disabled={todayTime > data.time.split(":")[0]?true: data.time.split(":")[0]>todayTime && false}
-                              disabled={data.date.split('T')[0].split('-')[2]>day? false:todayTime > data.time.split(":")[0]&& true}
+                              disabled={
+                                data.date.split("T")[0].split("-")[2] > day
+                                  ? false
+                                  : todayTime > data.time.split(":")[0] && true
+                              }
                               key={data.time}
                               className={style.timeinput}
-                              type="checkbox"
+                              type="radio"
                               name="time"
                               id={data.time + data.name}
                               value={data.time}
@@ -531,9 +579,38 @@ function MovieDetail({ movie }) {
                   </div>
                 </div>
               </div>
+              <div className="d-flex justify-content-center w-100">
+                {msg ? (
+                  <div style={{ textAlign: "center", color: "#1EC15F" }}>
+                    {msg}
+                  </div>
+                ) : Array.isArray(errmsg) ? (
+                  errmsg.map((result, i) => (
+                    <div
+                      key={i}
+                      style={{ textAlign: "center", color: "#FF5B37" }}
+                    >
+                      {result.msg}
+                    </div>
+                  ))
+                ) : (
+                  <div style={{ textAlign: "center", color: "#FF5B37" }}>
+                    {errmsg}
+                  </div>
+                )}
+              </div>
               <div className={styles.button}>
                 <div className={styles.addMovie} onClick={updateMovie}>
-                  Update Movie
+                  {loadingMovie ? (
+                    <>
+                      <div
+                        className="spinner-border text-light"
+                        role="status"
+                      />
+                    </>
+                  ) : (
+                    "Update Movie"
+                  )}
                 </div>
               </div>
             </div>
@@ -564,8 +641,9 @@ function MovieDetail({ movie }) {
                 </select>
                 <div className={styles.premiereImg}>
                   <div
+                   style={{cursor: 'pointer'}}
                     className={
-                      detailCinema.cinema_name === "ibv.id"
+                      detailCinema.cinema_name === "ebv.id"
                         ? styles.cinemaNameAct
                         : ""
                     }
@@ -577,13 +655,14 @@ function MovieDetail({ movie }) {
                       onClick={() => {
                         setDetailCinema({
                           ...detailCinema,
-                          cinema_name: "ibv.id",
+                          cinema_name: "ebv.id",
                           cinema_price: 40000,
                         });
                       }}
                     />
                   </div>
                   <div
+                  style={{cursor: 'pointer'}}
                     className={
                       detailCinema.cinema_name === "hiflix"
                         ? styles.cinemaNameAct
@@ -603,6 +682,7 @@ function MovieDetail({ movie }) {
                     />
                   </div>
                   <div
+                   style={{cursor: 'pointer'}}
                     className={
                       detailCinema.cinema_name === "cineOne21"
                         ? styles.cinemaNameAct
@@ -623,7 +703,7 @@ function MovieDetail({ movie }) {
                   </div>
                 </div>
                 <div className={styles.price}>
-                  {detailCinema.cinema_name === "ibv.id"
+                  {detailCinema.cinema_name === "ebv.id"
                     ? "PRICE = IDR 40.000"
                     : ""}
                   {detailCinema.cinema_name === "hiflix"
@@ -657,10 +737,22 @@ function MovieDetail({ movie }) {
                   <option value="23/07/20">23/07/20</option>
                 </select> */}
                   </div>
-                  <span style={{cursor: 'pointer', color: '#5F2EEA', fontWeight:'600'}}
-               onClick={()=>
-                  setTimes('')
-                  }>Reset Time</span>
+                  <span
+                    style={{
+                      cursor: "pointer",
+                      color: "#5F2EEA",
+                      fontWeight: "600",
+                    }}
+                    onClick={() => {
+                      setReset(!reset);
+                      setTimes("");
+                      setTimeout(() => {
+                        setReset(false);
+                      }, 50);
+                    }}
+                  >
+                    Reset Time
+                  </span>
                   <div className={styles.setTime}>
                     <input
                       className={style.timeinput}
@@ -670,13 +762,14 @@ function MovieDetail({ movie }) {
                       value="18"
                       onChange={(e) => {
                         if (!times.includes(e.target.value)) {
+                          setReset(false);
                           setTimes([...times, e.target.value]);
                         }
                         [...times, e.target.value];
                       }}
                     />
                     <label htmlFor={10} className={style.timelabel}>
-                      10:00:00
+                      09:45:00
                     </label>
                     <input
                       className={style.timeinput}
@@ -742,9 +835,38 @@ function MovieDetail({ movie }) {
                   </div>
                 </div>
               </div>
+              <div className="d-flex justify-content-center w-100">
+                {msgCinema ? (
+                  <div style={{ textAlign: "center", color: "#1EC15F" }}>
+                    {msgCinema}
+                  </div>
+                ) : Array.isArray(errmsgCinema) ? (
+                  errmsgCinema.map((result, i) => (
+                    <div
+                      key={i}
+                      style={{ textAlign: "center", color: "#FF5B37" }}
+                    >
+                      {result.msg}
+                    </div>
+                  ))
+                ) : (
+                  <div style={{ textAlign: "center", color: "#FF5B37" }}>
+                    {errmsgCinema}
+                  </div>
+                )}
+              </div>
               <div className={styles.button}>
                 <div className={styles.addMovie} onClick={addCinema}>
-                  Add Cinema
+                  {loadingCinema ? (
+                    <>
+                      <div
+                        className="spinner-border text-light"
+                        role="status"
+                      />
+                    </>
+                  ) : (
+                    "Add Cinema"
+                  )}
                 </div>
               </div>
             </div>
@@ -752,8 +874,9 @@ function MovieDetail({ movie }) {
         </div>
       )}
       <Footer />
-    </>
+    </div>
   );
 }
 
-export default MovieDetail;
+// export default MovieDetail;
+export default dynamic(() => Promise.resolve(MovieDetail), { ssr: false });
