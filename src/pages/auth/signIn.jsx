@@ -36,6 +36,7 @@ function SignIn() {
         if (token) {
             router.push("/")
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token])
 
     const showPassHandler = () => {
