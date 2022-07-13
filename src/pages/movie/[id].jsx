@@ -105,7 +105,7 @@ function MovieDetail({ movie }) {
     setMsgCinema(false);
     seterrMsgCinema(false);
     try {
-      if (!detailCinema.date || !detailCinema.time) {
+      if (!detailCinema.date || !times) {
         setLoadingCinema(false);
         seterrMsgCinema("Date and times must be filled");
         setTimeout(() => {
