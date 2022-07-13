@@ -8,6 +8,7 @@ import { GetUser, GetUserTicket } from "modules/axios";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { currencyFormatter } from "helper/formatter";
+import { useEffect } from "react";
 import jsPdf from "jspdf";
 import html2canvas from "html2canvas";
 
@@ -16,8 +17,19 @@ const Ticket = () => {
   const {
     query: { id },
   } = useRouter();
-  const { user } = GetUser(token);
-  const { ticket, isLoading, isError } = GetUserTicket(id, token);
+  const { user } = GetUser(
+    token
+  )
+  const router = useRouter()
+  const { ticket, isLoading, isError } = GetUserTicket(
+    id,
+    token
+  );
+  useEffect(()=>{
+    if (!token){
+      router.push('/signin')
+    }
+  })
   console.log(ticket);
   console.log(user);
 
@@ -106,9 +118,7 @@ const Ticket = () => {
                     <div className={styles.row}>
                       <div>
                         <div className={styles.key}>Date</div>
-                        <div className={styles.value}>
-                          {data.detail[0].movie_date}
-                        </div>
+                        <div className={styles.value}>{new Date( data.detail[0].movie_date).toUTCString().split('00')[0]}</div>
                       </div>
                       <div>
                         <div className={styles.key}>Time</div>

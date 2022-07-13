@@ -73,23 +73,23 @@ const Header = () => {
             />
           </Navbar.Brand>
           <Navbar className="row navbar-collapse collapse">
-            {role !== 1 ?
+            {role !== 1 ? (
               <Nav className="mr-auto">
                 <Nav.Link href="/">Movie</Nav.Link>
-                <Nav.Link href="/profil">Profil</Nav.Link>
-                <Nav.Link href="/profil">My Ticket</Nav.Link>
+                <Nav.Link href="/profile">Profil</Nav.Link>
+                <Nav.Link href="/profile">My Ticket</Nav.Link>
               </Nav>
-              :
+            ) : (
               <Nav className="mr-auto">
                 <Nav.Link href="/">Movie</Nav.Link>
                 <Nav.Link href="/admin">Dashboard</Nav.Link>
                 <Nav.Link href="/admin/add-movie">Add Movie</Nav.Link>
               </Nav>
-            }
+            )}
             <div className="d-flex flex-row justify-content-end navbar-nav-right align-items-center">
               <ul className="navbar-nav d-flex align-items-center">
                 <li className="nav-item dropdown text-center">
-                  <NavDropdown
+                  {/* <NavDropdown
                     title="Location"
                     id="basic-nav-dropdown"
                     className="nav-link"
@@ -103,12 +103,12 @@ const Header = () => {
                     <NavDropdown.Item href="#action/3.3">
                       Bandung
                     </NavDropdown.Item>
-                  </NavDropdown>
+                  </NavDropdown> */}
                 </li>
                 <div className="d-md-flex ">
-                  <li className="mx-2 my-auto nav-item d-flex align-items-center ">
+                  {/* <li className="mx-2 my-auto nav-item d-flex align-items-center ">
                     <Image src={searchIcon} alt="icon search" />
-                  </li>
+                  </li> */}
                   {!token ? (
                     <>
                       <li className="mx-2 nav-item">
@@ -174,15 +174,15 @@ const Header = () => {
           <Navbar.Collapse id="responsive-navbar-nav">
             <div className="d-flex flex-column align-items-center d-lg-none">
               <div className="p-2 mt-4 container nav-mobile-content-search">
-                <input
+                {/* <input
                   className="form-control "
                   type="text"
                   placeholder="Search"
-                />
+                /> */}
               </div>
               <div className="hr"></div>
               <div className="p-2 py-3">
-                <NavDropdown
+                {/* <NavDropdown
                   title="Location"
                   id="basic-nav-dropdown"
                   className="nav-link"
@@ -196,20 +196,38 @@ const Header = () => {
                   <NavDropdown.Item href="#action/3.3">
                     Bandung
                   </NavDropdown.Item>
-                </NavDropdown>
+                </NavDropdown> */}
               </div>
               <div className="hr"></div>
-              <div className="p-2 py-3">
-                <a href="#"> Movies</a>
-              </div>
-              <div className="hr"></div>
-              <div className="p-2 py-3">
-                <a href="#"> Cinema</a>
-              </div>
-              <div className="hr"></div>
-              <div className="p-2 py-3">
-                <a href="#"> Buy Ticket</a>
-              </div>
+              {role !== 1 ? (
+                <>
+                  <div className="p-2 py-3">
+                    <Link href="/">Movies</Link>
+                  </div>
+                  <div className="hr"></div>
+                  <div className="p-2 py-3">
+                    <Link href="/profile">Profil</Link>
+                  </div>
+                  <div className="hr"></div>
+                  <div className="p-2 py-3">
+                    <Link href="/profile">My Ticket</Link>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="p-2 py-3">
+                    <Link href="/">Movies</Link>
+                  </div>
+                  <div className="hr"></div>
+                  <div className="p-2 py-3">
+                    <Link href="/admin">Dashboard</Link>
+                  </div>
+                  <div className="hr"></div>
+                  <div className="p-2 py-3">
+                    <Link href="/admin/add-movie">Add Movie</Link>
+                  </div>
+                </>
+              )}
 
               <div className="hr"></div>
               {!token ? (
@@ -242,7 +260,6 @@ const Header = () => {
               ) : (
                 <HeaderAfterLoginResponsive
                   showToggle={showToggle}
-
                   handleShowLogout={handleShowLogout}
                 />
               )}

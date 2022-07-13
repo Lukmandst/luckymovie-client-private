@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   background-color: #f5f6f8;
-  padding: 70px;
+  padding: 0 70px;
 }
 .container2 {
   display: flex;
@@ -236,6 +236,7 @@
   background-color: #8f6af3;
 }
 .cinemaNameAct {
+  /* cursor: pointer; */
   border: 1px solid #5f2eea;
   padding: 15px;
   border-radius: 12px;
@@ -316,6 +317,9 @@
 }
 
 @media screen and (max-width: 426px) {
+  .basedon{
+    display: flex;
+  }
   .top {
     flex-direction: column;
     padding: 0;

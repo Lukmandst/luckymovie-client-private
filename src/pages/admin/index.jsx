@@ -74,18 +74,18 @@ const Admin = () => {
 
   // console.log(allMovieSales.map(result=> result.title));
   // const {id } = useRouter()
-  useEffect(() => {
-    const getDetailMovie = async () => {
-      try {
-        const result = await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/movies/15`)
-        console.log(result);
-        setDetailMovie(result.data.data)
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getDetailMovie()
-  }, [])
+  // useEffect(() => {
+  //   const getDetailMovie = async () => {
+  //     try {
+  //       const result = await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/movies/15`)
+  //       console.log(result);
+  //       setDetailMovie(result.data.data)
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+  //   getDetailMovie()
+  // }, [])
 
   useEffect(() => {
     if (role !== 1) {
@@ -99,6 +99,11 @@ const Admin = () => {
       </Head>
       <Header />
       <div className={styles.container}>
+        <div className={styles.top}>
+          <div className={styles.movieDescription}>
+            <span >Sales Charts</span>           
+          </div>
+        </div>
         {!movie ? (
           <ChartSales
             jakarta={Jakarta}

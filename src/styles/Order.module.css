@@ -59,9 +59,12 @@
   border-radius: 2px;
 }
 .screenCinema {
-  width: 30vw;
-  color: blue;
-  padding: 4px;
+  /* border-top:2px solid #5f2eea; */
+  width: 90vw;
+  height: 10px;
+  border-radius: 20px;
+  background-color: #5f2eea;
+  /* padding: 4px; */
 }
 .small {
   padding-right: 24px;
