@@ -95,7 +95,7 @@ export default function Home({ movies, updateMovies }) {
         </div>
       </section>
       <main className={`${styles.horizontalList} row bg-grey`}>
-        <div className="d-flex justify-content-around">
+        <div className="d-flex justify-content-between">
           <p className="p-5 fw-bold " style={{ fontSize: "24px" }}>
             Now Showing
           </p>
