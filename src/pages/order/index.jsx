@@ -27,6 +27,7 @@ export default function Order() {
     if (!token) {
       router.push("/signin");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   return (
@@ -181,7 +182,9 @@ export default function Order() {
                   <h6 className={`${styles.textInfo} col-md-6`}>
                     {seatPick.length === 1
                       ? seatPick
-                      : seatPick.map((seat) => `${seat}, `)}
+                      : seatPick.length > 1
+                      ? seatPick.map((seat) => `${seat}, `)
+                      : null}
                   </h6>
                 </Row>
                 <Row className="r-flex justify-content-center text-center">

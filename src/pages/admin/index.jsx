@@ -91,6 +91,7 @@ const Admin = () => {
     if (role !== 1) {
       router.push("/")
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [role])
   return (
     <>

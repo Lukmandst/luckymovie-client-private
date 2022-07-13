@@ -94,6 +94,7 @@ const AddMovie = () => {
         shallow: true,
       }
     );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     detailCinema.cinema_name,
     detailCinema.cinema_price,
